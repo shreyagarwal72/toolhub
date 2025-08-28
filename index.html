@@ -3,64 +3,25 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>File Converter - Nextup Studio</title>
+  <title>MRPACK to ZIP Converter - Nextup Studio</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
+  <div class="container">
+    <h1>MRPACK → ZIP Converter</h1>
+    <p>Drag & Drop your <b>.mrpack</b> file or click below to convert into <b>.zip</b></p>
 
-  <!-- Header -->
-  <header>
-    <h1>File Converter</h1>
-    <p>Convert your files quickly & easily</p>
-  </header>
-
-  <!-- Upload Section -->
-  <main>
-    <div class="upload-box" id="uploadBox">
-      <p>Drag & Drop your file here or click to select</p>
+    <div id="dropArea" class="drop-area">
+      <p>Drop your file here</p>
       <input type="file" id="fileInput" hidden>
-      <button onclick="document.getElementById('fileInput').click()">Choose File</button>
+      <button id="chooseBtn">Choose File</button>
     </div>
 
-    <div class="convert-box">
-      <label for="inputFormat">Convert From:</label>
-      <input type="text" id="inputFormat" placeholder="e.g. mrpack">
+    <div id="result" class="result"></div>
+  </div>
 
-      <label for="outputFormat">Convert To:</label>
-      <input type="text" id="outputFormat" placeholder="e.g. zip">
-
-      <button onclick="convertFile()">Convert</button>
-    </div>
-  </main>
-
-  <!-- FAQ Section -->
-  <section class="faq">
-    <h2>FAQs</h2>
-    <div class="faq-item">
-      <button class="faq-question">1. Is this tool free to use?</button>
-      <div class="faq-answer">
-        <p>Yes! This converter is completely free and works directly in your browser.</p>
-      </div>
-    </div>
-    <div class="faq-item">
-      <button class="faq-question">2. Which file types are supported?</button>
-      <div class="faq-answer">
-        <p>You can convert any file extension. Just type your input and output formats.</p>
-      </div>
-    </div>
-    <div class="faq-item">
-      <button class="faq-question">3. Does my file get uploaded to a server?</button>
-      <div class="faq-answer">
-        <p>No. All conversions happen locally in your browser for privacy and speed.</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- Footer -->
   <footer>
     <p>Powered by <a href="https://shreyagarwal72.github.io" target="_blank">Nextup Studio</a></p>
-    <p>© 2025 Nextup Studio. All rights reserved.</p>
-    <p>We are not affiliated with Modrinth.</p>
   </footer>
 
   <script src="script.js"></script>
