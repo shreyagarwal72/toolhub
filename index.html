@@ -8,22 +8,27 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
 </head>
 <body>
-  <div class="container">
-    <h1>MRPACK → ZIP Converter</h1>
+  <header>
+    <h1>MRPACK to ZIP Converter</h1>
+    <p>Convert your Modrinth modpacks (.mrpack) to ZIP format instantly.  
+    Fast, secure, and free to use!</p>
+  </header>
+
+  <main>
     <div class="upload-box" id="drop-area">
-      <p>Drag & Drop your .mrpack file here<br>or<br><label for="fileInput" class="file-label">Choose File</label></p>
+      <div class="icon">⬆️</div>
+      <p>Drag & drop your <b>.mrpack</b> file here,<br>or click to select</p>
       <input type="file" id="fileInput" accept=".mrpack">
     </div>
     <button id="convertBtn" disabled>Convert to ZIP</button>
     <div id="status"></div>
-  </div>
+  </main>
 
   <footer>
     <p>
-      Powered by 
-      <a href="https://www.youtube.com/@nextupstudioyt" target="_blank">
-        Nextup Studio
-      </a>
+      Powered by <a href="https://www.youtube.com/@nextupstudioyt" target="_blank">Nextup Studio</a><br>
+      © 2025 Nextup Studio. All rights reserved.<br>
+      We are not affiliated with Modrinth.
     </p>
   </footer>
 
