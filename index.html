@@ -2,49 +2,42 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>MRPACK to ZIP Converter</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Mrpack to Zip Converter</title>
+  <meta name="description" content="Convert your .mrpack files to .zip instantly online with this fast and secure tool." />
   <link rel="stylesheet" href="style.css" />
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
-  <!-- Header -->
-  <header class="header">
+  <header>
     <h1>MRPACK → ZIP Converter</h1>
-    <p>Convert your <b>.mrpack</b> files into ready-to-use <b>.zip</b> modpacks</p>
+    <p>Fast • Secure • Free</p>
   </header>
 
-  <!-- Main Content -->
-  <main class="container">
-    <div class="card">
-      <h2>Select Your File</h2>
-      <div id="drop-area">
-        <p>Drag & Drop your <b>.mrpack</b> file here</p>
-        <input type="file" id="fileInput" accept=".mrpack" hidden />
-        <button id="browseBtn">Browse File</button>
-      </div>
-      <button id="convertBtn" disabled>Convert to ZIP</button>
-      <div id="progress-container" class="hidden">
-        <div id="progress-bar"></div>
-      </div>
-      <p id="status"></p>
+  <main>
+    <!-- Upload Area -->
+    <div id="drop-area">
+      <form class="upload-form">
+        <p><strong>Drag & Drop</strong> your .mrpack file here</p>
+        <p>or</p>
+        <input type="file" id="fileElem" accept=".mrpack" />
+        <label class="browse-btn" for="fileElem">Choose File</label>
+      </form>
     </div>
 
-    <section class="info">
-      <h2>Why Use This Tool?</h2>
-      <ul>
-        <li>Converts <b>.mrpack</b> to a CurseForge-style <b>.zip</b></li>
-        <li>Fetches all required mods automatically</li>
-        <li>Runs completely client-side (no data leaves your browser)</li>
-        <li>Works with MultiMC, Prism, GDLauncher, and CurseForge</li>
-        <li>Free, fast, and secure</li>
-      </ul>
-    </section>
+    <!-- Convert Button -->
+    <button id="convertBtn" disabled>Convert to ZIP</button>
+
+    <!-- Progress -->
+    <div id="progress-container" class="hidden">
+      <div id="progress-bar"></div>
+    </div>
+
+    <!-- Download Button -->
+    <button id="downloadBtn" class="hidden">Download ZIP</button>
   </main>
 
-  <!-- Footer -->
-  <footer class="footer">
-    <p>Made with ❤️ by Vanshu | Nextup Studio</p>
+  <footer>
+    <p>© 2025 Mrpack to Zip Converter | Made with ❤️ by Nextup Studio</p>
   </footer>
 
   <script src="script.js"></script>
