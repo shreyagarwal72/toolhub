@@ -1,56 +1,52 @@
-<!DOCTYPE html><html lang="en">
+<!DOCTYPE html>
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Mrpack To Zip Converter | Free Minecraft Modpack Tool</title>
-  <meta name="description" content="Convert Modrinth .mrpack files into CurseForge-compatible .zip modpacks. Free, client-side, and easy to use.">
-  <meta name="keywords" content="mrpack to zip, modrinth to curseforge, minecraft modpack converter, mrpack converter">
-  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Mrpack To Zip Converter | Online Tool</title>
+  <meta name="description" content="Convert .mrpack files to .zip instantly with our free online Mrpack to Zip converter. Fast, secure, and works directly in your browser.">
+  <meta name="keywords" content="mrpack to zip, mrpack converter, minecraft modpack converter, online mrpack tool">
+  <link rel="stylesheet" href="style.css" />
 </head>
-<body class="bg-gradient-to-br from-slate-900 via-gray-950 to-slate-800 min-h-screen flex flex-col font-sans">  <!-- Navbar -->  <nav class="bg-gradient-to-r from-indigo-900/70 to-purple-900/70 backdrop-blur-md p-4 shadow-lg">
-    <div class="max-w-6xl mx-auto flex justify-between items-center">
-      <h1 class="text-2xl font-extrabold text-indigo-300 tracking-wide">Mrpack → Zip</h1>
-      <span class="text-gray-300 text-sm italic">Fast • Secure • Free</span>
-    </div>
-  </nav>  <!-- Main Section -->  <main class="flex-grow flex items-center justify-center p-6">
-    <div class="bg-gradient-to-b from-slate-800/70 to-gray-900/70 backdrop-blur-md p-10 rounded-3xl shadow-2xl w-full max-w-2xl text-center border border-indigo-800/40">
-      <h2 class="text-3xl font-bold text-indigo-300 mb-3">Convert Your Modrinth Pack</h2>
-      <p class="text-gray-300 mb-8">Upload a <code>.mrpack</code> file and get a ready-to-use <code>.zip</code> modpack for CurseForge, MultiMC, or Prism Launcher.</p><!-- Dropzone -->
-  <div id="dropzone" class="border-2 border-dashed border-indigo-400 rounded-2xl p-12 cursor-pointer hover:border-purple-400 hover:bg-indigo-900/20 transition mb-6">
-    <p id="droptext" class="text-gray-400">Drag & drop or click to upload your <code>.mrpack</code> file</p>
-    <input type="file" id="fileInput" accept=".mrpack" class="hidden">
-  </div>
+<body>
+  <header class="header">
+    <h1>Mrpack To Zip Converter</h1>
+    <p class="subtitle">Convert Minecraft .mrpack modpacks into .zip easily</p>
+  </header>
 
-  <!-- Convert Button -->
-  <button id="convertBtn" class="px-8 py-3 bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 text-white font-semibold rounded-xl shadow-lg hover:opacity-90 transition disabled:opacity-40" disabled>Convert Now</button>
+  <main class="container">
+    <section class="upload-box">
+      <h2>Upload Your .mrpack File</h2>
+      <p>Drag & drop or select a <strong>.mrpack</strong> file to start converting.</p>
+      <input type="file" id="fileInput" accept=".mrpack" />
+      <button id="convertBtn">Convert to .zip</button>
+      <a id="downloadLink" style="display:none;">Download Converted File</a>
+    </section>
 
-  <!-- Progress -->
-  <div id="progressContainer" class="hidden mt-6">
-    <div class="w-full bg-gray-700 rounded-full h-3">
-      <div id="progressBar" class="bg-gradient-to-r from-indigo-400 to-purple-400 h-3 rounded-full" style="width:0%"></div>
-    </div>
-    <p id="progressText" class="text-gray-300 mt-3 text-sm">Starting conversion...</p>
-  </div>
+    <section class="info">
+      <h2>Why Use This Tool?</h2>
+      <ul>
+        <li>✔ Converts <strong>.mrpack</strong> to <strong>.zip</strong> instantly</li>
+        <li>✔ Works completely client-side, no data leaves your browser</li>
+        <li>✔ Free to use, fast, and secure</li>
+        <li>✔ Works with MultiMC, Prism, GDLauncher, and CurseForge</li>
+      </ul>
+    </section>
 
-  <!-- Download -->
-  <a id="downloadLink" class="hidden mt-8 inline-block px-8 py-3 bg-gradient-to-r from-green-500 to-emerald-600 text-white font-semibold rounded-xl shadow-lg hover:opacity-90 transition">Download ZIP</a>
-</div>
+    <section class="steps">
+      <h2>How It Works</h2>
+      <ol>
+        <li>Select or drag & drop your <strong>.mrpack</strong> file.</li>
+        <li>The converter extracts the content and prepares a <strong>.zip</strong>.</li>
+        <li>Download your ready-to-use <strong>.zip modpack</strong>.</li>
+      </ol>
+    </section>
+  </main>
 
-  </main>  <!-- Info Section -->  <section class="max-w-5xl mx-auto px-6 py-16">
-    <h2 class="text-3xl font-bold text-indigo-300 mb-6">Why Use This Tool?</h2>
-    <ul class="list-disc list-inside text-gray-200 space-y-2 mb-10">
-      <li>Converts <strong>.mrpack</strong> to a <strong>CurseForge-style .zip</strong></li>
-      <li>Downloads all required mods into the <code>mods/</code> folder</li>
-      <li>Completely client-side, no data leaves your browser</li>
-      <li>Free to use and works with MultiMC, Prism, GDLauncher, and CurseForge</li>
-    </ul><h2 class="text-3xl font-bold text-indigo-300 mb-6">How It Works</h2>
-<ol class="list-decimal list-inside text-gray-200 space-y-2">
-  <li>Select or drag & drop your <code>.mrpack</code> file.</li>
-  <li>The converter reads the manifest and fetches required mods.</li>
-  <li>You download a ready-to-use <code>.zip</code> modpack.</li>
-</ol>
+  <footer class="footer">
+    <p>© 2025 Mrpack To Zip Converter | Built with ❤️ for Minecraft players</p>
+  </footer>
 
-  </section>  <!-- Footer -->  <footer class="bg-gradient-to-r from-indigo-900/60 to-purple-900/60 text-center py-6 text-gray-400 text-sm">
-    <p>&copy; 2025 Mrpack To Zip Converter. All rights reserved.</p>
-  </footer>  <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>  <script src="script.js"></script></body>
+  <script src="script.js"></script>
+</body>
 </html>
