@@ -10,14 +10,17 @@ body {
   color: #fff;
   display: flex;
   height: 100vh;
+  flex-direction: row; /* desktop default */
 }
 
-/* Sidebar */
+/* Sidebar (Desktop vertical) */
 .sidebar {
   width: 220px;
   background: #1e1e1e;
   padding: 20px;
   flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
 }
 
 .sidebar h2 {
@@ -29,10 +32,11 @@ body {
   display: block;
   color: #fff;
   text-decoration: none;
-  margin: 10px 0;
+  margin: 8px 0;
   padding: 10px;
   border-radius: 8px;
   transition: 0.3s;
+  text-align: center;
 }
 
 .sidebar a:hover {
@@ -76,4 +80,32 @@ button {
 
 button:hover {
   background: #0097a7;
+}
+
+/* ---------- Responsive Design ---------- */
+@media (max-width: 768px) {
+  body {
+    flex-direction: column; /* top + content */
+  }
+
+  .sidebar {
+    width: 100%;
+    flex-direction: row;  /* horizontal */
+    justify-content: space-around;
+    align-items: center;
+    padding: 10px;
+  }
+
+  .sidebar h2 {
+    display: none; /* hide heading on mobile */
+  }
+
+  .sidebar a {
+    margin: 0;
+    flex: 1;
+  }
+
+  .main-content {
+    padding: 15px;
+  }
 }
