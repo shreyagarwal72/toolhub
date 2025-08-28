@@ -2,49 +2,49 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Mrpack To Zip Converter | Online Tool</title>
-  <meta name="description" content="Convert .mrpack files to .zip instantly with our free online Mrpack to Zip converter. Fast, secure, and works directly in your browser.">
-  <meta name="keywords" content="mrpack to zip, mrpack converter, minecraft modpack converter, online mrpack tool">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MRPACK to ZIP Converter</title>
   <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
+  <!-- Header -->
   <header class="header">
-    <h1>Mrpack To Zip Converter</h1>
-    <p class="subtitle">Convert Minecraft .mrpack modpacks into .zip easily</p>
+    <h1>MRPACK → ZIP Converter</h1>
+    <p>Convert your <b>.mrpack</b> files into ready-to-use <b>.zip</b> modpacks</p>
   </header>
 
+  <!-- Main Content -->
   <main class="container">
-    <section class="upload-box">
-      <h2>Upload Your .mrpack File</h2>
-      <p>Drag & drop or select a <strong>.mrpack</strong> file to start converting.</p>
-      <input type="file" id="fileInput" accept=".mrpack" />
-      <button id="convertBtn">Convert to .zip</button>
-      <a id="downloadLink" style="display:none;">Download Converted File</a>
-    </section>
+    <div class="card">
+      <h2>Select Your File</h2>
+      <div id="drop-area">
+        <p>Drag & Drop your <b>.mrpack</b> file here</p>
+        <input type="file" id="fileInput" accept=".mrpack" hidden />
+        <button id="browseBtn">Browse File</button>
+      </div>
+      <button id="convertBtn" disabled>Convert to ZIP</button>
+      <div id="progress-container" class="hidden">
+        <div id="progress-bar"></div>
+      </div>
+      <p id="status"></p>
+    </div>
 
     <section class="info">
       <h2>Why Use This Tool?</h2>
       <ul>
-        <li>✔ Converts <strong>.mrpack</strong> to <strong>.zip</strong> instantly</li>
-        <li>✔ Works completely client-side, no data leaves your browser</li>
-        <li>✔ Free to use, fast, and secure</li>
-        <li>✔ Works with MultiMC, Prism, GDLauncher, and CurseForge</li>
+        <li>Converts <b>.mrpack</b> to a CurseForge-style <b>.zip</b></li>
+        <li>Fetches all required mods automatically</li>
+        <li>Runs completely client-side (no data leaves your browser)</li>
+        <li>Works with MultiMC, Prism, GDLauncher, and CurseForge</li>
+        <li>Free, fast, and secure</li>
       </ul>
-    </section>
-
-    <section class="steps">
-      <h2>How It Works</h2>
-      <ol>
-        <li>Select or drag & drop your <strong>.mrpack</strong> file.</li>
-        <li>The converter extracts the content and prepares a <strong>.zip</strong>.</li>
-        <li>Download your ready-to-use <strong>.zip modpack</strong>.</li>
-      </ol>
     </section>
   </main>
 
+  <!-- Footer -->
   <footer class="footer">
-    <p>© 2025 Mrpack To Zip Converter | Built with ❤️ for Minecraft players</p>
+    <p>Made with ❤️ by Vanshu | Nextup Studio</p>
   </footer>
 
   <script src="script.js"></script>
