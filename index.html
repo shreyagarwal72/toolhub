@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nextup Tools</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="sidebar">
+    <h2>⚙️ Tools</h2>
+    <a href="#" onclick="showTool('converter')">File Extension Converter</a>
+    <a href="#" onclick="showTool('imageTool')">Image to Base64 (soon)</a>
+    <a href="#" onclick="showTool('textTool')">Text Encoder (soon)</a>
+  </div>
+
+  <div class="main-content">
+    <div id="converter" class="tool active">
+      <h1>File Extension Converter</h1>
+      <input type="file" id="fileInput" />
+      <br>
+      <label for="extension">Convert to:</label>
+      <select id="extension">
+        <option value="zip">.zip</option>
+        <option value="rar">.rar</option>
+        <option value="txt">.txt</option>
+        <option value="json">.json</option>
+      </select>
+      <br>
+      <button onclick="convertFile()">Convert</button>
+    </div>
+
+    <div id="imageTool" class="tool">
+      <h1>Image to Base64</h1>
+      <p>🚧 Coming Soon...</p>
+    </div>
+
+    <div id="textTool" class="tool">
+      <h1>Text Encoder</h1>
+      <p>🚧 Coming Soon...</p>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
