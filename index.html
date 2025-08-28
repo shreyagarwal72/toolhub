@@ -1,46 +1,115 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html><html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Nextup Tools</title>
-  <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mrpack To Zip Converter | Free Online Tool</title>
+  <meta name="description" content="Convert Modrinth .mrpack files to standard .zip format instantly with our free online tool. 100% client-side, secure, and easy to use." />
+  <meta name="keywords" content="mrpack to zip, modrinth pack converter, minecraft modpack converter, convert mrpack file, mrpack zip online" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
 </head>
-<body>
-  <div class="sidebar">
-    <h2>⚙️ Tools</h2>
-    <a href="#" onclick="showTool('converter')">File Extension Converter</a>
-    <a href="#" onclick="showTool('imageTool')">Image to Base64 (soon)</a>
-    <a href="#" onclick="showTool('textTool')">Text Encoder (soon)</a>
-  </div>
-
-  <div class="main-content">
-    <div id="converter" class="tool active">
-      <h1>File Extension Converter</h1>
-      <input type="file" id="fileInput" />
-      <br>
-      <label for="extension">Convert to:</label>
-      <select id="extension">
-        <option value="zip">.zip</option>
-        <option value="rar">.rar</option>
-        <option value="txt">.txt</option>
-        <option value="json">.json</option>
-      </select>
-      <br>
-      <button onclick="convertFile()">Convert</button>
+<body class="bg-gray-900 text-gray-100 font-sans">  <!-- Header -->  <header class="bg-gray-800 shadow p-4 text-center">
+    <h1 class="text-2xl font-bold text-teal-400">Mrpack To Zip Converter</h1>
+    <p class="text-gray-300">Free, secure, and instant .mrpack to .zip conversion</p>
+  </header>  <!-- Upload Section -->  <section class="max-w-3xl mx-auto mt-10 p-6 bg-gray-800 rounded-xl shadow-lg text-center">
+    <h2 class="text-xl font-semibold mb-4">Upload Your .mrpack File</h2>
+    <div id="dropzone" class="border-2 border-dashed border-teal-400 rounded-lg p-10 cursor-pointer hover:bg-gray-700 transition">
+      <p class="text-gray-400">Drag & Drop your .mrpack file here or click to upload</p>
+      <input type="file" id="fileInput" accept=".mrpack" class="hidden" />
     </div>
+    <button id="convertBtn" class="mt-6 px-6 py-2 bg-teal-500 text-white rounded-lg hover:bg-teal-600 transition disabled:opacity-50" disabled>Convert to .zip</button>
+    <div id="progress" class="mt-4 hidden">Processing...</div>
+    <a id="downloadLink" class="hidden mt-4 inline-block px-6 py-2 bg-green-500 text-white rounded-lg hover:bg-green-600 transition">Download ZIP</a>
+  </section>  <!-- Info Section -->  <section class="max-w-4xl mx-auto mt-16 px-6">
+    <h2 class="text-2xl font-bold text-teal-400 mb-4">What is a .mrpack File?</h2>
+    <p class="text-gray-300 mb-6">A <strong>.mrpack</strong> file is a Minecraft modpack format created by Modrinth. It contains a manifest and references to mods, configs, and resources.</p><h2 class="text-2xl font-bold text-teal-400 mb-4">Why Convert to .zip?</h2>
+<ul class="list-disc list-inside text-gray-300 mb-6">
+  <li>Compatible with popular launchers like CurseForge, MultiMC, Prism.</li>
+  <li>Easy sharing and installation.</li>
+  <li>Works on more devices without Modrinth-specific tools.</li>
+</ul>
 
-    <div id="imageTool" class="tool">
-      <h1>Image to Base64</h1>
-      <p>🚧 Coming Soon...</p>
-    </div>
+<h2 class="text-2xl font-bold text-teal-400 mb-4">How to Use This Tool</h2>
+<ol class="list-decimal list-inside text-gray-300 mb-6">
+  <li>Upload or drag & drop your <code>.mrpack</code> file.</li>
+  <li>Click <strong>Convert to .zip</strong>.</li>
+  <li>Download the converted file instantly.</li>
+</ol>
 
-    <div id="textTool" class="tool">
-      <h1>Text Encoder</h1>
-      <p>🚧 Coming Soon...</p>
-    </div>
-  </div>
+<h2 class="text-2xl font-bold text-teal-400 mb-4">FAQ</h2>
+<p class="text-gray-300 mb-2"><strong>Is this tool free?</strong> Yes, 100% free.</p>
+<p class="text-gray-300 mb-2"><strong>Is it safe?</strong> Yes, all conversions happen locally in your browser.</p>
+<p class="text-gray-300 mb-2"><strong>Any file size limits?</strong> Depends on your browser memory, but generally works for most modpacks.</p>
 
-  <script src="script.js"></script>
-</body>
+  </section>  <!-- Footer -->  <footer class="bg-gray-800 text-center py-6 mt-16 text-gray-400 text-sm">
+    <p>&copy; 2025 Mrpack To Zip Converter. All rights reserved.</p>
+  </footer>  <script>
+    const dropzone = document.getElementById('dropzone');
+    const fileInput = document.getElementById('fileInput');
+    const convertBtn = document.getElementById('convertBtn');
+    const progress = document.getElementById('progress');
+    const downloadLink = document.getElementById('downloadLink');
+
+    let selectedFile = null;
+
+    dropzone.addEventListener('click', () => fileInput.click());
+    dropzone.addEventListener('dragover', (e) => {
+      e.preventDefault();
+      dropzone.classList.add('bg-gray-700');
+    });
+    dropzone.addEventListener('dragleave', () => dropzone.classList.remove('bg-gray-700'));
+    dropzone.addEventListener('drop', (e) => {
+      e.preventDefault();
+      dropzone.classList.remove('bg-gray-700');
+      if (e.dataTransfer.files.length > 0) {
+        handleFile(e.dataTransfer.files[0]);
+      }
+    });
+
+    fileInput.addEventListener('change', (e) => {
+      if (e.target.files.length > 0) {
+        handleFile(e.target.files[0]);
+      }
+    });
+
+    function handleFile(file) {
+      if (file.name.endsWith('.mrpack')) {
+        selectedFile = file;
+        convertBtn.disabled = false;
+        dropzone.querySelector('p').textContent = `Selected: ${file.name}`;
+      } else {
+        alert('Please upload a valid .mrpack file');
+      }
+    }
+
+    convertBtn.addEventListener('click', async () => {
+      if (!selectedFile) return;
+      progress.classList.remove('hidden');
+      convertBtn.disabled = true;
+
+      try {
+        const jszip = new JSZip();
+        const content = await JSZip.loadAsync(selectedFile);
+
+        // For now, just repackage as zip (basic version)
+        const newZip = new JSZip();
+        content.forEach((relativePath, file) => {
+          newZip.file(relativePath, file.async("blob"));
+        });
+
+        const blob = await newZip.generateAsync({ type: "blob" });
+        const url = URL.createObjectURL(blob);
+
+        downloadLink.href = url;
+        downloadLink.download = selectedFile.name.replace('.mrpack', '.zip');
+        downloadLink.classList.remove('hidden');
+        progress.textContent = "Conversion complete!";
+      } catch (err) {
+        console.error(err);
+        alert('Error converting file.');
+      } finally {
+        convertBtn.disabled = false;
+      }
+    });
+  </script></body>
 </html>
