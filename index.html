@@ -3,33 +3,64 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>MRPACK to ZIP Converter</title>
+  <title>File Converter - Nextup Studio</title>
   <link rel="stylesheet" href="style.css">
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
 </head>
 <body>
+
+  <!-- Header -->
   <header>
-    <h1>MRPACK to ZIP Converter</h1>
-    <p>Convert your Modrinth modpacks (.mrpack) to ZIP format instantly.  
-    Fast, secure, and free to use!</p>
+    <h1>File Converter</h1>
+    <p>Convert your files quickly & easily</p>
   </header>
 
+  <!-- Upload Section -->
   <main>
-    <div class="upload-box" id="drop-area">
-      <div class="icon">⬆️</div>
-      <p>Drag & drop your <b>.mrpack</b> file here,<br>or click to select</p>
-      <input type="file" id="fileInput" accept=".mrpack">
+    <div class="upload-box" id="uploadBox">
+      <p>Drag & Drop your file here or click to select</p>
+      <input type="file" id="fileInput" hidden>
+      <button onclick="document.getElementById('fileInput').click()">Choose File</button>
     </div>
-    <button id="convertBtn" disabled>Convert to ZIP</button>
-    <div id="status"></div>
+
+    <div class="convert-box">
+      <label for="inputFormat">Convert From:</label>
+      <input type="text" id="inputFormat" placeholder="e.g. mrpack">
+
+      <label for="outputFormat">Convert To:</label>
+      <input type="text" id="outputFormat" placeholder="e.g. zip">
+
+      <button onclick="convertFile()">Convert</button>
+    </div>
   </main>
 
+  <!-- FAQ Section -->
+  <section class="faq">
+    <h2>FAQs</h2>
+    <div class="faq-item">
+      <button class="faq-question">1. Is this tool free to use?</button>
+      <div class="faq-answer">
+        <p>Yes! This converter is completely free and works directly in your browser.</p>
+      </div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-question">2. Which file types are supported?</button>
+      <div class="faq-answer">
+        <p>You can convert any file extension. Just type your input and output formats.</p>
+      </div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-question">3. Does my file get uploaded to a server?</button>
+      <div class="faq-answer">
+        <p>No. All conversions happen locally in your browser for privacy and speed.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
   <footer>
-    <p>
-      Powered by <a href="https://www.youtube.com/@nextupstudioyt" target="_blank">Nextup Studio</a><br>
-      © 2025 Nextup Studio. All rights reserved.<br>
-      We are not affiliated with Modrinth.
-    </p>
+    <p>Powered by <a href="https://www.youtube.com/@nextupstudioyt" target="_blank">Nextup Studio</a></p>
+    <p>© 2025 Nextup Studio. All rights reserved.</p>
+    <p>We are not affiliated with Modrinth.</p>
   </footer>
 
   <script src="script.js"></script>
