@@ -1,73 +1,76 @@
+const fileInput = document.getElementById("fileInput");
 const dropArea = document.getElementById("drop-area");
-const fileElem = document.getElementById("fileElem");
 const convertBtn = document.getElementById("convertBtn");
-const downloadBtn = document.getElementById("downloadBtn");
-const progressContainer = document.getElementById("progress-container");
-const progressBar = document.getElementById("progress-bar");
-
+const status = document.getElementById("status");
 let selectedFile = null;
 
-// Drag & Drop Events
+// Drag & Drop highlight
 dropArea.addEventListener("dragover", (e) => {
   e.preventDefault();
-  dropArea.style.borderColor = "#00ff9d";
+  dropArea.classList.add("dragover");
 });
 
 dropArea.addEventListener("dragleave", () => {
-  dropArea.style.borderColor = "rgba(0,245,255,0.6)";
+  dropArea.classList.remove("dragover");
 });
 
 dropArea.addEventListener("drop", (e) => {
   e.preventDefault();
-  const files = e.dataTransfer.files;
-  if (files.length > 0 && files[0].name.endsWith(".mrpack")) {
-    selectedFile = files[0];
-    convertBtn.disabled = false;
-    dropArea.querySelector("p").textContent = `Selected: ${selectedFile.name}`;
-  } else {
-    alert("Please upload a .mrpack file only.");
+  dropArea.classList.remove("dragover");
+  if (e.dataTransfer.files.length > 0) {
+    handleFile(e.dataTransfer.files[0]);
   }
 });
 
-// File Input
-fileElem.addEventListener("change", () => {
-  if (fileElem.files.length > 0 && fileElem.files[0].name.endsWith(".mrpack")) {
-    selectedFile = fileElem.files[0];
-    convertBtn.disabled = false;
-    dropArea.querySelector("p").textContent = `Selected: ${selectedFile.name}`;
-  } else {
-    alert("Please upload a .mrpack file only.");
+fileInput.addEventListener("change", (e) => {
+  if (e.target.files.length > 0) {
+    handleFile(e.target.files[0]);
   }
 });
 
-// Convert File
-convertBtn.addEventListener("click", () => {
+function handleFile(file) {
+  if (!file.name.endsWith(".mrpack")) {
+    status.innerText = "❌ Please select a .mrpack file";
+    convertBtn.disabled = true;
+    return;
+  }
+  selectedFile = file;
+  status.innerText = `✅ Selected: ${file.name}`;
+  convertBtn.disabled = false;
+}
+
+// Convert to ZIP
+convertBtn.addEventListener("click", async () => {
   if (!selectedFile) return;
 
-  progressContainer.classList.remove("hidden");
-  progressBar.style.width = "0%";
+  status.innerText = "⏳ Converting...";
 
-  let progress = 0;
-  const interval = setInterval(() => {
-    progress += 20;
-    progressBar.style.width = `${progress}%`;
-    if (progress >= 100) {
-      clearInterval(interval);
-      setTimeout(() => {
-        progressContainer.classList.add("hidden");
-        downloadBtn.classList.remove("hidden");
-      }, 500);
+  const reader = new FileReader();
+  reader.onload = async (e) => {
+    try {
+      const data = e.target.result;
+      const zip = await JSZip.loadAsync(data);
+      const newZip = new JSZip();
+
+      // Copy all files into new ZIP
+      for (const [filename, fileData] of Object.entries(zip.files)) {
+        if (!fileData.dir) {
+          const content = await fileData.async("arraybuffer");
+          newZip.file(filename, content);
+        }
+      }
+
+      const content = await newZip.generateAsync({ type: "blob" });
+      const downloadLink = document.createElement("a");
+      downloadLink.href = URL.createObjectURL(content);
+      downloadLink.download = selectedFile.name.replace(".mrpack", ".zip");
+      downloadLink.click();
+
+      status.innerText = "✅ Conversion Complete! File downloaded.";
+    } catch (err) {
+      console.error(err);
+      status.innerText = "❌ Error converting file.";
     }
-  }, 300);
-});
-
-// Download Converted File
-downloadBtn.addEventListener("click", () => {
-  if (!selectedFile) return;
-  const newName = selectedFile.name.replace(/\.mrpack$/, ".zip");
-  const blob = new Blob([selectedFile], { type: "application/zip" });
-  const link = document.createElement("a");
-  link.href = URL.createObjectURL(blob);
-  link.download = newName;
-  link.click();
+  };
+  reader.readAsArrayBuffer(selectedFile);
 });
