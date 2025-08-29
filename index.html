@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>ToolHub - All Online Tools</title>
-  <meta name="description" content="ToolHub offers all essential online tools in one place: Word Counter, Password Generator, QR Generator, Case Converter, Text Reverser, Age & Unit Converter.">
+  <meta name="description" content="ToolHub offers all essential online tools in one place. Click on any tool to use it.">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -12,7 +12,7 @@
   <!-- Hero Section -->
   <header class="hero">
     <h1>ToolHub</h1>
-    <p>All essential online tools in one place. Simple, fast, and professional.</p>
+    <p>All essential online tools in one place. Click on a tool to use it.</p>
   </header>
 
   <!-- Tools Section -->
@@ -22,64 +22,43 @@
       <!-- Word Counter -->
       <div class="card">
         <h3>Word Counter</h3>
-        <textarea id="wordText" placeholder="Enter text here..." rows="5"></textarea>
-        <button onclick="countWords()" class="card-btn">Count Words</button>
-        <div id="wordResult" style="margin-top:15px; color:#00e5ff; font-weight:bold;"></div>
+        <p>Count words and characters in your text. Click below to open.</p>
+        <a href="word.html" class="card-btn">Open Word Counter</a>
       </div>
 
       <!-- Password Generator -->
       <div class="card">
         <h3>Password Generator</h3>
-        <button onclick="generatePassword()" class="card-btn">Generate Password</button>
-        <div id="passwordResult" style="margin-top:15px; color:#00e5ff; font-weight:bold; word-break: break-word;"></div>
+        <p>Generate strong passwords instantly. Click below to open.</p>
+        <a href="password.html" class="card-btn">Open Password Generator</a>
       </div>
 
       <!-- QR Generator -->
       <div class="card">
         <h3>QR Generator</h3>
-        <input type="text" id="qrText" placeholder="Enter text or URL">
-        <button onclick="generateQR()" class="card-btn">Generate QR</button>
-        <div id="qrResult" style="margin-top:15px;"></div>
+        <p>Generate QR codes for URLs or text. Click below to open.</p>
+        <a href="qr.html" class="card-btn">Open QR Generator</a>
       </div>
 
       <!-- Case Converter -->
       <div class="card">
         <h3>Case Converter</h3>
-        <textarea id="caseText" placeholder="Type your text here..." rows="5"></textarea>
-        <div style="display:flex; gap:10px; flex-wrap:wrap; margin-bottom:10px;">
-          <button onclick="convertCase('upper')" class="card-btn">UPPERCASE</button>
-          <button onclick="convertCase('lower')" class="card-btn">lowercase</button>
-          <button onclick="convertCase('title')" class="card-btn">Title Case</button>
-        </div>
-        <div id="caseResult" style="color:#00e5ff; font-weight:bold;"></div>
+        <p>Convert text to uppercase, lowercase, or title case. Click below to open.</p>
+        <a href="case.html" class="card-btn">Open Case Converter</a>
       </div>
 
       <!-- Text Reverser -->
       <div class="card">
         <h3>Text Reverser</h3>
-        <textarea id="reverseText" placeholder="Enter text here..." rows="5"></textarea>
-        <button onclick="reverseText()" class="card-btn">Reverse Text</button>
-        <div id="reverseResult" style="margin-top:15px; color:#00e5ff; font-weight:bold; word-break: break-word;"></div>
+        <p>Reverse your text instantly. Click below to open.</p>
+        <a href="reverse.html" class="card-btn">Open Text Reverser</a>
       </div>
 
       <!-- Age & Unit Converter -->
       <div class="card">
-        <h3>Age Calculator</h3>
-        <input type="date" id="birthDate">
-        <button onclick="calculateAge()" class="card-btn">Calculate Age</button>
-        <div id="ageResult" style="margin-top:15px; color:#00e5ff; font-weight:bold;"></div>
-
-        <h3 style="margin-top:30px;">Unit Converter</h3>
-        <input type="number" id="unitInput" placeholder="Enter value">
-        <select id="unitType" onchange="updateUnits()">
-          <option value="length">Length</option>
-          <option value="weight">Weight</option>
-          <option value="temperature">Temperature</option>
-        </select>
-        <select id="unitFrom"></select>
-        <select id="unitTo"></select>
-        <button onclick="convertUnit()" class="card-btn">Convert</button>
-        <div id="unitResult" style="margin-top:15px; color:#00e5ff; font-weight:bold;"></div>
+        <h3>Age & Unit Converter</h3>
+        <p>Calculate age and convert units. Click below to open.</p>
+        <a href="age-unit.html" class="card-btn">Open Age & Unit Converter</a>
       </div>
 
     </div>
@@ -92,7 +71,5 @@
     </a>
   </footer>
 
-  <!-- External Script -->
-  <script src="script.js"></script>
 </body>
 </html>
