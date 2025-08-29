@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HandyBox - QR Generator</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Sidebar -->
+  <aside class="sidebar">
+    <h2>HandyBox</h2>
+    <ul>
+      <li><a href="index.html">🏠 Home</a></li>
+      <li><a href="word.html">📝 Word Counter</a></li>
+      <li><a href="password.html">🔑 Password Generator</a></li>
+      <li><a href="qr.html" class="active">📷 QR Generator</a></li>
+      <li><a href="case.html">🔤 Case Converter</a></li>
+    </ul>
+  </aside>
+
+  <!-- Main -->
+  <div class="main">
+    <div class="header">📷 QR Generator</div>
+    <div class="content">
+      <input type="text" id="qrText" placeholder="Enter text or URL">
+      <button onclick="generateQR()">Generate QR</button>
+      <div id="qrResult" style="margin-top:20px;"></div>
+    </div>
+  </div>
+
+  <script>
+    function generateQR() {
+      const text = document.getElementById("qrText").value;
+      if (!text) {
+        alert("Please enter some text or a URL!");
+        return;
+      }
+      const qrUrl = `https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=${encodeURIComponent(text)}`;
+      document.getElementById("qrResult").innerHTML = `<img src="${qrUrl}" alt="QR Code">`;
+    }
+  </script>
+</body>
+</html>
