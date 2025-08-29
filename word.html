@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HandyBox - Word Counter</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <aside class="sidebar">
+    <h2>HandyBox</h2>
+    <ul>
+      <li><a href="index.html">🏠 Home</a></li>
+      <li><a href="word.html" class="active">📝 Word Counter</a></li>
+      <li><a href="password.html">🔑 Password Generator</a></li>
+      <li><a href="qr.html">📷 QR Generator</a></li>
+      <li><a href="case.html">🔤 Case Converter</a></li>
+    </ul>
+  </aside>
+
+  <div class="main">
+    <div class="header">📝 Word Counter</div>
+    <div class="content">
+      <textarea id="textInput" placeholder="Type or paste text..." rows="8"></textarea>
+      <button onclick="countWords()">Count</button>
+      <div id="result"></div>
+    </div>
+  </div>
+
+  <script>
+    function countWords() {
+      const text = document.getElementById("textInput").value.trim();
+      const words = text === "" ? 0 : text.split(/\s+/).length;
+      const chars = text.length;
+      document.getElementById("result").innerHTML = `<p><b>Words:</b> ${words}</p><p><b>Characters:</b> ${chars}</p>`;
+    }
+  </script>
+</body>
+</html>
