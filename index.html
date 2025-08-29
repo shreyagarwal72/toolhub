@@ -3,104 +3,115 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Mrpack To Zip Converter | Online Tool</title>
-  <meta name="description" content="Convert .mrpack files to .zip instantly with our free online Mrpack to Zip converter. Fast, secure, and works directly in your browser.">
-  <meta name="keywords" content="mrpack to zip, mrpack converter, minecraft modpack converter, online mrpack tool">
+  <title>Mrpack → Zip Converter | Free Online Modrinth to ZIP Tool</title>
+  <meta name="description" content="Convert Modrinth .mrpack files to .zip format instantly and securely with our free, online tool. Fast client-side processing—no data leaves your device. Compatible with all Minecraft launchers.">
+  <meta name="keywords" content="mrpack to zip, mrpack converter, minecraft modpack converter, modrinth to zip, online mrpack tool, zip my mrpack, modpack converter">
+  <meta name="robots" content="index, follow">
+  <meta name="author" content="Mrpack to Zip Converter">
+
+  <!-- Open Graph for social SEO -->
+  <meta property="og:title" content="Mrpack → Zip Converter | Free Online Modrinth to ZIP Tool" />
+  <meta property="og:description" content="Convert Modrinth .mrpack files to .zip format instantly with our free, secure, browser-based tool. No files uploaded!" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://tozip.playdown.in/" />
+  <meta property="og:image" content="https://tozip.playdown.in/og-image.png" />
+  <!-- Favicon example, add your icon -->
+  <link rel="icon" href="favicon.ico">
+
+  <!-- Google Fonts + Main Style -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css" />
+
+  <!-- JSZip for real conversion -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
 </head>
+
 <body>
   <header class="header">
-    <h1>Mrpack To Zip Converter</h1>
-    <p class="subtitle">Convert your Modrinth modpacks (.mrpack) to ZIP files easily. The best online tool for converting Modrinth packs to ZIP format. Fast, secure, and free!</p>
+    <h1>Mrpack <span aria-label="to">→</span> Zip Converter</h1>
+    <p class="subtitle">
+      Convert your Modrinth modpacks (.mrpack) to ZIP files easily.<br>
+      The best free tool for converting Modrinth packs to ZIP format – fast, secure, and never uploads your files.
+    </p>
   </header>
 
   <main class="container">
     <section class="upload-box" id="uploadBox">
-      <div class="upload-icon">
+      <div class="upload-icon" aria-hidden="true">
         <svg width="48" height="48" fill="none" stroke="#96a0b8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 48 48">
           <path d="M16 26l8-8 8 8M24 18v18"/>
           <path d="M12 36h24a7 7 0 0 0 0-14h-1.26A11 11 0 1 0 12 36Z"/>
         </svg>
       </div>
-      <p id="uploadLabel">Drag &amp; drop your .mrpack file here, or click to select</p>
+      <p id="uploadLabel"><strong>Drag &amp; drop</strong> your .mrpack file here, or <strong>click to select</strong></p>
       <input type="file" id="fileInput" accept=".mrpack" hidden />
-      <button id="convertBtn" disabled>Convert to .zip</button>
+      <button id="convertBtn" disabled aria-label="Convert .mrpack file to .zip">Convert to .zip</button>
       <a id="downloadLink" style="display:none;">Download Converted File</a>
-      <div id="status"></div>
+      <div id="status" role="status" aria-live="polite"></div>
     </section>
 
     <section class="info">
       <h2>Why Use This Tool?</h2>
       <ul>
         <li>✔ Converts <strong>.mrpack</strong> to <strong>.zip</strong> instantly</li>
-        <li>✔ Works completely client-side, no data leaves your browser</li>
-        <li>✔ Free to use, fast, and secure</li>
-        <li>✔ Works with MultiMC, Prism, GDLauncher, and CurseForge</li>
+        <li>✔ Never uploads your files — 100% client-side</li>
+        <li>✔ Free, secure &amp; lightning fast</li>
+        <li>✔ Compatible with MultiMC, Prism, GDLauncher, and CurseForge</li>
       </ul>
     </section>
 
     <section class="steps">
       <h2>How It Works</h2>
       <ol>
-        <li>Select or drag &amp; drop your <strong>.mrpack</strong> file.</li>
-        <li>The converter extracts the content and prepares a <strong>.zip</strong>.</li>
-        <li>Download your ready-to-use <strong>.zip modpack</strong>.</li>
+        <li>Select or drag &amp; drop your <strong>.mrpack</strong> file above.</li>
+        <li>The converter extracts the contents and rebuilds a proper <strong>.zip</strong>.</li>
+        <li>Click <strong>Download Converted File</strong> to save your modpack in ZIP format.</li>
       </ol>
     </section>
 
-    <section class="faq">
-      <h2>FAQs</h2>
+    <section class="faq" aria-labelledby="faq-heading">
+      <h2 id="faq-heading">FAQs</h2>
       <div class="faq-list">
         <div class="faq-item">
           <button class="faq-question" aria-expanded="false">
-            <span class="arrow">&#9654;</span>
             Is this converter safe?
+            <span class="arrow" aria-hidden="true">&#9654;</span>
           </button>
-          <div class="faq-answer">
-            Yes! All processing is done locally in your browser. No files are ever uploaded to any server.
-          </div>
+          <div class="faq-answer">Yes! All processing is done locally in your browser. No files are stored or uploaded.</div>
         </div>
         <div class="faq-item">
           <button class="faq-question" aria-expanded="false">
-            <span class="arrow">&#9654;</span>
-            Does it work on mobile?
+            Does it work on mobile and desktop?
+            <span class="arrow" aria-hidden="true">&#9654;</span>
           </button>
-          <div class="faq-answer">
-            Yes, you can tap to select and convert files on any mobile device.
-          </div>
+          <div class="faq-answer">Absolutely! Use tap to select on mobile, or drag &amp; drop / click on desktop.</div>
         </div>
         <div class="faq-item">
           <button class="faq-question" aria-expanded="false">
-            <span class="arrow">&#9654;</span>
             Is the converted ZIP compatible with CurseForge?
+            <span class="arrow" aria-hidden="true">&#9654;</span>
           </button>
-          <div class="faq-answer">
-            Yes, the .zip file can be used in CurseForge, Prism, MultiMC, and most other popular Minecraft launchers.
-          </div>
+          <div class="faq-answer">Yes! The ZIP is fully compatible with CurseForge and all major Minecraft launchers.</div>
         </div>
         <div class="faq-item">
           <button class="faq-question" aria-expanded="false">
-            <span class="arrow">&#9654;</span>
             Do you store or see my files?
+            <span class="arrow" aria-hidden="true">&#9654;</span>
           </button>
-          <div class="faq-answer">
-            Never. Your files never leave your device—everything is processed securely, right in your browser.
-          </div>
+          <div class="faq-answer">Never. Everything is handled completely inside your browser.</div>
         </div>
       </div>
     </section>
   </main>
 
   <footer class="footer">
-    <p>© 2025 Mrpack To Zip Converter | Built with ❤️ for Minecraft players</p>
+    <p>© 2025 Mrpack → Zip Converter | Built with ❤️ for Minecraft players | <a href="https://tozip.playdown.in/" rel="noopener">Home</a></p>
   </footer>
 
-  <!-- Script: Drop, Upload, JSZip, FAQ accordion -->
+  <!-- Main drag/drop, convert, and FAQ logic -->
   <script src="script.js"></script>
   <script>
-    // Accordion logic for only-one-open-at-a-time
+    // Accordion: only one active at a time
     document.querySelectorAll('.faq-question').forEach((btn, idx, arr) => {
       btn.addEventListener('click', function () {
         document.querySelectorAll('.faq-item').forEach((item, i) => {
