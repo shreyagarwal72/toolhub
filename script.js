@@ -7,28 +7,33 @@ const status = document.getElementById("status");
 
 let selectedFile = null;
 
-// Mobile detection: only tap/click, no drag
-const isTouch = window.matchMedia("(hover: none) and (pointer: coarse)").matches;
+// Always: Click on upload box triggers file picker (mobile + desktop)
+uploadBox.addEventListener("click", function(e) {
+  // Prevent event if file input itself was clicked
+  if (e.target !== fileInput) {
+    fileInput.click();
+  }
+});
+// Prevent double pop on file input itself
+fileInput.addEventListener("click", function(e) {
+  e.stopPropagation();
+});
 
-if (isTouch) {
-  uploadBox.addEventListener("click", () => fileInput.click());
-} else {
-  uploadBox.addEventListener("dragover", (e) => {
-    e.preventDefault();
-    uploadBox.classList.add("dragover");
-  });
-  uploadBox.addEventListener("dragleave", () => {
-    uploadBox.classList.remove("dragover");
-  });
-  uploadBox.addEventListener("drop", (e) => {
-    e.preventDefault();
-    uploadBox.classList.remove("dragover");
-    if (e.dataTransfer.files.length > 0) {
-      handleFile(e.dataTransfer.files[0]);
-    }
-  });
-  uploadBox.addEventListener("click", () => fileInput.click());
-}
+// Desktop drag & drop support
+uploadBox.addEventListener("dragover", (e) => {
+  e.preventDefault();
+  uploadBox.classList.add("dragover");
+});
+uploadBox.addEventListener("dragleave", () => {
+  uploadBox.classList.remove("dragover");
+});
+uploadBox.addEventListener("drop", (e) => {
+  e.preventDefault();
+  uploadBox.classList.remove("dragover");
+  if (e.dataTransfer.files.length > 0) {
+    handleFile(e.dataTransfer.files[0]);
+  }
+});
 
 fileInput.addEventListener("change", (e) => {
   if (e.target.files.length > 0) handleFile(e.target.files[0]);
@@ -64,7 +69,7 @@ convertBtn.addEventListener("click", async () => {
     const zip = await JSZip.loadAsync(arrayBuffer);
     const newZip = new JSZip();
 
-    // Extract and add all files from mrpack to new zip (real conversion)
+    // Copy all files & folders from mrpack to new zip (real conversion)
     await Promise.all(Object.values(zip.files).map(async file => {
       if (!file.dir) {
         const content = await file.async("uint8array");
@@ -82,20 +87,4 @@ convertBtn.addEventListener("click", async () => {
     setStatus("❌ Error: File is not a valid .mrpack archive.", false);
   }
   convertBtn.disabled = false;
-});
-
-// --- FAQ ACCORDION ---
-// Arrow right, question left, only one answer open
-document.querySelectorAll('.faq-question').forEach((btn, idx, arr) => {
-  btn.addEventListener('click', function () {
-    document.querySelectorAll('.faq-item').forEach((item, i) => {
-      if(i !== idx) {
-        item.classList.remove('active');
-        item.querySelector('.faq-question').setAttribute('aria-expanded', 'false');
-      }
-    });
-    const faqItem = btn.parentElement;
-    const expanded = faqItem.classList.toggle('active');
-    btn.setAttribute('aria-expanded', expanded ? 'true' : 'false');
-  });
 });
