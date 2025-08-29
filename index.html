@@ -3,45 +3,48 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>MRPACK to ZIP Converter - Nextup Studio</title>
-  <link rel="stylesheet" href="style.css"/>
+  <title>Mrpack To Zip Converter | Online Tool</title>
+  <meta name="description" content="Convert .mrpack files to .zip instantly with our free online Mrpack to Zip converter. Fast, secure, and works directly in your browser.">
+  <meta name="keywords" content="mrpack to zip, mrpack converter, minecraft modpack converter, online mrpack tool">
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <div class="container">
-    <h1>MRPACK → ZIP Converter</h1>
-    <p>Drag & Drop your <b>.mrpack</b> file or click below to convert into <b>.zip</b></p>
-    
-    <div id="dropArea" class="drop-area">
-      <p>Drop your file here</p>
-      <input type="file" id="fileInput" hidden />
-      <button id="chooseBtn">Choose File</button>
-    </div>
+  <header class="header">
+    <h1>Mrpack To Zip Converter</h1>
+    <p class="subtitle">Convert Minecraft .mrpack modpacks into .zip easily</p>
+  </header>
 
-    <div id="result" class="result"></div>
-
-    <section class="faq">
-      <h2>Frequently Asked Questions</h2>
-      <div class="faq-item">
-        <h3>Is the MRPACK to ZIP Converter safe to use?</h3>
-        <p>Yes, all file processing happens locally in your browser. No files are uploaded to any server.</p>
-      </div>
-      <div class="faq-item">
-        <h3>Does the converted ZIP file work with CurseForge?</h3>
-        <p>Yes, the converted ZIP is structured to be compatible with CurseForge and other popular Minecraft launchers.</p>
-      </div>
-      <div class="faq-item">
-        <h3>Can I convert a ZIP back to MRPACK?</h3>
-        <p>Yes, but it requires manual steps such as recreating the manifest file.</p>
-      </div>
-      <div class="faq-item">
-        <h3>Are the mods downloaded directly from Modrinth?</h3>
-        <p>Yes, the converter uses mod download URLs listed in the MRPACK manifest.</p>
-      </div>
+  <main class="container">
+    <section class="upload-box">
+      <h2>Upload Your .mrpack File</h2>
+      <p>Drag & drop or select a <strong>.mrpack</strong> file to start converting.</p>
+      <input type="file" id="fileInput" accept=".mrpack" />
+      <button id="convertBtn">Convert to .zip</button>
+      <a id="downloadLink" style="display:none;">Download Converted File</a>
     </section>
-  </div>
 
-  <footer>
-    <p>Powered by <a href="https://shreyagarwal72.github.io" target="_blank" rel="noopener noreferrer">Nextup Studio</a></p>
+    <section class="info">
+      <h2>Why Use This Tool?</h2>
+      <ul>
+        <li>✔ Converts <strong>.mrpack</strong> to <strong>.zip</strong> instantly</li>
+        <li>✔ Works completely client-side, no data leaves your browser</li>
+        <li>✔ Free to use, fast, and secure</li>
+        <li>✔ Works with MultiMC, Prism, GDLauncher, and CurseForge</li>
+      </ul>
+    </section>
+
+    <section class="steps">
+      <h2>How It Works</h2>
+      <ol>
+        <li>Select or drag & drop your <strong>.mrpack</strong> file.</li>
+        <li>The converter extracts the content and prepares a <strong>.zip</strong>.</li>
+        <li>Download your ready-to-use <strong>.zip modpack</strong>.</li>
+      </ol>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p>© 2025 Mrpack To Zip Converter | Built with ❤️ for Minecraft players</p>
   </footer>
 
   <script src="script.js"></script>
