@@ -7,8 +7,9 @@ const status = document.getElementById("status");
 
 let selectedFile = null;
 
-// Mobile device pe sirf tap (no weird drag events), Desktop pe drag & drop + tap
+// Mobile detection: only tap/click, no drag
 const isTouch = window.matchMedia("(hover: none) and (pointer: coarse)").matches;
+
 if (isTouch) {
   uploadBox.addEventListener("click", () => fileInput.click());
 } else {
@@ -59,11 +60,11 @@ convertBtn.addEventListener("click", async () => {
 
   try {
     const arrayBuffer = await selectedFile.arrayBuffer();
-    // JSZip loaded from CDN in index.html
+    // Requires JSZip from CDN, included in index.html
     const zip = await JSZip.loadAsync(arrayBuffer);
     const newZip = new JSZip();
 
-    // Copy all files from mrpack to new ZIP
+    // Extract and add all files from mrpack to new zip (real conversion)
     await Promise.all(Object.values(zip.files).map(async file => {
       if (!file.dir) {
         const content = await file.async("uint8array");
@@ -84,9 +85,17 @@ convertBtn.addEventListener("click", async () => {
 });
 
 // --- FAQ ACCORDION ---
-document.querySelectorAll('.faq-question').forEach(btn => {
+// Arrow right, question left, only one answer open
+document.querySelectorAll('.faq-question').forEach((btn, idx, arr) => {
   btn.addEventListener('click', function () {
+    document.querySelectorAll('.faq-item').forEach((item, i) => {
+      if(i !== idx) {
+        item.classList.remove('active');
+        item.querySelector('.faq-question').setAttribute('aria-expanded', 'false');
+      }
+    });
     const faqItem = btn.parentElement;
-    faqItem.classList.toggle('active');
+    const expanded = faqItem.classList.toggle('active');
+    btn.setAttribute('aria-expanded', expanded ? 'true' : 'false');
   });
 });
