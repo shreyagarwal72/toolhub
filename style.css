@@ -12,6 +12,7 @@ body {
   display: flex;
   flex-direction: column;
 }
+
 /* ========== HEADER ========== */
 .header {
   background: #ffffff;
@@ -34,6 +35,7 @@ body {
   font-weight: 400;
   line-height: 1.56;
 }
+
 /* ========== MAIN CONTAINER ========== */
 .container {
   flex-grow: 1;
@@ -149,18 +151,24 @@ body {
 
 /* ========== FAQ ACCORDION ========== */
 .faq {
-  margin-top: 1.9rem;
+  margin-top: 2.1rem;
 }
 .faq h2 {
   color: #1e2546;
-  font-size: 1.13rem;
-  margin-bottom: 1.1rem;
+  font-size: 1.15rem;
+  margin-bottom: 1rem;
+}
+.faq-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
 }
 .faq-item {
-  margin-bottom: 0.65rem;
-  border-radius: 9px;
   background: #f5f6fb;
+  border-radius: 8px;
   box-shadow: 0 1px 8px #7184bb13;
+  overflow: hidden;
+  transition: box-shadow 0.23s;
 }
 .faq-question {
   width: 100%;
@@ -169,34 +177,41 @@ body {
   border: none;
   padding: 1rem 1.1rem;
   text-align: left;
-  font-size: 1.06rem;
+  font-size: 1.08rem;
   font-weight: 600;
   cursor: pointer;
   outline: none;
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  transition: color 0.2s;
+  gap: 0.7rem;
+  transition: background 0.18s;
+}
+.faq-question[aria-expanded="true"] {
+  background: #eef5ff;
 }
 .faq-answer {
   max-height: 0;
   overflow: hidden;
-  padding: 0 1.17rem;
   background: #f0f3fd;
   color: #536799;
-  font-size: 0.99rem;
-  transition: max-height 0.32s cubic-bezier(.4,0,.2,1), padding 0.32s;
+  font-size: 1rem;
+  padding: 0 1.2rem;
+  transition: max-height 0.36s cubic-bezier(.4,0,.2,1), padding 0.35s, opacity 0.2s;
+  opacity: 0;
 }
 .faq-item.active .faq-answer {
-  max-height: 130px;
-  padding: 0.88rem 1.17rem;
+  max-height: 160px;
+  padding: 0.7rem 1.2rem 1.1rem 2.1rem;
+  opacity: 1;
 }
-.faq-arrow {
+.arrow {
   font-size: 1.2rem;
-  transition: transform 0.36s;
+  transform: rotate(0deg);
+  transition: transform 0.34s;
 }
-.faq-item.active .faq-arrow {
+.faq-item.active .arrow {
   transform: rotate(90deg);
+  color: #2a93ff;
 }
 
 /* ========== FOOTER ========== */
