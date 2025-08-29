@@ -52,31 +52,42 @@
 
     <section class="faq">
       <h2>FAQs</h2>
-      <div class="faq-item">
-        <button class="faq-question">
-          Is this converter safe?
-          <span class="faq-arrow">▶</span>
-        </button>
-        <div class="faq-answer">
-          Yes! All processing is done locally in your browser. Your files are never uploaded anywhere.
+      <div class="faq-list">
+        <div class="faq-item">
+          <button class="faq-question" aria-expanded="false">
+            <span class="arrow">&#9654;</span>
+            Is this converter safe?
+          </button>
+          <div class="faq-answer">
+            Yes! All processing is done locally in your browser. No files are ever uploaded to any server.
+          </div>
         </div>
-      </div>
-      <div class="faq-item">
-        <button class="faq-question">
-          Does it work on mobile?
-          <span class="faq-arrow">▶</span>
-        </button>
-        <div class="faq-answer">
-          Yes, you can tap to select and convert files even on mobile devices.
+        <div class="faq-item">
+          <button class="faq-question" aria-expanded="false">
+            <span class="arrow">&#9654;</span>
+            Does it work on mobile?
+          </button>
+          <div class="faq-answer">
+            Yes, you can tap to select and convert files on any mobile device.
+          </div>
         </div>
-      </div>
-      <div class="faq-item">
-        <button class="faq-question">
-          Is the converted .zip compatible with CurseForge?
-          <span class="faq-arrow">▶</span>
-        </button>
-        <div class="faq-answer">
-          Yes, the ZIP is structured to be compatible with CurseForge and other major Minecraft launchers.
+        <div class="faq-item">
+          <button class="faq-question" aria-expanded="false">
+            <span class="arrow">&#9654;</span>
+            Is the converted ZIP compatible with CurseForge?
+          </button>
+          <div class="faq-answer">
+            Yes, the .zip file can be used in CurseForge, Prism, MultiMC, and most other popular Minecraft launchers.
+          </div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question" aria-expanded="false">
+            <span class="arrow">&#9654;</span>
+            Do you store or see my files?
+          </button>
+          <div class="faq-answer">
+            Never. Your files never leave your device—everything is processed securely, right in your browser.
+          </div>
         </div>
       </div>
     </section>
@@ -86,14 +97,21 @@
     <p>© 2025 Mrpack To Zip Converter | Built with ❤️ for Minecraft players</p>
   </footer>
 
-  <!-- Your JS -->
+  <!-- Script: Drop, Upload, JSZip, FAQ accordion -->
   <script src="script.js"></script>
   <script>
-    // FAQ Accordion logic
-    document.querySelectorAll('.faq-question').forEach(btn => {
+    // Accordion logic for only-one-open-at-a-time
+    document.querySelectorAll('.faq-question').forEach((btn, idx, arr) => {
       btn.addEventListener('click', function () {
+        document.querySelectorAll('.faq-item').forEach((item, i) => {
+          if(i !== idx) {
+            item.classList.remove('active');
+            item.querySelector('.faq-question').setAttribute('aria-expanded', 'false');
+          }
+        });
         const faqItem = btn.parentElement;
-        faqItem.classList.toggle('active');
+        const expanded = faqItem.classList.toggle('active');
+        btn.setAttribute('aria-expanded', expanded ? 'true' : 'false');
       });
     });
   </script>
