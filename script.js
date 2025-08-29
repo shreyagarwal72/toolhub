@@ -1,4 +1,5 @@
-// --- FILE UPLOAD & CONVERT LOGIC ---
+const BACKEND_URL = "http://192.168.31.72:3000/convert"; // <-- apne WiFi IP ko yahin rakho
+
 const fileInput = document.getElementById("fileInput");
 const uploadBox = document.getElementById("uploadBox");
 const convertBtn = document.getElementById("convertBtn");
@@ -7,24 +8,21 @@ const status = document.getElementById("status");
 
 let selectedFile = null;
 
-// --- Click to open file picker everywhere ---
+// Click to open file picker
 uploadBox.addEventListener("click", function(e) {
-  // Prevent double event if input is clicked
-  if (e.target !== fileInput) {
-    fileInput.click();
-  }
+  if (e.target !== fileInput) fileInput.click();
 });
-fileInput.addEventListener("click", function(e) { e.stopPropagation(); });
+fileInput.addEventListener("click", e => e.stopPropagation());
 
-// --- Drag & drop (desktop) ---
-uploadBox.addEventListener("dragover", (e) => {
+// Drag & drop (desktop)
+uploadBox.addEventListener("dragover", e => {
   e.preventDefault();
   uploadBox.classList.add("dragover");
 });
 uploadBox.addEventListener("dragleave", () => {
   uploadBox.classList.remove("dragover");
 });
-uploadBox.addEventListener("drop", (e) => {
+uploadBox.addEventListener("drop", e => {
   e.preventDefault();
   uploadBox.classList.remove("dragover");
   if (e.dataTransfer && e.dataTransfer.files.length > 0) {
@@ -32,8 +30,7 @@ uploadBox.addEventListener("drop", (e) => {
   }
 });
 
-// --- File selection change handler ---
-fileInput.addEventListener("change", (e) => {
+fileInput.addEventListener("change", e => {
   if (e.target.files.length > 0) handleFile(e.target.files[0]);
 });
 
@@ -56,33 +53,41 @@ function setStatus(msg, success) {
   status.style.color = success ? "#32a852" : "#ffa831";
 }
 
-// --- Conversion logic (uses JSZip, CDN included in index.html) ---
 convertBtn.addEventListener("click", async () => {
   if (!selectedFile) return setStatus("❌ No .mrpack file selected", false);
   convertBtn.disabled = true;
-  setStatus("⏳ Converting...", true);
+  setStatus("⏳ Uploading & Converting...", true);
 
   try {
-    const arrayBuffer = await selectedFile.arrayBuffer();
-    // JSZip from CDN required (add <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script> in HTML)
-    const zip = await JSZip.loadAsync(arrayBuffer);
-    const newZip = new JSZip();
+    const formData = new FormData();
+    formData.append("mrpack", selectedFile);
 
-    await Promise.all(Object.values(zip.files).map(async file => {
-      if (!file.dir) {
-        const content = await file.async("uint8array");
-        newZip.file(file.name, content);
-      }
-    }));
+    const resp = await fetch(BACKEND_URL, {
+      method: "POST",
+      body: formData
+    });
 
-    const outBlob = await newZip.generateAsync({ type: "blob" });
-    downloadLink.href = URL.createObjectURL(outBlob);
+    if (!resp.ok) {
+      setStatus("❌ Server error or no response!", false);
+      convertBtn.disabled = false;
+      return;
+    }
+
+    const blob = await resp.blob();
+    if (blob.size < 100) {
+      setStatus("❌ Received empty or invalid ZIP!", false);
+      convertBtn.disabled = false;
+      return;
+    }
+
+    const url = URL.createObjectURL(blob);
+    downloadLink.href = url;
     downloadLink.download = selectedFile.name.replace(/\.mrpack$/i, ".zip");
     downloadLink.textContent = "Download Converted File";
     downloadLink.style.display = "inline-block";
-    setStatus("✅ Conversion Complete! Tap 'Download Converted File'.", true);
+    setStatus("✅ Conversion complete! Download your ZIP.", true);
   } catch (err) {
-    setStatus("❌ Error: File is not a valid .mrpack archive.", false);
+    setStatus("❌ Network/server error: " + err, false);
   }
   convertBtn.disabled = false;
 });
