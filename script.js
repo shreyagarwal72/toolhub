@@ -1,88 +1,69 @@
-function showTool(tool) {
-  const content = document.getElementById("content-area");
-
-  if (tool === "home") {
-    content.innerHTML = `
-      <h2>Home</h2>
-      <p>Welcome to <b>HandyBox</b> 🎉 Your one-stop utility hub.</p>
-    `;
-  }
-
-  // Word Counter
-  if (tool === "wordCounter") {
-    content.innerHTML = `
-      <h2>📝 Word Counter</h2>
-      <textarea id="textInput" placeholder="Type or paste your text here..." rows="8"></textarea>
-      <button onclick="countWords()">Count</button>
-      <div id="result"></div>
-    `;
-  }
-
-  // Password Generator
-  if (tool === "passwordGen") {
-    content.innerHTML = `
-      <h2>🔑 Password Generator</h2>
-      <label>Length:</label>
-      <input type="number" id="passLength" value="12" min="4" max="50">
-      <button onclick="generatePassword()">Generate</button>
-      <div id="passwordResult"></div>
-    `;
-  }
-
-  // QR Code Generator
-  if (tool === "qrCode") {
-    content.innerHTML = `
-      <h2>📷 QR Code Generator</h2>
-      <input type="text" id="qrText" placeholder="Enter text or URL">
-      <button onclick="generateQR()">Generate QR</button>
-      <div id="qrResult" style="margin-top:15px;"></div>
-    `;
-  }
-
-  // Case Converter
-  if (tool === "caseConverter") {
-    content.innerHTML = `
-      <h2>🔤 Case Converter</h2>
-      <textarea id="caseText" placeholder="Type text here..." rows="6"></textarea>
-      <button onclick="convertCase('upper')">UPPERCASE</button>
-      <button onclick="convertCase('lower')">lowercase</button>
-      <button onclick="convertCase('title')">Title Case</button>
-      <div id="caseResult" style="margin-top:15px;"></div>
-    `;
-  }
-}
-
-// Word Counter Logic
+// ----------------------------
+// WORD COUNTER
+// ----------------------------
 function countWords() {
-  const text = document.getElementById("textInput").value.trim();
-  const words = text === "" ? 0 : text.split(/\s+/).length;
+  const text = document.getElementById('wordText').value.trim();
+  if(!text) {
+    alert('Please enter some text to count!');
+    return;
+  }
+  const words = text.split(/\s+/).filter(w => w.length > 0).length;
   const chars = text.length;
-  document.getElementById("result").innerHTML = `<p><b>Words:</b> ${words}</p><p><b>Characters:</b> ${chars}</p>`;
+  document.getElementById('wordResult').innerText = `Words: ${words} | Characters: ${chars}`;
 }
 
-// Password Generator
+// ----------------------------
+// PASSWORD GENERATOR
+// ----------------------------
 function generatePassword() {
-  const length = document.getElementById("passLength").value;
-  const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*";
+  const length = 12; // default length
+  const charset = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()_+~`|}{[]:;?><,./-=";
   let password = "";
   for (let i = 0; i < length; i++) {
-    password += chars.charAt(Math.floor(Math.random() * chars.length));
+    const randomIndex = Math.floor(Math.random() * charset.length);
+    password += charset[randomIndex];
   }
-  document.getElementById("passwordResult").innerHTML = `<p><b>Password:</b> ${password}</p>`;
+  document.getElementById('passwordResult').innerText = password;
 }
 
-// QR Generator (using free API)
+// ----------------------------
+// QR GENERATOR
+// ----------------------------
 function generateQR() {
-  const text = document.getElementById("qrText").value;
-  if (!text) return alert("Enter text or URL!");
-  document.getElementById("qrResult").innerHTML = `<img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=${encodeURIComponent(text)}">`;
+  const text = document.getElementById('qrText').value.trim();
+  if(!text) {
+    alert('Please enter text or URL to generate QR!');
+    return;
+  }
+  const qrUrl = `https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=${encodeURIComponent(text)}`;
+  document.getElementById('qrResult').innerHTML = `<img src="${qrUrl}" alt="QR Code" style="border-radius:12px;">`;
 }
 
-// Case Converter
+// ----------------------------
+// CASE CONVERTER
+// ----------------------------
 function convertCase(type) {
-  let text = document.getElementById("caseText").value;
-  if (type === "upper") text = text.toUpperCase();
-  if (type === "lower") text = text.toLowerCase();
-  if (type === "title") text = text.replace(/\w\S*/g, w => w[0].toUpperCase() + w.substring(1).toLowerCase());
-  document.getElementById("caseResult").innerHTML = `<p><b>Result:</b> ${text}</p>`;
+  const text = document.getElementById('caseText').value.trim();
+  if(!text) {
+    alert('Please enter some text to convert!');
+    return;
+  }
+  let result = '';
+  if(type === 'upper') result = text.toUpperCase();
+  if(type === 'lower') result = text.toLowerCase();
+  if(type === 'title') result = text.replace(/\w\S*/g, w => w[0].toUpperCase() + w.substring(1).toLowerCase());
+  document.getElementById('caseResult').innerText = result;
+}
+
+// ----------------------------
+// TEXT REVERSER
+// ----------------------------
+function reverseText() {
+  const text = document.getElementById('reverseText').value.trim();
+  if (!text) {
+    alert('Please enter some text to reverse!');
+    return;
+  }
+  const reversed = text.split('').reverse().join('');
+  document.getElementById('reverseResult').innerText = reversed;
 }
