@@ -3,36 +3,77 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>HandyBox - Word Counter</title>
+  <title>ToolHub - Word Counter</title>
+  <meta name="description" content="Count words and characters in your text instantly with ToolHub Word Counter. Professional online text tool for writers and students.">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
+  <!-- Sidebar -->
   <aside class="sidebar">
-    <h2>HandyBox</h2>
+    <h2>ToolHub</h2>
     <ul>
-      <li><a href="index.html">🏠 Home</a></li>
-      <li><a href="word.html" class="active">📝 Word Counter</a></li>
-      <li><a href="password.html">🔑 Password Generator</a></li>
-      <li><a href="qr.html">📷 QR Generator</a></li>
-      <li><a href="case.html">🔤 Case Converter</a></li>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="word.html" class="active">Word Counter</a></li>
+      <li><a href="password.html">Password Generator</a></li>
+      <li><a href="qr.html">QR Generator</a></li>
+      <li><a href="case.html">Case Converter</a></li>
     </ul>
   </aside>
 
+  <!-- Main Content -->
   <div class="main">
-    <div class="header">📝 Word Counter</div>
+    <div class="header">Word Counter</div>
     <div class="content">
-      <textarea id="textInput" placeholder="Type or paste text..." rows="8"></textarea>
-      <button onclick="countWords()">Count</button>
-      <div id="result"></div>
+      <h1>Count Words and Characters</h1>
+      <p>Paste your text below to get instant word and character counts:</p>
+      <textarea id="wordText" placeholder="Type or paste your text here..." rows="6"></textarea>
+      <button onclick="countWords()">Count Words</button>
+      <div id="wordResult" style="margin-top:20px;"></div>
     </div>
   </div>
 
   <script>
     function countWords() {
-      const text = document.getElementById("textInput").value.trim();
-      const words = text === "" ? 0 : text.split(/\s+/).length;
+      const text = document.getElementById('wordText').value.trim();
+      if (!text) {
+        showWarning('Please enter some text to count!');
+        return;
+      }
+      const words = text.split(/\s+/).filter(w => w.length > 0).length;
       const chars = text.length;
-      document.getElementById("result").innerHTML = `<p><b>Words:</b> ${words}</p><p><b>Characters:</b> ${chars}</p>`;
+      document.getElementById('wordResult').innerHTML = `<p><b>Words:</b> ${words} | <b>Characters:</b> ${chars}</p>`;
+    }
+
+    // Custom aesthetic warning prompt
+    function showWarning(message) {
+      const overlay = document.createElement('div');
+      overlay.style.position = 'fixed';
+      overlay.style.top = 0;
+      overlay.style.left = 0;
+      overlay.style.width = '100%';
+      overlay.style.height = '100%';
+      overlay.style.backgroundColor = 'rgba(0,0,0,0.7)';
+      overlay.style.display = 'flex';
+      overlay.style.alignItems = 'center';
+      overlay.style.justifyContent = 'center';
+      overlay.style.zIndex = 9999;
+
+      const box = document.createElement('div');
+      box.style.background = '#1f1f1f';
+      box.style.padding = '25px 30px';
+      box.style.borderRadius = '12px';
+      box.style.textAlign = 'center';
+      box.style.color = '#fff';
+      box.style.maxWidth = '400px';
+      box.innerHTML = `<p style="margin-bottom:20px;">${message}</p>
+        <button id="closeWarning" style="padding:10px 20px; border:none; border-radius:8px; background:#00e5ff; color:#121212; font-weight:bold; cursor:pointer;">OK</button>`;
+
+      overlay.appendChild(box);
+      document.body.appendChild(overlay);
+
+      document.getElementById('closeWarning').onclick = () => {
+        document.body.removeChild(overlay);
+      };
     }
   </script>
 </body>
