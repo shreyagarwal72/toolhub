@@ -1,93 +1,30 @@
-const BACKEND_URL = "http://192.168.31.72:3000/convert"; // <-- apne WiFi IP ko yahin rakho
+function showTool(tool) {
+  const content = document.getElementById("content-area");
 
-const fileInput = document.getElementById("fileInput");
-const uploadBox = document.getElementById("uploadBox");
-const convertBtn = document.getElementById("convertBtn");
-const downloadLink = document.getElementById("downloadLink");
-const status = document.getElementById("status");
-
-let selectedFile = null;
-
-// Click to open file picker
-uploadBox.addEventListener("click", function(e) {
-  if (e.target !== fileInput) fileInput.click();
-});
-fileInput.addEventListener("click", e => e.stopPropagation());
-
-// Drag & drop (desktop)
-uploadBox.addEventListener("dragover", e => {
-  e.preventDefault();
-  uploadBox.classList.add("dragover");
-});
-uploadBox.addEventListener("dragleave", () => {
-  uploadBox.classList.remove("dragover");
-});
-uploadBox.addEventListener("drop", e => {
-  e.preventDefault();
-  uploadBox.classList.remove("dragover");
-  if (e.dataTransfer && e.dataTransfer.files.length > 0) {
-    handleFile(e.dataTransfer.files[0]);
+  if (tool === "home") {
+    content.innerHTML = `
+      <h2>Home</h2>
+      <p>Welcome to Nextup Tools. Select a tool from the sidebar to begin.</p>
+    `;
   }
-});
 
-fileInput.addEventListener("change", e => {
-  if (e.target.files.length > 0) handleFile(e.target.files[0]);
-});
-
-function handleFile(file) {
-  if (!file || !file.name.endsWith(".mrpack")) {
-    setStatus("❌ Please select a .mrpack file", false);
-    convertBtn.disabled = true;
-    selectedFile = null;
-    downloadLink.style.display = "none";
-    return;
+  if (tool === "wordCounter") {
+    content.innerHTML = `
+      <h2>Word Counter</h2>
+      <textarea id="textInput" placeholder="Type or paste your text here..." rows="8" style="width:100%; padding:10px; border-radius:8px; border:none; outline:none; background:#2a2a2a; color:#fff;"></textarea>
+      <button onclick="countWords()" style="margin-top:10px; padding:10px 20px; border:none; border-radius:8px; background:#00bcd4; color:#121212; font-weight:bold; cursor:pointer;">Count</button>
+      <div id="result" style="margin-top:15px; font-size:1.1em;"></div>
+    `;
   }
-  selectedFile = file;
-  setStatus(`✅ Selected: ${file.name}`, true);
-  convertBtn.disabled = false;
-  downloadLink.style.display = "none";
 }
 
-function setStatus(msg, success) {
-  status.textContent = msg;
-  status.style.color = success ? "#32a852" : "#ffa831";
+function countWords() {
+  const text = document.getElementById("textInput").value.trim();
+  const wordCount = text === "" ? 0 : text.split(/\s+/).length;
+  const charCount = text.length;
+  
+  document.getElementById("result").innerHTML = `
+    <p><strong>Words:</strong> ${wordCount}</p>
+    <p><strong>Characters:</strong> ${charCount}</p>
+  `;
 }
-
-convertBtn.addEventListener("click", async () => {
-  if (!selectedFile) return setStatus("❌ No .mrpack file selected", false);
-  convertBtn.disabled = true;
-  setStatus("⏳ Uploading & Converting...", true);
-
-  try {
-    const formData = new FormData();
-    formData.append("mrpack", selectedFile);
-
-    const resp = await fetch(BACKEND_URL, {
-      method: "POST",
-      body: formData
-    });
-
-    if (!resp.ok) {
-      setStatus("❌ Server error or no response!", false);
-      convertBtn.disabled = false;
-      return;
-    }
-
-    const blob = await resp.blob();
-    if (blob.size < 100) {
-      setStatus("❌ Received empty or invalid ZIP!", false);
-      convertBtn.disabled = false;
-      return;
-    }
-
-    const url = URL.createObjectURL(blob);
-    downloadLink.href = url;
-    downloadLink.download = selectedFile.name.replace(/\.mrpack$/i, ".zip");
-    downloadLink.textContent = "Download Converted File";
-    downloadLink.style.display = "inline-block";
-    setStatus("✅ Conversion complete! Download your ZIP.", true);
-  } catch (err) {
-    setStatus("❌ Network/server error: " + err, false);
-  }
-  convertBtn.disabled = false;
-});
