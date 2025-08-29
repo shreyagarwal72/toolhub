@@ -1,68 +1,152 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Mrpack → Zip Converter | Free Modrinth to ZIP Tool</title>
-  <meta name="description" content="Convert Modrinth .mrpack files to .zip format instantly and securely with our free, online tool. Fast client-side processing—no data leaves your device. Compatible with all Minecraft launchers.">
-  <meta name="keywords" content="mrpack to zip, mrpack converter, minecraft modpack converter, modrinth to zip, online mrpack tool, zip my mrpack, modpack converter">
-  <meta name="robots" content="index, follow">
-  <meta name="author" content="Mrpack to Zip Converter">
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Free File Converter</title>
+<style>
+    /* Reset and base */
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0; padding: 2rem;
+        background: #f9f9f9;
+        color: #333;
+        display: flex;
+        justify-content: center;
+    }
+    main {
+        background: white;
+        padding: 2rem;
+        max-width: 450px;
+        width: 100%;
+        box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        border-radius: 8px;
+    }
+    h1 {
+        text-align: center;
+        margin-bottom: 1.5rem;
+    }
+    label {
+        display: block;
+        margin-top: 1rem;
+        font-weight: bold;
+    }
+    input[type="file"] {
+        margin-top: 0.5rem;
+        width: 100%;
+    }
+    select, button {
+        width: 100%;
+        margin-top: 1rem;
+        padding: 0.75rem;
+        font-size: 1rem;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        box-sizing: border-box;
+    }
+    button {
+        background-color: #0056b3;
+        color: white;
+        border: none;
+        cursor: pointer;
+    }
+    button:hover {
+        background-color: #004494;
+    }
+    #downloadLink {
+        display: block;
+        text-align: center;
+        margin-top: 1.5rem;
+        font-weight: bold;
+        color: #0066cc;
+        text-decoration: none;
+    }
 
-  <!-- Favicon (adjust filename if needed) -->
-  <link rel="icon" type="image/png" href="favicon-m2z.png" sizes="32x32">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css" />
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+    @media (max-width: 500px) {
+        body {
+            padding: 1rem;
+        }
+        main {
+            padding: 1rem;
+        }
+    }
+</style>
 </head>
 <body>
-  <header class="header">
-    <h1>Mrpack <span aria-label="to">→</span> Zip Converter</h1>
-    <p class="subtitle">
-      Convert your Modrinth modpacks (.mrpack) to ZIP files easily.<br>
-      The best free tool for converting Modrinth packs to ZIP format – fast, secure, and never uploads your files.
-    </p>
-  </header>
+<main>
+    <h1>Free File Converter</h1>
 
-  <main class="container horizontal">
-    <section class="upload-section">
-      <div class="upload-box" id="uploadBox">
-        <div class="upload-icon" aria-hidden="true">
-          <svg width="54" height="54" fill="none" stroke="#96a0b8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 48 48">
-            <path d="M16 26l8-8 8 8M24 18v18"/>
-            <path d="M12 36h24a7 7 0 0 0 0-14h-1.26A11 11 0 1 0 12 36Z"/>
-          </svg>
-        </div>
-        <p id="uploadLabel"><strong>Drag &amp; drop</strong> your .mrpack file here, or <strong>click to select</strong></p>
-        <input type="file" id="fileInput" accept=".mrpack" hidden />
-        <button id="convertBtn" disabled aria-label="Convert .mrpack file to .zip">Convert to .zip</button>
-        <a id="downloadLink" style="display:none;">Download Converted File</a>
-        <div id="status" role="status" aria-live="polite"></div>
-      </div>
-    </section>
-    <section class="explain-section">
-      <div class="info">
-        <h2>Why Use This Tool?</h2>
-        <ul>
-          <li>✔ Converts <strong>.mrpack</strong> to <strong>.zip</strong> instantly</li>
-          <li>✔ Never uploads your files — 100% client-side</li>
-          <li>✔ Free, secure &amp; lightning fast</li>
-          <li>✔ Compatible with MultiMC, Prism, GDLauncher, and CurseForge</li>
-        </ul>
-      </div>
-      <div class="steps">
-        <h2>How It Works</h2>
-        <ol>
-          <li>Select or drag &amp; drop your <strong>.mrpack</strong> file above.</li>
-          <li>Conversion extracts contents &amp; rebuilds a proper <strong>.zip</strong></li>
-          <li>Click <strong>Download Converted File</strong> to get your zipped modpack.</li>
-        </ol>
-      </div>
-    </section>
-  </main>
-  <footer class="footer">
-    <p>© 2025 Mrpack → Zip Converter | Built with ❤️ for Minecraft players</p>
-  </footer>
-  <script src="script.js"></script>
+    <label for="fileInput">Choose a file</label>
+    <input type="file" id="fileInput" />
+
+    <label for="converterSelect">Select conversion type</label>
+    <select id="converterSelect">
+        <option value="rar_to_zip">RAR to ZIP</option>
+        <option value="pdf_to_word">PDF to Word</option>
+        <option value="jpg_to_png">JPG to PNG</option>
+        <!-- Future converters can be added here -->
+    </select>
+
+    <button id="convertBtn">Convert File</button>
+
+    <a id="downloadLink" style="display:none;"></a>
+</main>
+
+<script>
+    const convertBtn = document.getElementById('convertBtn');
+    const fileInput = document.getElementById('fileInput');
+    const converterSelect = document.getElementById('converterSelect');
+    const downloadLink = document.getElementById('downloadLink');
+
+    convertBtn.addEventListener('click', async () => {
+        downloadLink.style.display = 'none';
+        if (!fileInput.files.length) {
+            alert('Please select a file to convert.');
+            return;
+        }
+        const file = fileInput.files[0];
+        const conversionType = converterSelect.value;
+
+        const formData = new FormData();
+        formData.append('file', file);
+        formData.append('conversionType', conversionType);
+
+        convertBtn.disabled = true;
+        convertBtn.textContent = 'Converting...';
+
+        try {
+            const response = await fetch('/convert', {
+                method: 'POST',
+                body: formData
+            });
+
+            if (!response.ok) {
+                throw new Error('Conversion failed');
+            }
+
+            const blob = await response.blob();
+            const filename = file.name.split('.').slice(0, -1).join('.') + getExtension(conversionType);
+            downloadLink.href = URL.createObjectURL(blob);
+            downloadLink.download = filename;
+            downloadLink.textContent = `Download ${filename}`;
+            downloadLink.style.display = 'block';
+
+        } catch (error) {
+            alert(error.message);
+        }
+
+        convertBtn.disabled = false;
+        convertBtn.textContent = 'Convert File';
+    });
+
+    function getExtension(type) {
+        switch(type) {
+            case 'rar_to_zip': return '.zip';
+            case 'pdf_to_word': return '.docx';
+            case 'jpg_to_png': return '.png';
+            default: return '';
+        }
+    }
+</script>
 </body>
 </html>
