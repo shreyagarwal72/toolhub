@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ToolHub - Text Reverser</title>
+  <meta name="description" content="Reverse your text instantly with ToolHub Text Reverser. Professional online tool to reverse strings or sentences.">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Hero Section -->
+  <header class="hero">
+    <h1>Text Reverser</h1>
+    <p>Reverse your text instantly. Paste or type any text to get the reversed version.</p>
+  </header>
+
+  <!-- Main Content -->
+  <section class="tools">
+    <div class="tool-cards" style="justify-content: center;">
+      <div class="card" style="max-width: 600px;">
+        <textarea id="reverseText" placeholder="Enter text here..." rows="6" style="width:100%; padding:12px; border-radius:8px; border:none; margin-bottom:15px;"></textarea>
+        <button onclick="reverseText()" class="card-btn">Reverse Text</button>
+        <div id="reverseResult" style="margin-top:20px; color:#00e5ff; font-weight:bold; word-break: break-word;"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer style="text-align:center; margin-top:50px; color:#ccc; font-size:0.9em;">
+    <a href="https://shreyagarwal72.github.io" target="_blank" style="color:#00e5ff; text-decoration:none; font-weight:bold;">
+      Powered by Nextup Studio
+    </a>
+  </footer>
+
+  <script>
+    function reverseText() {
+      const text = document.getElementById('reverseText').value.trim();
+      if (!text) {
+        alert('Please enter some text to reverse!');
+        return;
+      }
+      const reversed = text.split('').reverse().join('');
+      document.getElementById('reverseResult').innerText = reversed;
+    }
+  </script>
+</body>
+</html>
