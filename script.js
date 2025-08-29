@@ -7,19 +7,16 @@ const status = document.getElementById("status");
 
 let selectedFile = null;
 
-// Always: Click on upload box triggers file picker (mobile + desktop)
+// --- Click to open file picker everywhere ---
 uploadBox.addEventListener("click", function(e) {
-  // Prevent event if file input itself was clicked
+  // Prevent double event if input is clicked
   if (e.target !== fileInput) {
     fileInput.click();
   }
 });
-// Prevent double pop on file input itself
-fileInput.addEventListener("click", function(e) {
-  e.stopPropagation();
-});
+fileInput.addEventListener("click", function(e) { e.stopPropagation(); });
 
-// Desktop drag & drop support
+// --- Drag & drop (desktop) ---
 uploadBox.addEventListener("dragover", (e) => {
   e.preventDefault();
   uploadBox.classList.add("dragover");
@@ -30,17 +27,18 @@ uploadBox.addEventListener("dragleave", () => {
 uploadBox.addEventListener("drop", (e) => {
   e.preventDefault();
   uploadBox.classList.remove("dragover");
-  if (e.dataTransfer.files.length > 0) {
+  if (e.dataTransfer && e.dataTransfer.files.length > 0) {
     handleFile(e.dataTransfer.files[0]);
   }
 });
 
+// --- File selection change handler ---
 fileInput.addEventListener("change", (e) => {
   if (e.target.files.length > 0) handleFile(e.target.files[0]);
 });
 
 function handleFile(file) {
-  if (!file.name.endsWith(".mrpack")) {
+  if (!file || !file.name.endsWith(".mrpack")) {
     setStatus("❌ Please select a .mrpack file", false);
     convertBtn.disabled = true;
     selectedFile = null;
@@ -58,6 +56,7 @@ function setStatus(msg, success) {
   status.style.color = success ? "#32a852" : "#ffa831";
 }
 
+// --- Conversion logic (uses JSZip, CDN included in index.html) ---
 convertBtn.addEventListener("click", async () => {
   if (!selectedFile) return setStatus("❌ No .mrpack file selected", false);
   convertBtn.disabled = true;
@@ -65,11 +64,10 @@ convertBtn.addEventListener("click", async () => {
 
   try {
     const arrayBuffer = await selectedFile.arrayBuffer();
-    // Requires JSZip from CDN, included in index.html
+    // JSZip from CDN required (add <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script> in HTML)
     const zip = await JSZip.loadAsync(arrayBuffer);
     const newZip = new JSZip();
 
-    // Copy all files & folders from mrpack to new zip (real conversion)
     await Promise.all(Object.values(zip.files).map(async file => {
       if (!file.dir) {
         const content = await file.async("uint8array");
