@@ -1,21 +1,17 @@
-// Elements reference
+// --- FILE UPLOAD & CONVERT LOGIC ---
 const fileInput = document.getElementById("fileInput");
+const uploadBox = document.getElementById("uploadBox");
 const convertBtn = document.getElementById("convertBtn");
 const downloadLink = document.getElementById("downloadLink");
-const uploadBox = document.querySelector('.upload-box');
+const status = document.getElementById("status");
 
-// Drag & Drop mobile detection
-const isTouch = window.matchMedia("(hover: none) and (pointer: coarse)").matches;
-
-// State
 let selectedFile = null;
 
-// Mobile: Only allow tap to open file chooser
+// Mobile device pe sirf tap (no weird drag events), Desktop pe drag & drop + tap
+const isTouch = window.matchMedia("(hover: none) and (pointer: coarse)").matches;
 if (isTouch) {
-  uploadBox.style.cursor = "pointer";
   uploadBox.addEventListener("click", () => fileInput.click());
 } else {
-  // Desktop: drag & drop + click
   uploadBox.addEventListener("dragover", (e) => {
     e.preventDefault();
     uploadBox.classList.add("dragover");
@@ -33,52 +29,64 @@ if (isTouch) {
   uploadBox.addEventListener("click", () => fileInput.click());
 }
 
-// Always: File selection handler
 fileInput.addEventListener("change", (e) => {
   if (e.target.files.length > 0) handleFile(e.target.files[0]);
 });
 
 function handleFile(file) {
-  if (!file || !file.name.endsWith(".mrpack")) {
-    showStatus("❌ Please select a .mrpack file", false);
+  if (!file.name.endsWith(".mrpack")) {
+    setStatus("❌ Please select a .mrpack file", false);
     convertBtn.disabled = true;
-    downloadLink.style.display = "none";
     selectedFile = null;
+    downloadLink.style.display = "none";
     return;
   }
   selectedFile = file;
-  showStatus(`✅ Selected: ${file.name}`, true);
+  setStatus(`✅ Selected: ${file.name}`, true);
   convertBtn.disabled = false;
   downloadLink.style.display = "none";
 }
 
-function showStatus(msg, ok) {
-  let status = document.getElementById("status");
-  if (!status) {
-    status = document.createElement("div");
-    status.id = "status";
-    status.style.margin = "12px 0";
-    status.style.textAlign = "center";
-    document.querySelector(".upload-box").appendChild(status);
-  }
+function setStatus(msg, success) {
   status.textContent = msg;
-  status.style.color = ok ? "#31da5a" : "#FFA831";
+  status.style.color = success ? "#32a852" : "#ffa831";
 }
 
-// Conversion logic (demo: actual JSZip/worker logic yahan lagayein)
 convertBtn.addEventListener("click", async () => {
-  if (!selectedFile) return showStatus("❌ No .mrpack file selected", false);
-  showStatus("⏳ Converting...", true);
+  if (!selectedFile) return setStatus("❌ No .mrpack file selected", false);
   convertBtn.disabled = true;
+  setStatus("⏳ Converting...", true);
 
-  // Simulated conversion & download (replace this block with real logic)
-  setTimeout(() => {
-    const blob = new Blob(["This would be your real .zip content"], { type: "application/zip" });
-    downloadLink.href = URL.createObjectURL(blob);
-    downloadLink.download = selectedFile.name.replace(".mrpack", ".zip");
+  try {
+    const arrayBuffer = await selectedFile.arrayBuffer();
+    // JSZip loaded from CDN in index.html
+    const zip = await JSZip.loadAsync(arrayBuffer);
+    const newZip = new JSZip();
+
+    // Copy all files from mrpack to new ZIP
+    await Promise.all(Object.values(zip.files).map(async file => {
+      if (!file.dir) {
+        const content = await file.async("uint8array");
+        newZip.file(file.name, content);
+      }
+    }));
+
+    const outBlob = await newZip.generateAsync({ type: "blob" });
+    downloadLink.href = URL.createObjectURL(outBlob);
+    downloadLink.download = selectedFile.name.replace(/\.mrpack$/i, ".zip");
     downloadLink.textContent = "Download Converted File";
     downloadLink.style.display = "inline-block";
-    showStatus("✅ Conversion Complete! Tap 'Download Converted File' below.", true);
-    convertBtn.disabled = false;
-  }, 1500);
+    setStatus("✅ Conversion Complete! Tap 'Download Converted File'.", true);
+  } catch (err) {
+    setStatus("❌ Error: File is not a valid .mrpack archive.", false);
+  }
+  convertBtn.disabled = false;
+});
+
+// --- FAQ ACCORDION ---
+document.querySelectorAll('.faq-question').forEach(btn => {
+  btn.addEventListener('click', function () {
+    const faqItem = btn.parentElement;
+    faqItem.classList.toggle('active');
+  });
 });
