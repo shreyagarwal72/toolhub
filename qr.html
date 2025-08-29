@@ -3,26 +3,29 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>HandyBox - QR Generator</title>
+  <title>ToolHub - QR Generator</title>
+  <meta name="description" content="Generate QR codes easily with ToolHub QR Generator. Create QR for URLs or text online with professional tools.">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
   <!-- Sidebar -->
   <aside class="sidebar">
-    <h2>HandyBox</h2>
+    <h2>ToolHub</h2>
     <ul>
-      <li><a href="index.html">🏠 Home</a></li>
-      <li><a href="word.html">📝 Word Counter</a></li>
-      <li><a href="password.html">🔑 Password Generator</a></li>
-      <li><a href="qr.html" class="active">📷 QR Generator</a></li>
-      <li><a href="case.html">🔤 Case Converter</a></li>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="word.html">Word Counter</a></li>
+      <li><a href="password.html">Password Generator</a></li>
+      <li><a href="qr.html" class="active">QR Generator</a></li>
+      <li><a href="case.html">Case Converter</a></li>
     </ul>
   </aside>
 
-  <!-- Main -->
+  <!-- Main Content -->
   <div class="main">
-    <div class="header">📷 QR Generator</div>
+    <div class="header">QR Generator</div>
     <div class="content">
+      <h1>Create QR Codes Instantly</h1>
+      <p>Enter your text or URL below and click generate to get a QR code:</p>
       <input type="text" id="qrText" placeholder="Enter text or URL">
       <button onclick="generateQR()">Generate QR</button>
       <div id="qrResult" style="margin-top:20px;"></div>
@@ -31,13 +34,45 @@
 
   <script>
     function generateQR() {
-      const text = document.getElementById("qrText").value;
+      const text = document.getElementById('qrText').value.trim();
       if (!text) {
-        alert("Please enter some text or a URL!");
+        showWarning('Please enter some text or URL to generate QR!');
         return;
       }
       const qrUrl = `https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=${encodeURIComponent(text)}`;
-      document.getElementById("qrResult").innerHTML = `<img src="${qrUrl}" alt="QR Code">`;
+      document.getElementById('qrResult').innerHTML = `<img src="${qrUrl}" alt="QR Code" style="border-radius:12px;">`;
+    }
+
+    // Custom aesthetic warning prompt
+    function showWarning(message) {
+      const overlay = document.createElement('div');
+      overlay.style.position = 'fixed';
+      overlay.style.top = 0;
+      overlay.style.left = 0;
+      overlay.style.width = '100%';
+      overlay.style.height = '100%';
+      overlay.style.backgroundColor = 'rgba(0,0,0,0.7)';
+      overlay.style.display = 'flex';
+      overlay.style.alignItems = 'center';
+      overlay.style.justifyContent = 'center';
+      overlay.style.zIndex = 9999;
+
+      const box = document.createElement('div');
+      box.style.background = '#1f1f1f';
+      box.style.padding = '25px 30px';
+      box.style.borderRadius = '12px';
+      box.style.textAlign = 'center';
+      box.style.color = '#fff';
+      box.style.maxWidth = '400px';
+      box.innerHTML = `<p style="margin-bottom:20px;">${message}</p>
+        <button id="closeWarning" style="padding:10px 20px; border:none; border-radius:8px; background:#00e5ff; color:#121212; font-weight:bold; cursor:pointer;">OK</button>`;
+
+      overlay.appendChild(box);
+      document.body.appendChild(overlay);
+
+      document.getElementById('closeWarning').onclick = () => {
+        document.body.removeChild(overlay);
+      };
     }
   </script>
 </body>
