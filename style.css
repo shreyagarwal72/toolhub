@@ -39,20 +39,26 @@ body {
   color: #ccc;
 }
 
-/* Call-to-action buttons */
-.cta-btn {
+/* =====================
+   BUTTONS
+===================== */
+.cta-btn, .card-btn {
   display: inline-block;
-  padding: 14px 28px;
+  padding: 12px 28px;
   background: #00e5ff;
   color: #121212;
   font-weight: bold;
   border-radius: 10px;
   text-decoration: none;
+  text-align: center;
   transition: 0.3s;
+  cursor: pointer;
+  border: none;
 }
 
-.cta-btn:hover {
+.cta-btn:hover, .card-btn:hover {
   background: #00bcd4;
+  transform: scale(1.05);
 }
 
 /* =====================
@@ -66,10 +72,10 @@ body {
 }
 
 .tool-cards {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
   gap: 25px;
-  justify-items: center;
 }
 
 .card {
@@ -103,27 +109,12 @@ body {
   margin-bottom: 20px;
 }
 
-/* Buttons inside cards */
-.card-btn {
-  display: inline-block;
-  padding: 12px 25px;
-  background: #00e5ff;
-  color: #121212;
-  border-radius: 10px;
-  font-weight: bold;
-  text-decoration: none;
-  text-align: center;
-  transition: 0.3s;
-}
-
-.card-btn:hover {
-  background: #00bcd4;
-  transform: scale(1.05);
-}
-
 /* Inputs & Textareas */
 input[type="text"],
-textarea {
+input[type="number"],
+input[type="date"],
+textarea,
+select {
   background: #2a2a2a;
   color: #fff;
   padding: 12px;
@@ -136,8 +127,9 @@ textarea {
   transition: 0.3s;
 }
 
-input[type="text"]:focus,
-textarea:focus {
+input:focus,
+textarea:focus,
+select:focus {
   outline: none;
   box-shadow: 0 0 12px #00e5ff;
 }
@@ -176,5 +168,9 @@ footer a:hover {
 
   .card {
     padding: 20px 15px;
+  }
+
+  .tool-cards {
+    gap: 15px;
   }
 }
