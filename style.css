@@ -118,6 +118,7 @@ body {
 
 .card-btn:hover {
   background: #00bcd4;
+  transform: scale(1.05);
 }
 
 /* Inputs & Textareas */
@@ -132,12 +133,25 @@ textarea {
   resize: none;
   font-size: 1em;
   margin-bottom: 15px;
+  transition: 0.3s;
 }
 
 input[type="text"]:focus,
 textarea:focus {
   outline: none;
-  box-shadow: 0 0 10px #00e5ff;
+  box-shadow: 0 0 12px #00e5ff;
+}
+
+/* =====================
+   FOOTER
+===================== */
+footer a {
+  transition: 0.3s;
+}
+
+footer a:hover {
+  color: #00bcd4;
+  text-decoration: underline;
 }
 
 /* =====================
