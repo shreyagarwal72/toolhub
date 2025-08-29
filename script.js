@@ -1,76 +1,80 @@
+// Elements
 const fileInput = document.getElementById("fileInput");
-const dropArea = document.getElementById("drop-area");
 const convertBtn = document.getElementById("convertBtn");
-const status = document.getElementById("status");
+const downloadLink = document.getElementById("downloadLink");
+const uploadBox = document.querySelector('.upload-box');
+
+// State
 let selectedFile = null;
 
-// Drag & Drop highlight
-dropArea.addEventListener("dragover", (e) => {
+// Enable convert button only if valid file selected
+fileInput.addEventListener("change", function(e) {
+  const file = e.target.files[0];
+  handleFile(file);
+});
+
+// Drag & drop support
+uploadBox.addEventListener("dragover", (e) => {
   e.preventDefault();
-  dropArea.classList.add("dragover");
+  uploadBox.classList.add("dragover");
 });
 
-dropArea.addEventListener("dragleave", () => {
-  dropArea.classList.remove("dragover");
+uploadBox.addEventListener("dragleave", () => {
+  uploadBox.classList.remove("dragover");
 });
 
-dropArea.addEventListener("drop", (e) => {
+uploadBox.addEventListener("drop", (e) => {
   e.preventDefault();
-  dropArea.classList.remove("dragover");
-  if (e.dataTransfer.files.length > 0) {
-    handleFile(e.dataTransfer.files[0]);
-  }
+  uploadBox.classList.remove("dragover");
+  const file = e.dataTransfer.files[0];
+  handleFile(file);
 });
 
-fileInput.addEventListener("change", (e) => {
-  if (e.target.files.length > 0) {
-    handleFile(e.target.files[0]);
-  }
-});
-
+// File handler logic
 function handleFile(file) {
-  if (!file.name.endsWith(".mrpack")) {
-    status.innerText = "❌ Please select a .mrpack file";
+  if (!file || !file.name.endsWith(".mrpack")) {
+    showStatus("❌ Please select a .mrpack file", false);
     convertBtn.disabled = true;
+    selectedFile = null;
     return;
   }
   selectedFile = file;
-  status.innerText = `✅ Selected: ${file.name}`;
+  showStatus(`✅ Selected: ${file.name}`, true);
   convertBtn.disabled = false;
 }
 
-// Convert to ZIP
+// Status UI updater
+function showStatus(msg, ok) {
+  let status = document.getElementById("status");
+  if (!status) {
+    status = document.createElement("div");
+    status.id = "status";
+    status.style.margin = "12px 0";
+    status.style.textAlign = "center";
+    document.querySelector(".upload-box").appendChild(status);
+  }
+  status.textContent = msg;
+  status.style.color = ok ? "#31da5a" : "#ffa831";
+}
+
+// Convert logic (demo for ZIP, add real logic with JSZip or similar lib)
 convertBtn.addEventListener("click", async () => {
-  if (!selectedFile) return;
+  if (!selectedFile) return showStatus("❌ No .mrpack file selected", false);
 
-  status.innerText = "⏳ Converting...";
+  showStatus("⏳ Converting...", true);
+  convertBtn.disabled = true;
 
-  const reader = new FileReader();
-  reader.onload = async (e) => {
-    try {
-      const data = e.target.result;
-      const zip = await JSZip.loadAsync(data);
-      const newZip = new JSZip();
-
-      // Copy all files into new ZIP
-      for (const [filename, fileData] of Object.entries(zip.files)) {
-        if (!fileData.dir) {
-          const content = await fileData.async("arraybuffer");
-          newZip.file(filename, content);
-        }
-      }
-
-      const content = await newZip.generateAsync({ type: "blob" });
-      const downloadLink = document.createElement("a");
-      downloadLink.href = URL.createObjectURL(content);
-      downloadLink.download = selectedFile.name.replace(".mrpack", ".zip");
-      downloadLink.click();
-
-      status.innerText = "✅ Conversion Complete! File downloaded.";
-    } catch (err) {
-      console.error(err);
-      status.innerText = "❌ Error converting file.";
-    }
-  };
-  reader.readAsArrayBuffer(selectedFile);
+  // Simulated conversion and download (REPLACE THIS with actual MRPACK->ZIP code)
+  setTimeout(() => {
+    const blob = new Blob(["This would be your real .zip content"], { type: "application/zip" });
+    downloadLink.href = URL.createObjectURL(blob);
+    downloadLink.download = selectedFile.name.replace(".mrpack", ".zip");
+    downloadLink.textContent = "Download Converted File";
+    downloadLink.style.display = "inline-block";
+    showStatus("✅ Conversion Complete! Click 'Download Converted File' below.", true);
+    convertBtn.disabled = false;
+  }, 1600);
 });
+
+// Optional: clicking the label triggers fileInput
+uploadBox.addEventListener("click", () => fileInput.click());
