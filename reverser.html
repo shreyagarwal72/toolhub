@@ -18,7 +18,7 @@
   <section class="tools">
     <div class="tool-cards" style="justify-content: center;">
       <div class="card" style="max-width: 600px;">
-        <textarea id="reverseText" placeholder="Enter text here..." rows="6" style="width:100%; padding:12px; border-radius:8px; border:none; margin-bottom:15px;"></textarea>
+        <textarea id="reverseText" placeholder="Enter text here..." rows="6"></textarea>
         <button onclick="reverseText()" class="card-btn">Reverse Text</button>
         <div id="reverseResult" style="margin-top:20px; color:#00e5ff; font-weight:bold; word-break: break-word;"></div>
       </div>
@@ -32,16 +32,7 @@
     </a>
   </footer>
 
-  <script>
-    function reverseText() {
-      const text = document.getElementById('reverseText').value.trim();
-      if (!text) {
-        alert('Please enter some text to reverse!');
-        return;
-      }
-      const reversed = text.split('').reverse().join('');
-      document.getElementById('reverseResult').innerText = reversed;
-    }
-  </script>
+  <!-- External Script -->
+  <script src="script.js"></script>
 </body>
 </html>
