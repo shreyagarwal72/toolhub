@@ -8,79 +8,39 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <!-- Sidebar -->
-  <aside class="sidebar">
-    <h2>ToolHub</h2>
-    <ul>
-      <li><a href="index.html">Home</a></li>
-      <li><a href="word.html">Word Counter</a></li>
-      <li><a href="password.html">Password Generator</a></li>
-      <li><a href="qr.html">QR Generator</a></li>
-      <li><a href="case.html" class="active">Case Converter</a></li>
-    </ul>
-  </aside>
+  <!-- Hero Section -->
+  <header class="hero">
+    <h1>Case Converter</h1>
+    <p>Convert your text to UPPERCASE, lowercase, or Title Case instantly.</p>
+  </header>
 
   <!-- Main Content -->
-  <div class="main">
-    <div class="header">Case Converter</div>
-    <div class="content">
-      <h1>Convert Text Instantly</h1>
-      <p>Paste your text below and choose the conversion type:</p>
-      <textarea id="caseText" placeholder="Type your text here..." rows="6"></textarea>
-      <div style="margin-top:15px;">
-        <button onclick="convertCase('upper')">UPPERCASE</button>
-        <button onclick="convertCase('lower')">lowercase</button>
-        <button onclick="convertCase('title')">Title Case</button>
+  <section class="tools">
+    <div class="tool-cards" style="justify-content: center;">
+      <div class="card" style="max-width: 600px;">
+        <textarea id="caseText" placeholder="Type your text here..." rows="6" style="width:100%; padding:12px; border-radius:8px; border:none; margin-bottom:15px;"></textarea>
+        <div style="display:flex; gap:10px; flex-wrap:wrap; margin-bottom:15px;">
+          <button onclick="convertCase('upper')" class="card-btn">UPPERCASE</button>
+          <button onclick="convertCase('lower')" class="card-btn">lowercase</button>
+          <button onclick="convertCase('title')" class="card-btn">Title Case</button>
+        </div>
+        <div id="caseResult" style="margin-top:10px; color:#00e5ff; font-weight:bold;"></div>
       </div>
-      <div id="caseResult" style="margin-top:20px;"></div>
     </div>
-  </div>
+  </section>
 
   <script>
     function convertCase(type) {
       const text = document.getElementById('caseText').value.trim();
-      if (!text) {
-        showWarning('Please enter some text to convert!');
+      if(!text) {
+        alert('Please enter some text to convert!');
         return;
       }
       let result = '';
-      if (type === 'upper') result = text.toUpperCase();
-      if (type === 'lower') result = text.toLowerCase();
-      if (type === 'title') result = text.replace(/\w\S*/g, w => w[0].toUpperCase() + w.substring(1).toLowerCase());
-
-      document.getElementById('caseResult').innerHTML = `<p><b>Result:</b> ${result}</p>`;
-    }
-
-    // Custom aesthetic warning prompt
-    function showWarning(message) {
-      const overlay = document.createElement('div');
-      overlay.style.position = 'fixed';
-      overlay.style.top = 0;
-      overlay.style.left = 0;
-      overlay.style.width = '100%';
-      overlay.style.height = '100%';
-      overlay.style.backgroundColor = 'rgba(0,0,0,0.7)';
-      overlay.style.display = 'flex';
-      overlay.style.alignItems = 'center';
-      overlay.style.justifyContent = 'center';
-      overlay.style.zIndex = 9999;
-
-      const box = document.createElement('div');
-      box.style.background = '#1f1f1f';
-      box.style.padding = '25px 30px';
-      box.style.borderRadius = '12px';
-      box.style.textAlign = 'center';
-      box.style.color = '#fff';
-      box.style.maxWidth = '400px';
-      box.innerHTML = `<p style="margin-bottom:20px;">${message}</p>
-        <button id="closeWarning" style="padding:10px 20px; border:none; border-radius:8px; background:#00e5ff; color:#121212; font-weight:bold; cursor:pointer;">OK</button>`;
-
-      overlay.appendChild(box);
-      document.body.appendChild(overlay);
-
-      document.getElementById('closeWarning').onclick = () => {
-        document.body.removeChild(overlay);
-      };
+      if(type === 'upper') result = text.toUpperCase();
+      if(type === 'lower') result = text.toLowerCase();
+      if(type === 'title') result = text.replace(/\w\S*/g, w => w[0].toUpperCase() + w.substring(1).toLowerCase());
+      document.getElementById('caseResult').innerText = result;
     }
   </script>
 </body>
