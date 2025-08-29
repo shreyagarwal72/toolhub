@@ -11,19 +11,8 @@
 
   <!-- Favicon (adjust filename if needed) -->
   <link rel="icon" type="image/png" href="favicon-m2z.png" sizes="32x32">
-
-  <!-- Open Graph SEO (update og:image URL if needed) -->
-  <meta property="og:title" content="Mrpack → Zip Converter | Free Online Modrinth to ZIP Tool" />
-  <meta property="og:description" content="Convert Modrinth .mrpack files to .zip format instantly with our free, secure, browser-based tool. No files uploaded!" />
-  <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://tozip.playdown.in/" />
-  <meta property="og:image" content="https://tozip.playdown.in/favicon-m2z.png" />
-
-  <!-- Google Fonts + Main Style -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css" />
-
-  <!-- JSZip for conversion -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
 </head>
 <body>
@@ -35,45 +24,45 @@
     </p>
   </header>
 
-  <main class="container">
-    <section class="upload-box" id="uploadBox">
-      <div class="upload-icon" aria-hidden="true">
-        <svg width="48" height="48" fill="none" stroke="#96a0b8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 48 48">
-          <path d="M16 26l8-8 8 8M24 18v18"/>
-          <path d="M12 36h24a7 7 0 0 0 0-14h-1.26A11 11 0 1 0 12 36Z"/>
-        </svg>
+  <main class="container horizontal">
+    <section class="upload-section">
+      <div class="upload-box" id="uploadBox">
+        <div class="upload-icon" aria-hidden="true">
+          <svg width="54" height="54" fill="none" stroke="#96a0b8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 48 48">
+            <path d="M16 26l8-8 8 8M24 18v18"/>
+            <path d="M12 36h24a7 7 0 0 0 0-14h-1.26A11 11 0 1 0 12 36Z"/>
+          </svg>
+        </div>
+        <p id="uploadLabel"><strong>Drag &amp; drop</strong> your .mrpack file here, or <strong>click to select</strong></p>
+        <input type="file" id="fileInput" accept=".mrpack" hidden />
+        <button id="convertBtn" disabled aria-label="Convert .mrpack file to .zip">Convert to .zip</button>
+        <a id="downloadLink" style="display:none;">Download Converted File</a>
+        <div id="status" role="status" aria-live="polite"></div>
       </div>
-      <p id="uploadLabel"><strong>Drag &amp; drop</strong> your .mrpack file here, or <strong>click to select</strong></p>
-      <input type="file" id="fileInput" accept=".mrpack" hidden />
-      <button id="convertBtn" disabled aria-label="Convert .mrpack file to .zip">Convert to .zip</button>
-      <a id="downloadLink" style="display:none;">Download Converted File</a>
-      <div id="status" role="status" aria-live="polite"></div>
     </section>
-
-    <section class="info">
-      <h2>Why Use This Tool?</h2>
-      <ul>
-        <li>✔ Converts <strong>.mrpack</strong> to <strong>.zip</strong> instantly</li>
-        <li>✔ Never uploads your files — 100% client-side</li>
-        <li>✔ Free, secure &amp; lightning fast</li>
-        <li>✔ Compatible with MultiMC, Prism, GDLauncher, and CurseForge</li>
-      </ul>
-    </section>
-
-    <section class="steps">
-      <h2>How It Works</h2>
-      <ol>
-        <li>Select or drag &amp; drop your <strong>.mrpack</strong> file above.</li>
-        <li>The converter extracts the contents and rebuilds a proper <strong>.zip</strong>.</li>
-        <li>Click <strong>Download Converted File</strong> to save your modpack in ZIP format.</li>
-      </ol>
+    <section class="explain-section">
+      <div class="info">
+        <h2>Why Use This Tool?</h2>
+        <ul>
+          <li>✔ Converts <strong>.mrpack</strong> to <strong>.zip</strong> instantly</li>
+          <li>✔ Never uploads your files — 100% client-side</li>
+          <li>✔ Free, secure &amp; lightning fast</li>
+          <li>✔ Compatible with MultiMC, Prism, GDLauncher, and CurseForge</li>
+        </ul>
+      </div>
+      <div class="steps">
+        <h2>How It Works</h2>
+        <ol>
+          <li>Select or drag &amp; drop your <strong>.mrpack</strong> file above.</li>
+          <li>Conversion extracts contents &amp; rebuilds a proper <strong>.zip</strong></li>
+          <li>Click <strong>Download Converted File</strong> to get your zipped modpack.</li>
+        </ol>
+      </div>
     </section>
   </main>
-
   <footer class="footer">
     <p>© 2025 Mrpack → Zip Converter | Built with ❤️ for Minecraft players</p>
   </footer>
-
   <script src="script.js"></script>
 </body>
 </html>
