@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HandyBox - Case Converter</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Sidebar -->
+  <aside class="sidebar">
+    <h2>HandyBox</h2>
+    <ul>
+      <li><a href="index.html">🏠 Home</a></li>
+      <li><a href="word.html">📝 Word Counter</a></li>
+      <li><a href="password.html">🔑 Password Generator</a></li>
+      <li><a href="qr.html">📷 QR Generator</a></li>
+      <li><a href="case.html" class="active">🔤 Case Converter</a></li>
+    </ul>
+  </aside>
+
+  <!-- Main -->
+  <div class="main">
+    <div class="header">🔤 Case Converter</div>
+    <div class="content">
+      <textarea id="caseText" placeholder="Type your text here..." rows="6"></textarea>
+      <button onclick="convertCase('upper')">UPPERCASE</button>
+      <button onclick="convertCase('lower')">lowercase</button>
+      <button onclick="convertCase('title')">Title Case</button>
+      <div id="caseResult" style="margin-top:20px;"></div>
+    </div>
+  </div>
+
+  <script>
+    function convertCase(type) {
+      let text = document.getElementById("caseText").value;
+      if (!text) return alert("Please enter some text!");
+      if (type === "upper") text = text.toUpperCase();
+      if (type === "lower") text = text.toLowerCase();
+      if (type === "title") text = text.replace(/\w\S*/g, w => w[0].toUpperCase() + w.substring(1).toLowerCase());
+      document.getElementById("caseResult").innerHTML = `<p><b>Result:</b> ${text}</p>`;
+    }
+  </script>
+</body>
+</html>
