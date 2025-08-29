@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ToolHub - Random Username Generator</title>
+  <meta name="description" content="Generate random usernames easily with ToolHub Username Generator. Choose length and style.">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Hero Section -->
+  <header class="hero">
+    <h1>Random Username Generator</h1>
+    <p>Generate unique usernames quickly. Choose length and style.</p>
+  </header>
+
+  <!-- Tool Card -->
+  <section class="tools">
+    <div class="tool-cards" style="justify-content:center;">
+      <div class="card">
+        <h3>Create Your Username</h3>
+        <input type="number" id="usernameLength" placeholder="Enter length (4-20)" min="4" max="20">
+        <select id="usernameType">
+          <option value="alphanumeric">Alphanumeric</option>
+          <option value="fun">Fun</option>
+          <option value="cool">Cool</option>
+        </select>
+        <input type="number" id="usernameCount" placeholder="How many usernames?" min="1" max="10">
+        <button onclick="generateUsername()" class="card-btn">Generate</button>
+        <div id="usernameResult" style="margin-top:15px; color:#00e5ff; font-weight:bold; word-break: break-word;"></div>
+        <button onclick="copyUsernames()" class="card-btn" style="margin-top:10px;">Copy All</button>
+      </div>
+    </div>
+  </section>
+
+  <footer style="text-align:center; margin-top:50px; color:#ccc; font-size:0.9em;">
+    <a href="https://shreyagarwal72.github.io" target="_blank" style="color:#00e5ff; text-decoration:none; font-weight:bold;">
+      Powered by Nextup Studio
+    </a>
+  </footer>
+
+  <script src="script.js"></script>
+  <script>
+    function generateUsername() {
+      const length = parseInt(document.getElementById('usernameLength').value);
+      const type = document.getElementById('usernameType').value;
+      const count = parseInt(document.getElementById('usernameCount').value);
+
+      if(isNaN(length) || length<4 || length>20){
+        showAlert('Please enter a valid username length (4-20)');
+        return;
+      }
+      if(isNaN(count) || count<1 || count>10){
+        showAlert('Please enter a valid number of usernames (1-10)');
+        return;
+      }
+
+      const funWords = ['Ninja','Dragon','Tiger','Ghost','Shadow','Wizard','Pixel','Rocket','Ace','Storm'];
+      const coolChars = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+      let result = [];
+
+      for(let i=0;i<count;i++){
+        let username = '';
+        if(type==='alphanumeric'){
+          for(let j=0;j<length;j++){
+            username += coolChars[Math.floor(Math.random()*coolChars.length)];
+          }
+        } else {
+          username = funWords[Math.floor(Math.random()*funWords.length)];
+          while(username.length < length){
+            username += coolChars[Math.floor(Math.random()*coolChars.length)];
+          }
+          username = username.substring(0,length);
+        }
+        result.push(username);
+      }
+
+      document.getElementById('usernameResult').innerText = result.join('\n');
+    }
+
+    function copyUsernames(){
+      const val = document.getElementById('usernameResult').innerText;
+      if(!val) return showAlert('Nothing to copy!');
+      navigator.clipboard.writeText(val).then(()=>showAlert('Copied all usernames!'));
+    }
+  </script>
+
+</body>
+</html>
