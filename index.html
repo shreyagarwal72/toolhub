@@ -6,21 +6,29 @@
   <title>Mrpack To Zip Converter | Online Tool</title>
   <meta name="description" content="Convert .mrpack files to .zip instantly with our free online Mrpack to Zip converter. Fast, secure, and works directly in your browser.">
   <meta name="keywords" content="mrpack to zip, mrpack converter, minecraft modpack converter, online mrpack tool">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
 </head>
 <body>
   <header class="header">
     <h1>Mrpack To Zip Converter</h1>
-    <p class="subtitle">Convert Minecraft .mrpack modpacks into .zip easily</p>
+    <p class="subtitle">Convert your Modrinth modpacks (.mrpack) to ZIP files easily. The best online tool for converting Modrinth packs to ZIP format. Fast, secure, and free!</p>
   </header>
 
   <main class="container">
-    <section class="upload-box">
-      <h2>Upload Your .mrpack File</h2>
-      <p>Drag & drop or select a <strong>.mrpack</strong> file to start converting.</p>
-      <input type="file" id="fileInput" accept=".mrpack" />
-      <button id="convertBtn">Convert to .zip</button>
+    <section class="upload-box" id="uploadBox">
+      <div class="upload-icon">
+        <svg width="48" height="48" fill="none" stroke="#96a0b8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 48 48">
+          <path d="M16 26l8-8 8 8M24 18v18"/>
+          <path d="M12 36h24a7 7 0 0 0 0-14h-1.26A11 11 0 1 0 12 36Z"/>
+        </svg>
+      </div>
+      <p id="uploadLabel">Drag &amp; drop your .mrpack file here, or click to select</p>
+      <input type="file" id="fileInput" accept=".mrpack" hidden />
+      <button id="convertBtn" disabled>Convert to .zip</button>
       <a id="downloadLink" style="display:none;">Download Converted File</a>
+      <div id="status"></div>
     </section>
 
     <section class="info">
@@ -36,10 +44,41 @@
     <section class="steps">
       <h2>How It Works</h2>
       <ol>
-        <li>Select or drag & drop your <strong>.mrpack</strong> file.</li>
+        <li>Select or drag &amp; drop your <strong>.mrpack</strong> file.</li>
         <li>The converter extracts the content and prepares a <strong>.zip</strong>.</li>
         <li>Download your ready-to-use <strong>.zip modpack</strong>.</li>
       </ol>
+    </section>
+
+    <section class="faq">
+      <h2>FAQs</h2>
+      <div class="faq-item">
+        <button class="faq-question">
+          Is this converter safe?
+          <span class="faq-arrow">▶</span>
+        </button>
+        <div class="faq-answer">
+          Yes! All processing is done locally in your browser. Your files are never uploaded anywhere.
+        </div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question">
+          Does it work on mobile?
+          <span class="faq-arrow">▶</span>
+        </button>
+        <div class="faq-answer">
+          Yes, you can tap to select and convert files even on mobile devices.
+        </div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question">
+          Is the converted .zip compatible with CurseForge?
+          <span class="faq-arrow">▶</span>
+        </button>
+        <div class="faq-answer">
+          Yes, the ZIP is structured to be compatible with CurseForge and other major Minecraft launchers.
+        </div>
+      </div>
     </section>
   </main>
 
@@ -47,6 +86,16 @@
     <p>© 2025 Mrpack To Zip Converter | Built with ❤️ for Minecraft players</p>
   </footer>
 
+  <!-- Your JS -->
   <script src="script.js"></script>
+  <script>
+    // FAQ Accordion logic
+    document.querySelectorAll('.faq-question').forEach(btn => {
+      btn.addEventListener('click', function () {
+        const faqItem = btn.parentElement;
+        faqItem.classList.toggle('active');
+      });
+    });
+  </script>
 </body>
 </html>
