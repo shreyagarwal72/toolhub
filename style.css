@@ -1,89 +1,104 @@
-* {
+body {
+  background: #17181c;
+  color: #eaeaea;
+  font-family: 'Segoe UI', 'Arial', sans-serif;
+  min-height: 100vh;
   margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: "Segoe UI", sans-serif;
 }
 
-body {
-  background: #f4f7fa;
-  color: #222;
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
+.header {
+  background: #1e1f26;
+  padding: 2rem 0 1rem 0;
+  text-align: center;
+  border-bottom: 1px solid #23232b;
+}
+.header h1 {
+  color: #f5f5f7;
+  margin: 0;
+}
+.subtitle {
+  color: #aab1c7;
+  margin-top: 0.5rem;
 }
 
 .container {
-  text-align: center;
-  margin: auto;
-  padding: 20px;
-}
-
-h1 {
-  font-size: 2rem;
-  margin-bottom: 10px;
-  color: #1a73e8;
-}
-
-p {
-  margin-bottom: 20px;
-  color: #555;
-}
-
-.drop-area {
-  border: 2px dashed #1a73e8;
-  padding: 40px;
+  max-width: 540px;
+  background: #23232b;
+  margin: 2rem auto 0 auto;
   border-radius: 12px;
-  background: #fff;
-  cursor: pointer;
-  transition: background 0.2s ease-in-out;
+  box-shadow: 0 6px 24px #121217;
+  padding: 2rem;
 }
 
-.drop-area:hover {
-  background: #eaf2ff;
-}
-
-button {
-  margin-top: 15px;
-  padding: 10px 20px;
-  border: none;
-  background: #1a73e8;
-  color: #fff;
-  border-radius: 8px;
-  cursor: pointer;
-  font-size: 1rem;
-  transition: background 0.2s ease-in-out;
-}
-
-button:hover {
-  background: #1558b0;
-}
-
-.result {
-  margin-top: 20px;
-  font-size: 1rem;
-  color: green;
-}
-
-footer {
+.upload-box {
+  background: #191922;
+  padding: 1.5rem;
+  border-radius: 9px;
   text-align: center;
-  padding: 15px;
-  background: #fff;
-  border-top: 1px solid #ddd;
-  margin-top: auto;
+  margin-bottom: 1.5rem;
+  border: 1px solid #23232b;
+}
+.upload-box input[type="file"] {
+  background: #181921;
+  color: #eaeaea;
+  border-radius: 5px;
+  margin-bottom: 1rem;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 10px;
+  font-size: 1rem;
 }
 
-footer p {
-  color: #555;
-  font-weight: 500;
+#convertBtn {
+  background: #2988f4;
+  color: #fff;
+  padding: 0.7rem 1.2rem;
+  border: none;
+  border-radius: 5px;
+  font-size: 1rem;
+  cursor: pointer;
+  margin-top: 1rem;
+  transition: background 0.2s;
 }
+#convertBtn:hover { background: #206acc; }
 
-footer a {
-  color: #1a73e8;
+#downloadLink {
+  background: #4242fa;
+  color: #fff;
+  display: inline-block;
+  margin-top: 1.3rem;
+  padding: 0.65rem 1.1rem;
+  border-radius: 6px;
   text-decoration: none;
-  font-weight: bold;
 }
 
-footer a:hover {
-  color: #1558b0;
+.info, .steps {
+  margin-top: 2rem;
 }
+.info ul {
+  color: #b5b5d4;
+  padding-left: 1.2rem;
+}
+.info li {
+  list-style: none;
+  padding: 0.32em 0;
+}
+.steps ol {
+  color: #cfcfff;
+  padding-left: 1.2rem;
+}
+.footer {
+  margin-top: 3rem;
+  background: #121217;
+  color: #7a7a8c;
+  text-align: center;
+  padding: 1.2rem 0 0.5rem 0;
+  font-size: 0.98em;
+  border-top: 1px solid #23232b;
+}
+.footer a {
+  color: #55c3ff;
+  text-decoration: underline;
+}
+strong { color: #FFA831; }
