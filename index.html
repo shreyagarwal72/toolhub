@@ -3,20 +3,21 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Mrpack → Zip Converter | Free Online Modrinth to ZIP Tool</title>
+  <title>Mrpack → Zip Converter | Free Modrinth to ZIP Tool</title>
   <meta name="description" content="Convert Modrinth .mrpack files to .zip format instantly and securely with our free, online tool. Fast client-side processing—no data leaves your device. Compatible with all Minecraft launchers.">
   <meta name="keywords" content="mrpack to zip, mrpack converter, minecraft modpack converter, modrinth to zip, online mrpack tool, zip my mrpack, modpack converter">
   <meta name="robots" content="index, follow">
   <meta name="author" content="Mrpack to Zip Converter">
 
-  <!-- Open Graph for social SEO -->
+  <!-- Favicon (Use your generated favicon, place in site root as favicon.png/.ico) -->
+  <link rel="icon" type="image/png" href="favicon-m2z.png" sizes="32x32">
+
+  <!-- Open Graph SEO (update og:image URL if deploying separately) -->
   <meta property="og:title" content="Mrpack → Zip Converter | Free Online Modrinth to ZIP Tool" />
   <meta property="og:description" content="Convert Modrinth .mrpack files to .zip format instantly with our free, secure, browser-based tool. No files uploaded!" />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://tozip.playdown.in/" />
-  <meta property="og:image" content="https://tozip.playdown.in/og-image.png" />
-  <!-- Favicon example, add your icon -->
-  <link rel="icon" href="favicon.ico">
+  <meta property="og:image" content="https://tozip.playdown.in/favicon-m2z.png" />
 
   <!-- Google Fonts + Main Style -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
@@ -68,63 +69,12 @@
         <li>Click <strong>Download Converted File</strong> to save your modpack in ZIP format.</li>
       </ol>
     </section>
-
-    <section class="faq" aria-labelledby="faq-heading">
-      <h2 id="faq-heading">FAQs</h2>
-      <div class="faq-list">
-        <div class="faq-item">
-          <button class="faq-question" aria-expanded="false">
-            Is this converter safe?
-            <span class="arrow" aria-hidden="true">&#9654;</span>
-          </button>
-          <div class="faq-answer">Yes! All processing is done locally in your browser. No files are stored or uploaded.</div>
-        </div>
-        <div class="faq-item">
-          <button class="faq-question" aria-expanded="false">
-            Does it work on mobile and desktop?
-            <span class="arrow" aria-hidden="true">&#9654;</span>
-          </button>
-          <div class="faq-answer">Absolutely! Use tap to select on mobile, or drag &amp; drop / click on desktop.</div>
-        </div>
-        <div class="faq-item">
-          <button class="faq-question" aria-expanded="false">
-            Is the converted ZIP compatible with CurseForge?
-            <span class="arrow" aria-hidden="true">&#9654;</span>
-          </button>
-          <div class="faq-answer">Yes! The ZIP is fully compatible with CurseForge and all major Minecraft launchers.</div>
-        </div>
-        <div class="faq-item">
-          <button class="faq-question" aria-expanded="false">
-            Do you store or see my files?
-            <span class="arrow" aria-hidden="true">&#9654;</span>
-          </button>
-          <div class="faq-answer">Never. Everything is handled completely inside your browser.</div>
-        </div>
-      </div>
-    </section>
   </main>
 
   <footer class="footer">
-    <p>© 2025 Mrpack → Zip Converter | Built with ❤️ for Minecraft players | <a href="https://tozip.playdown.in/" rel="noopener">Home</a></p>
+    <p>© 2025 Mrpack → Zip Converter | Built with ❤️ for Minecraft players</p>
   </footer>
 
-  <!-- Main drag/drop, convert, and FAQ logic -->
   <script src="script.js"></script>
-  <script>
-    // Accordion: only one active at a time
-    document.querySelectorAll('.faq-question').forEach((btn, idx, arr) => {
-      btn.addEventListener('click', function () {
-        document.querySelectorAll('.faq-item').forEach((item, i) => {
-          if(i !== idx) {
-            item.classList.remove('active');
-            item.querySelector('.faq-question').setAttribute('aria-expanded', 'false');
-          }
-        });
-        const faqItem = btn.parentElement;
-        const expanded = faqItem.classList.toggle('active');
-        btn.setAttribute('aria-expanded', expanded ? 'true' : 'false');
-      });
-    });
-  </script>
 </body>
 </html>
