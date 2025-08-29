@@ -18,7 +18,7 @@
   <section class="tools">
     <div class="tool-cards" style="justify-content: center;">
       <div class="card" style="max-width: 600px;">
-        <textarea id="caseText" placeholder="Type your text here..." rows="6" style="width:100%; padding:12px; border-radius:8px; border:none; margin-bottom:15px;"></textarea>
+        <textarea id="caseText" placeholder="Type your text here..." rows="6"></textarea>
         <div style="display:flex; gap:10px; flex-wrap:wrap; margin-bottom:15px;">
           <button onclick="convertCase('upper')" class="card-btn">UPPERCASE</button>
           <button onclick="convertCase('lower')" class="card-btn">lowercase</button>
@@ -29,19 +29,14 @@
     </div>
   </section>
 
-  <script>
-    function convertCase(type) {
-      const text = document.getElementById('caseText').value.trim();
-      if(!text) {
-        alert('Please enter some text to convert!');
-        return;
-      }
-      let result = '';
-      if(type === 'upper') result = text.toUpperCase();
-      if(type === 'lower') result = text.toLowerCase();
-      if(type === 'title') result = text.replace(/\w\S*/g, w => w[0].toUpperCase() + w.substring(1).toLowerCase());
-      document.getElementById('caseResult').innerText = result;
-    }
-  </script>
+  <!-- Footer -->
+  <footer style="text-align:center; margin-top:50px; color:#ccc; font-size:0.9em;">
+    <a href="https://shreyagarwal72.github.io" target="_blank" style="color:#00e5ff; text-decoration:none; font-weight:bold;">
+      Powered by Nextup Studio
+    </a>
+  </footer>
+
+  <!-- External Script -->
+  <script src="script.js"></script>
 </body>
 </html>
