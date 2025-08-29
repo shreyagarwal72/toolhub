@@ -21,10 +21,10 @@ body {
 .hero {
   background: #1f1f1f;
   padding: 50px 30px;
-  border-radius: 12px;
+  border-radius: 15px;
   text-align: center;
   margin-bottom: 50px;
-  box-shadow: 0 8px 25px rgba(0,0,0,0.6);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.6);
 }
 
 .hero h1 {
@@ -39,6 +39,7 @@ body {
   color: #ccc;
 }
 
+/* Call-to-action buttons */
 .cta-btn {
   display: inline-block;
   padding: 14px 28px;
@@ -55,7 +56,7 @@ body {
 }
 
 /* =====================
-   TOOLS SECTION
+   TOOLS SECTION & CARDS
 ===================== */
 .tools h2 {
   font-size: 2em;
@@ -68,22 +69,25 @@ body {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   gap: 25px;
+  justify-items: center;
 }
 
 .card {
   background: #1f1f1f;
   padding: 30px 20px;
   border-radius: 15px;
-  box-shadow: 0 8px 25px rgba(0,0,0,0.6);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.6);
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   transition: transform 0.3s, box-shadow 0.3s;
+  width: 100%;
+  max-width: 400px;
 }
 
 .card:hover {
   transform: translateY(-5px);
-  box-shadow: 0 12px 30px rgba(0,0,0,0.7);
+  box-shadow: 0 15px 35px rgba(0,0,0,0.7);
 }
 
 .card h3 {
@@ -99,6 +103,7 @@ body {
   margin-bottom: 20px;
 }
 
+/* Buttons inside cards */
 .card-btn {
   display: inline-block;
   padding: 12px 25px;
@@ -107,11 +112,32 @@ body {
   border-radius: 10px;
   font-weight: bold;
   text-decoration: none;
+  text-align: center;
   transition: 0.3s;
 }
 
 .card-btn:hover {
   background: #00bcd4;
+}
+
+/* Inputs & Textareas */
+input[type="text"],
+textarea {
+  background: #2a2a2a;
+  color: #fff;
+  padding: 12px;
+  border-radius: 8px;
+  border: none;
+  width: 100%;
+  resize: none;
+  font-size: 1em;
+  margin-bottom: 15px;
+}
+
+input[type="text"]:focus,
+textarea:focus {
+  outline: none;
+  box-shadow: 0 0 10px #00e5ff;
 }
 
 /* =====================
