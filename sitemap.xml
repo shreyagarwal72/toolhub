@@ -1,73 +1,43 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
-  <!-- Main Index -->
+  <!-- Homepage -->
   <url>
-    <loc>https://shreyagarwal72.github.io/toolhub/</loc>
-    <changefreq>weekly</changefreq>
+    <loc>https://shreyagarwal72.github.io/</loc>
     <priority>1.0</priority>
   </url>
 
-  <!-- Password Generator -->
+  <!-- Tools Pages -->
   <url>
-    <loc>https://shreyagarwal72.github.io/toolhub/password.html</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.9</priority>
-  </url>
-
-  <!-- Lorem Ipsum Generator -->
-  <url>
-    <loc>https://shreyagarwal72.github.io/toolhub/lorem.html</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.9</priority>
-  </url>
-
-  <!-- Color Picker & Converter -->
-  <url>
-    <loc>https://shreyagarwal72.github.io/toolhub/color.html</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.9</priority>
-  </url>
-
-  <!-- Random Username Generator -->
-  <url>
-    <loc>https://shreyagarwal72.github.io/toolhub/username.html</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.9</priority>
-  </url>
-
-  <!-- QR Generator -->
-  <url>
-    <loc>https://shreyagarwal72.github.io/toolhub/qr.html</loc>
-    <changefreq>monthly</changefreq>
+    <loc>https://shreyagarwal72.github.io/color.html</loc>
     <priority>0.8</priority>
   </url>
-
-  <!-- Case Converter -->
   <url>
-    <loc>https://shreyagarwal72.github.io/toolhub/case.html</loc>
-    <changefreq>monthly</changefreq>
+    <loc>https://shreyagarwal72.github.io/password.html</loc>
     <priority>0.8</priority>
   </url>
-
-  <!-- Text Reverser -->
   <url>
-    <loc>https://shreyagarwal72.github.io/toolhub/reverse.html</loc>
-    <changefreq>monthly</changefreq>
+    <loc>https://shreyagarwal72.github.io/base64.html</loc>
     <priority>0.8</priority>
   </url>
-
-  <!-- Age & Unit Calculator -->
   <url>
-    <loc>https://shreyagarwal72.github.io/toolhub/age-unit.html</loc>
-    <changefreq>monthly</changefreq>
+    <loc>https://shreyagarwal72.github.io/calc.html</loc>
     <priority>0.8</priority>
   </url>
-
-  <!-- Word Counter -->
   <url>
-    <loc>https://shreyagarwal72.github.io/toolhub/word.html</loc>
-    <changefreq>monthly</changefreq>
+    <loc>https://shreyagarwal72.github.io/text.html</loc>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://shreyagarwal72.github.io/emoji.html</loc>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://shreyagarwal72.github.io/url.html</loc>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://shreyagarwal72.github.io/number-words.html</loc>
     <priority>0.8</priority>
   </url>
 
