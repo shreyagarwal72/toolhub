@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>URL Encoder & Decoder - Nextup Tools</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="hero">
+    <h1>URL Encoder & Decoder</h1>
+    <p>Encode or Decode your URLs instantly.</p>
+  </header>
+
+  <section class="tool-container">
+    <textarea id="inputText" placeholder="Enter text or URL here..."></textarea>
+
+    <div class="btn-group">
+      <button onclick="encodeURL()">Encode</button>
+      <button onclick="decodeURL()">Decode</button>
+      <button onclick="clearText()">Clear</button>
+    </div>
+
+    <textarea id="outputText" placeholder="Result will appear here..." readonly></textarea>
+  </section>
+
+  <footer style="text-align:center; margin-top:30px; color:#ccc;">
+    Powered by <a href="https://shreyagarwal72.github.io" target="_blank" style="color:#00e5ff; text-decoration:none;">Nextup Studio</a>
+  </footer>
+
+  <script>
+    function encodeURL() {
+      const input = document.getElementById("inputText").value;
+      document.getElementById("outputText").value = encodeURIComponent(input);
+    }
+
+    function decodeURL() {
+      const input = document.getElementById("inputText").value;
+      try {
+        document.getElementById("outputText").value = decodeURIComponent(input);
+      } catch (e) {
+        alert("Invalid encoded URL!");
+      }
+    }
+
+    function clearText() {
+      document.getElementById("inputText").value = "";
+      document.getElementById("outputText").value = "";
+    }
+  </script>
+</body>
+</html>
