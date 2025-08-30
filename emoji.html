@@ -1,258 +1,155 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Nextup Tools | Emoji Picker & Copy</title>
-  <meta name="description" content="Pick, search, and copy emojis instantly with Nextup Tools. Filter by category, search by name, and click to copy to clipboard.">
-  <meta name="keywords" content="emoji picker, copy emoji, search emoji, emoji tool, Nextup Tools">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Emoji Picker & Copy Tool - Nextup Tools</title>
+  <meta name="description" content="Find and copy emojis instantly with Nextup Tools Emoji Picker. Search emojis by name and explore hundreds of unique and rare emojis, alphabetically arranged.">
+  <meta name="keywords" content="emoji picker, copy emoji, emoji search, emoji list, unique emojis, rare emojis, Nextup Tools, emoji tool">
   <meta name="author" content="Nextup Studio">
-  <link rel="icon" type="image/png" href="favicon.png">
-  <link rel="stylesheet" href="style.css" />
-
-  <!-- Page-specific minimal styles for emoji grid -->
+  <link rel="stylesheet" href="style.css">
   <style>
-    .controls {
-      display: flex;
-      gap: 12px;
-      justify-content: center;
-      flex-wrap: wrap;
-      margin-bottom: 20px;
-    }
-    .emoji-grid {
+    .emoji-container {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(72px, 1fr));
-      gap: 14px;
-      max-width: 920px;
-      margin: 0 auto;
-      padding: 0 16px;
+      grid-template-columns: repeat(auto-fill, minmax(70px, 1fr));
+      gap: 15px;
+      margin-top: 20px;
     }
     .emoji-card {
-      background: #1f1f1f;
-      border-radius: 16px;
-      padding: 10px 8px;
+      background: #1e1e1e;
+      border: 1px solid #333;
+      padding: 10px;
       text-align: center;
-      transition: transform .2s ease, box-shadow .25s ease;
-      box-shadow: 0 6px 16px rgba(0,0,0,.35);
+      border-radius: 10px;
       cursor: pointer;
-      user-select: none;
+      transition: transform 0.2s;
     }
     .emoji-card:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 12px 24px rgba(0,188,212,.45);
+      transform: scale(1.1);
+      background: #2a2a2a;
     }
-    .emoji-char {
-      font-size: 28px;
-      line-height: 1;
+    .emoji {
+      font-size: 1.8rem;
       display: block;
-      margin-bottom: 6px;
     }
-    .emoji-name {
-      font-size: .8rem;
-      color: #cfd8dc;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-    }
-    .empty-state {
-      text-align: center;
-      color: #90a4ae;
-      margin-top: 20px;
+    #search {
+      width: 100%;
+      padding: 12px;
+      margin: 15px 0;
+      border-radius: 8px;
+      border: 1px solid #333;
+      font-size: 1rem;
     }
   </style>
 </head>
 <body>
 
-  <!-- Hero -->
   <header class="hero">
-    <h1>Emoji Picker & Copy</h1>
-    <p>Search, filter, and click any emoji to copy it instantly.</p>
+    <h1>Emoji Picker & Copy Tool</h1>
+    <p>Search, pick, and copy emojis instantly. Explore hundreds of rare and common emojis, alphabetically arranged.</p>
   </header>
 
-  <!-- Tool Card -->
-  <section class="tools">
-    <div class="tool-cards" style="justify-content:center;">
-      <div class="card" style="width:100%; max-width:1000px;">
-        <h3>Find Your Emoji</h3>
+  <main class="main-content">
+    <input type="text" id="search" placeholder="Search emoji by name...">
 
-        <div class="controls">
-          <input type="text" id="emojiSearch" placeholder="Search by name (e.g., smile, heart, star)" />
-          <select id="emojiCategory">
-            <option value="all">All Categories</option>
-            <option value="smileys">Smileys & Emotion</option>
-            <option value="people">People & Body</option>
-            <option value="animals">Animals & Nature</option>
-            <option value="food">Food & Drink</option>
-            <option value="activities">Activities</option>
-            <option value="travel">Travel & Places</option>
-            <option value="objects">Objects</option>
-            <option value="symbols">Symbols</option>
-          </select>
-          <button id="copyAllBtn" title="Copy all visible emojis">Copy Visible</button>
-          <button id="clearBtn" title="Clear search">Clear</button>
-        </div>
-
-        <div id="emojiGrid" class="emoji-grid"></div>
-        <div id="emptyState" class="empty-state" style="display:none;">No emojis match your search.</div>
-      </div>
+    <div class="emoji-container" id="emojiContainer">
+      <!-- Emojis inserted here -->
     </div>
-  </section>
+  </main>
 
-  <!-- Footer -->
-  <footer>
-    <a href="https://shreyagarwal72.github.io" target="_blank">Powered by Nextup Studio</a>
-  </footer>
-
-  <script src="script.js"></script>
   <script>
-    // Minimal curated emoji dataset with names, keywords, and categories
-    const EMOJIS = [
-      // Smileys
-      {e:"😀", n:"grinning face", k:["smile","happy","grin"], c:"smileys"},
-      {e:"😁", n:"beaming face", k:["smile","happy","grin","cheese"], c:"smileys"},
-      {e:"😂", n:"face with tears of joy", k:["lol","funny","tears"], c:"smileys"},
-      {e:"😊", n:"smiling face with smiling eyes", k:["smile","warm","blush"], c:"smileys"},
-      {e:"😍", n:"smiling face with heart-eyes", k:["love","like","heart"], c:"smileys"},
-      {e:"😎", n:"smiling face with sunglasses", k:["cool","sun","swag"], c:"smileys"},
-      {e:"🥲", n:"smiling face with tear", k:["bittersweet","relief"], c:"smileys"},
-      {e:"🥳", n:"partying face", k:["party","celebrate","birthday"], c:"smileys"},
-      {e:"😴", n:"sleeping face", k:["sleep","zzz","tired"], c:"smileys"},
-      {e:"🤔", n:"thinking face", k:["think","hmm","idea"], c:"smileys"},
-      // People
-      {e:"👍", n:"thumbs up", k:["like","approve","ok"], c:"people"},
-      {e:"👏", n:"clapping hands", k:["applause","well done"], c:"people"},
-      {e:"🙏", n:"folded hands", k:["thanks","please","pray"], c:"people"},
-      {e:"💪", n:"flexed biceps", k:["strength","gym","power"], c:"people"},
-      {e:"🤝", n:"handshake", k:["deal","agree","partnership"], c:"people"},
-      // Animals
-      {e:"🐶", n:"dog face", k:["dog","pet","puppy"], c:"animals"},
-      {e:"🐱", n:"cat face", k:["cat","pet","kitty"], c:"animals"},
-      {e:"🦁", n:"lion", k:["lion","king","wild"], c:"animals"},
-      {e:"🐼", n:"panda", k:["panda","bear","cute"], c:"animals"},
-      {e:"🦋", n:"butterfly", k:["butterfly","insect"], c:"animals"},
-      // Food
-      {e:"🍎", n:"red apple", k:["apple","fruit","food"], c:"food"},
-      {e:"🍕", n:"pizza", k:["pizza","slice","food"], c:"food"},
-      {e:"🍔", n:"hamburger", k:["burger","fast food"], c:"food"},
-      {e:"🍩", n:"doughnut", k:["donut","sweet","dessert"], c:"food"},
-      {e:"☕", n:"hot beverage", k:["coffee","tea","drink"], c:"food"},
-      // Activities
-      {e:"⚽", n:"soccer ball", k:["football","sports"], c:"activities"},
-      {e:"🏏", n:"cricket game", k:["cricket","bat","ball"], c:"activities"},
-      {e:"🎮", n:"video game", k:["gaming","controller"], c:"activities"},
-      {e:"🎵", n:"musical note", k:["music","song"], c:"activities"},
-      {e:"🎉", n:"party popper", k:["celebration","party"], c:"activities"},
-      // Travel
-      {e:"✈️", n:"airplane", k:["flight","travel","trip"], c:"travel"},
-      {e:"🚗", n:"car", k:["drive","vehicle","auto"], c:"travel"},
-      {e:"🚆", n:"train", k:["rail","travel"], c:"travel"},
-      {e:"🏝️", n:"desert island", k:["beach","vacation"], c:"travel"},
-      {e:"🗺️", n:"world map", k:["map","travel","explore"], c:"travel"},
-      // Objects
-      {e:"💡", n:"light bulb", k:["idea","lamp","bright"], c:"objects"},
-      {e:"📱", n:"mobile phone", k:["phone","smartphone"], c:"objects"},
-      {e:"⌚", n:"watch", k:["time","clock"], c:"objects"},
-      {e:"🛠️", n:"hammer and wrench", k:["tools","build","fix"], c:"objects"},
-      {e:"📎", n:"paperclip", k:["attach","office"], c:"objects"},
-      // Symbols
-      {e:"❤️", n:"red heart", k:["love","like","heart"], c:"symbols"},
-      {e:"💯", n:"hundred points", k:["100","perfect","score"], c:"symbols"},
-      {e:"✔️", n:"check mark", k:["tick","done","ok"], c:"symbols"},
-      {e:"⭐", n:"star", k:["favorite","rate","star"], c:"symbols"},
-      {e:"🔔", n:"bell", k:["alert","notify"], c:"symbols"},
+    const emojis = [
+      {emoji:"🧑‍🚀", name:"astronaut"},
+      {emoji:"🎨", name:"art palette"},
+      {emoji:"🐻", name:"bear"},
+      {emoji:"🍞", name:"bread"},
+      {emoji:"🌵", name:"cactus"},
+      {emoji:"🎂", name:"cake"},
+      {emoji:"☕", name:"coffee"},
+      {emoji:"🌙", name:"crescent moon"},
+      {emoji:"🦌", name:"deer"},
+      {emoji:"🐉", name:"dragon"},
+      {emoji:"🥚", name:"egg"},
+      {emoji:"🌲", name:"evergreen tree"},
+      {emoji:"🐸", name:"frog"},
+      {emoji:"🍇", name:"grapes"},
+      {emoji:"🎸", name:"guitar"},
+      {emoji:"❤️", name:"heart"},
+      {emoji:"🦔", name:"hedgehog"},
+      {emoji:"🕹️", name:"joystick"},
+      {emoji:"🪁", name:"kite"},
+      {emoji:"🦁", name:"lion"},
+      {emoji:"🌕", name:"moon"},
+      {emoji:"🎶", name:"music"},
+      {emoji:"🥞", name:"pancakes"},
+      {emoji:"🍍", name:"pineapple"},
+      {emoji:"🐧", name:"penguin"},
+      {emoji:"🤖", name:"robot"},
+      {emoji:"🌹", name:"rose"},
+      {emoji:"🚀", name:"rocket"},
+      {emoji:"🦑", name:"squid"},
+      {emoji:"🌻", name:"sunflower"},
+      {emoji:"☀️", name:"sun"},
+      {emoji:"🌮", name:"taco"},
+      {emoji:"🐯", name:"tiger"},
+      {emoji:"🦄", name:"unicorn"},
+      {emoji:"🍉", name:"watermelon"},
+      {emoji:"🪓", name:"wood axe"},
+      {emoji:"🧙‍♂️", name:"wizard"},
+      {emoji:"🪀", name:"yo-yo"},
+      {emoji:"🦓", name:"zebra"},
+      // --- more added ---
+      {emoji:"🥑", name:"avocado"},
+      {emoji:"🍩", name:"donut"},
+      {emoji:"🧊", name:"ice cube"},
+      {emoji:"🦕", name:"dinosaur"},
+      {emoji:"🧃", name:"juice box"},
+      {emoji:"🪐", name:"planet"},
+      {emoji:"🌌", name:"milky way"},
+      {emoji:"🧩", name:"puzzle"},
+      {emoji:"🎃", name:"pumpkin"},
+      {emoji:"🥒", name:"cucumber"},
+      {emoji:"🦜", name:"parrot"},
+      {emoji:"🛸", name:"ufo"},
+      {emoji:"🪄", name:"magic wand"},
+      {emoji:"🦕", name:"brontosaurus"},
+      {emoji:"🧟‍♂️", name:"zombie"},
+      {emoji:"🥋", name:"martial arts uniform"},
+      {emoji:"🦖", name:"t-rex"},
+      {emoji:"🧨", name:"firecracker"},
+      {emoji:"🧵", name:"thread"},
+      {emoji:"🧶", name:"yarn"},
     ];
 
-    const grid = document.getElementById('emojiGrid');
-    const searchInput = document.getElementById('emojiSearch');
-    const categorySelect = document.getElementById('emojiCategory');
-    const emptyState = document.getElementById('emptyState');
-    const copyAllBtn = document.getElementById('copyAllBtn');
-    const clearBtn = document.getElementById('clearBtn');
+    // Sort alphabetically by name
+    emojis.sort((a, b) => a.name.localeCompare(b.name));
 
-    // Render emojis
-    function renderEmojis(list) {
-      grid.innerHTML = '';
-      if (!list.length) {
-        emptyState.style.display = 'block';
-        return;
-      }
-      emptyState.style.display = 'none';
-      list.forEach(item => {
-        const card = document.createElement('div');
-        card.className = 'emoji-card';
-        card.title = 'Click to copy';
+    const container = document.getElementById("emojiContainer");
+    const searchInput = document.getElementById("search");
 
-        const ch = document.createElement('span');
-        ch.className = 'emoji-char';
-        ch.textContent = item.e;
-
-        const nm = document.createElement('div');
-        nm.className = 'emoji-name';
-        nm.textContent = item.n;
-
-        card.appendChild(ch);
-        card.appendChild(nm);
-        card.addEventListener('click', () => copyEmoji(item.e));
-        grid.appendChild(card);
+    function displayEmojis(list) {
+      container.innerHTML = "";
+      list.forEach(e => {
+        const card = document.createElement("div");
+        card.className = "emoji-card";
+        card.innerHTML = `<span class="emoji">${e.emoji}</span><span>${e.name}</span>`;
+        card.onclick = () => {
+          navigator.clipboard.writeText(e.emoji);
+          alert(`Copied: ${e.emoji}`);
+        };
+        container.appendChild(card);
       });
     }
 
-    // Copy one emoji
-    function copyEmoji(emoji) {
-      navigator.clipboard.writeText(emoji).then(() => {
-        if (typeof showAlert === 'function') {
-          showAlert(`Copied: ${emoji}`);
-        } else {
-          alert(`Copied: ${emoji}`);
-        }
-      });
-    }
+    // Initial display
+    displayEmojis(emojis);
 
-    // Copy all visible emojis (concatenated with space)
-    function copyAllVisible() {
-      const visible = getFilteredList().map(i => i.e).join(' ');
-      if (!visible) {
-        return typeof showAlert === 'function'
-          ? showAlert('Nothing to copy!')
-          : alert('Nothing to copy!');
-      }
-      navigator.clipboard.writeText(visible).then(() => {
-        if (typeof showAlert === 'function') {
-          showAlert('Copied all visible emojis!');
-        } else {
-          alert('Copied all visible emojis!');
-        }
-      });
-    }
-
-    // Filter logic
-    function getFilteredList() {
-      const q = (searchInput.value || '').toLowerCase().trim();
-      const cat = categorySelect.value;
-      return EMOJIS.filter(item => {
-        const inCat = cat === 'all' ? true : item.c === cat;
-        if (!q) return inCat;
-        const hay = (item.n + ' ' + item.k.join(' ')).toLowerCase();
-        return inCat && hay.includes(q);
-      });
-    }
-
-    function applyFilters() {
-      renderEmojis(getFilteredList());
-    }
-
-    // Events
-    searchInput.addEventListener('input', applyFilters);
-    categorySelect.addEventListener('change', applyFilters);
-    copyAllBtn.addEventListener('click', copyAllVisible);
-    clearBtn.addEventListener('click', () => {
-      searchInput.value = '';
-      categorySelect.value = 'all';
-      applyFilters();
+    // Search filter
+    searchInput.addEventListener("input", e => {
+      const val = e.target.value.toLowerCase();
+      const filtered = emojis.filter(em => em.name.toLowerCase().includes(val));
+      displayEmojis(filtered);
     });
-
-    // Initial render
-    renderEmojis(EMOJIS);
   </script>
 </body>
 </html>
