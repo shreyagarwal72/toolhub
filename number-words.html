@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Number to Words Generator - Nextup Tools</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="hero">
+    <h1>Number to Words Generator</h1>
+    <p>Convert any number into English words instantly.</p>
+  </header>
+
+  <section class="tool-container">
+    <input type="number" id="numberInput" placeholder="Enter a number" />
+
+    <div class="btn-group">
+      <button onclick="convertToWords()">Convert</button>
+      <button onclick="clearNumber()">Clear</button>
+    </div>
+
+    <textarea id="outputWords" placeholder="Result will appear here..." readonly></textarea>
+  </section>
+
+  <footer style="text-align:center; margin-top:30px; color:#ccc;">
+    Powered by <a href="https://shreyagarwal72.github.io" target="_blank" style="color:#00e5ff; text-decoration:none;">Nextup Studio</a>
+  </footer>
+
+  <script>
+    function convertToWords() {
+      let num = document.getElementById("numberInput").value;
+      if(num === "" || isNaN(num)) {
+        alert("Please enter a valid number!");
+        return;
+      }
+      document.getElementById("outputWords").value = numberToWords(parseInt(num));
+    }
+
+    function clearNumber() {
+      document.getElementById("numberInput").value = "";
+      document.getElementById("outputWords").value = "";
+    }
+
+    function numberToWords(num) {
+      if (num === 0) return "Zero";
+
+      let below20 = ["","One","Two","Three","Four","Five","Six","Seven","Eight","Nine","Ten",
+                     "Eleven","Twelve","Thirteen","Fourteen","Fifteen","Sixteen",
+                     "Seventeen","Eighteen","Nineteen"];
+      let tens = ["","Ten","Twenty","Thirty","Forty","Fifty","Sixty","Seventy","Eighty","Ninety"];
+      let thousands = ["","Thousand","Million","Billion","Trillion"];
+
+      function helper(n) {
+        if (n === 0) return "";
+        else if (n < 20) return below20[n] + " ";
+        else if (n < 100) return tens[Math.floor(n/10)] + " " + helper(n%10);
+        else return below20[Math.floor(n/100)] + " Hundred " + helper(n%100);
+      }
+
+      let word = "";
+      let i = 0;
+      while (num > 0) {
+        if (num % 1000 !== 0) {
+          word = helper(num % 1000) + thousands[i] + " " + word;
+        }
+        num = Math.floor(num / 1000);
+        i++;
+      }
+
+      return word.trim();
+    }
+  </script>
+</body>
+</html>
