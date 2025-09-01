@@ -159,52 +159,6 @@ button:hover {
 }
 
 /* ==========================
-   TOOL PAGE STYLES (NEW)
-========================== */
-.tool-container {
-  max-width: 800px;
-  margin: 30px auto;
-  background: #1f1f1f;
-  padding: 30px 20px;
-  border-radius: 16px;
-  box-shadow: 0 6px 20px rgba(0,0,0,0.5);
-  text-align: center;
-}
-
-.tool-container h2 {
-  color: #00e5ff;
-  margin-bottom: 15px;
-}
-
-.tool-container p {
-  color: #ccc;
-  margin-bottom: 20px;
-}
-
-.back-link {
-  display: inline-block;
-  margin-top: 25px;
-  font-weight: bold;
-  color: #00e5ff;
-  text-decoration: none;
-  transition: color 0.3s;
-}
-
-.back-link:hover {
-  color: #00bcd4;
-}
-
-/* For embedding external API pages */
-iframe.api-frame {
-  width: 100%;
-  min-height: 500px;
-  border: none;
-  border-radius: 12px;
-  margin-top: 20px;
-  box-shadow: 0 6px 20px rgba(0,0,0,0.4);
-}
-
-/* ==========================
    EMOJI TOOL
 ========================== */
 #emojiSearch {
@@ -369,9 +323,5 @@ footer a:hover {
 
   #emojiSearch {
     width: 95%;
-  }
-
-  iframe.api-frame {
-    min-height: 400px;
   }
 }
