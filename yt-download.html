@@ -8,13 +8,19 @@
 </head>
 <body>
 
+  <!-- Hero Section -->
   <header class="hero">
     <h1>YouTube Video Downloader</h1>
-    <p>Paste a YouTube video link and download it in MP4 or MP3 format.</p>
+    <p>Paste a YouTube video link below and download it via Nextup Tools.</p>
   </header>
 
-  <section class="tool-container" style="text-align:center; margin-top:20px;">
-    <input type="text" id="ytLink" placeholder="Enter YouTube Video URL" class="input-box" style="width:70%; padding:10px; border-radius:8px; border:1px solid #00bcd4; background:#1e1e1e; color:#fff;">
+  <!-- Tool Section -->
+  <section class="tool-container" style="text-align:center; margin-top:30px;">
+    <input 
+      type="text" 
+      id="ytLink" 
+      class="input-box" 
+      placeholder="Enter YouTube Video URL">
     <br><br>
     <button onclick="downloadVideo()" class="card-btn">Download</button>
   </section>
@@ -26,24 +32,15 @@
         alert("⚠️ Please enter a YouTube video link!");
         return;
       }
-      // List of 3rd-party downloaders
-      const sites = [
-        "https://www.y2mate.com/youtube/",
-        "https://www.yt1s.ltd/en10/",
-        "https://loader.to/en10/youtube-mp3.html?url="
-      ];
-      // Random site choose karega
-      const randomSite = sites[Math.floor(Math.random() * sites.length)];
-      // Redirect
-      if (randomSite.includes("loader.to")) {
-        window.open(randomSite + encodeURIComponent(link), "_blank");
-      } else {
-        window.open(randomSite + encodeURIComponent(link), "_blank");
-      }
+      // Always use yt5s.is
+      const baseUrl = "https://yt5s.is/en9/";
+      // Open yt5s downloader in new tab
+      window.open(baseUrl + "?q=" + encodeURIComponent(link), "_blank");
     }
   </script>
 
-  <footer style="text-align:center; margin-top:50px; color:#ccc; font-size:0.9em;">
+  <!-- Footer -->
+  <footer>
     <a href="index.html" style="color:#00e5ff; text-decoration:none; font-weight:bold;">← Back to Tools</a>
   </footer>
 
