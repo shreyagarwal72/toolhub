@@ -1,15 +1,13 @@
-/* ==========================
-   GLOBAL RESET
-========================== */
+/* Global Reset */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: 'Poppins', sans-serif;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
 
 body {
-  background-color: #121212;
+  background: #121212;
   color: #fff;
   line-height: 1.6;
   min-height: 100vh;
@@ -17,311 +15,126 @@ body {
   flex-direction: column;
 }
 
-/* ==========================
-   HERO SECTION
-========================== */
+/* Hero Section */
 .hero {
   text-align: center;
-  padding: 60px 20px 40px;
-  background: linear-gradient(135deg, #00bcd4, #00838f);
-  border-radius: 16px;
-  margin: 20px auto;
-  box-shadow: 0 8px 25px rgba(0,188,212,0.4);
-  max-width: 1100px;
-  width: 95%;
+  padding: 50px 20px;
+  background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+  color: #fff;
 }
 
 .hero h1 {
-  font-size: 3rem;
-  color: #fff;
-  margin-bottom: 15px;
-  word-wrap: break-word;
+  font-size: 2.5rem;
+  margin-bottom: 10px;
+  color: #00e5ff;
 }
 
 .hero p {
-  font-size: 1.2rem;
-  color: #e0f7fa;
-  max-width: 700px;
-  margin: 0 auto;
+  font-size: 1.1rem;
+  color: #ccc;
 }
 
-/* ==========================
-   TOOLS SECTION
-========================== */
+/* Tools Section */
 .tools {
+  padding: 30px 20px;
   display: flex;
   justify-content: center;
-  padding: 40px 20px;
-  flex: 1;
 }
 
 .tool-cards {
   display: flex;
-  gap: 25px;
   flex-wrap: wrap;
   justify-content: center;
-  max-width: 1300px;
-  width: 100%;
+  gap: 20px;
+  max-width: 1200px;
 }
 
-/* ==========================
-   TOOL CARD
-========================== */
+/* Tool Card */
 .card {
-  background-color: #1f1f1f;
-  padding: 30px 20px;
-  border-radius: 20px;
-  width: 280px;
+  background: #1e1e1e;
+  border-radius: 12px;
+  padding: 20px;
+  width: 260px;
   text-align: center;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  box-shadow: 0 6px 20px rgba(0,0,0,0.4);
-  flex: 1 1 260px;
-  max-width: 300px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 .card:hover {
-  transform: translateY(-10px);
-  box-shadow: 0 15px 30px rgba(0,188,212,0.6);
+  transform: translateY(-5px);
+  box-shadow: 0 6px 15px rgba(0,0,0,0.5);
 }
 
 .card h3 {
-  font-size: 1.5rem;
-  color: #00bcd4;
-  margin-bottom: 12px;
+  color: #00e5ff;
+  margin-bottom: 10px;
+  font-size: 1.2rem;
 }
 
 .card p {
-  font-size: 1rem;
-  color: #ccc;
-  margin-bottom: 18px;
+  color: #bbb;
+  font-size: 0.95rem;
+  margin-bottom: 15px;
 }
 
 .card-btn {
   display: inline-block;
-  padding: 12px 25px;
-  background-color: #00bcd4;
-  color: #121212;
-  font-weight: bold;
-  border-radius: 12px;
-  text-decoration: none;
-  transition: transform 0.2s, background-color 0.3s;
-  cursor: pointer;
+  padding: 10px 18px;
+  background: #00bcd4;
+  color: #fff;
   border: none;
+  border-radius: 8px;
+  text-decoration: none;
+  font-size: 0.95rem;
+  font-weight: bold;
+  transition: background 0.3s ease;
 }
 
 .card-btn:hover {
-  background-color: #00e5ff;
-  transform: scale(1.08);
+  background: #0097a7;
 }
 
-/* ==========================
-   INPUTS & BUTTONS
-========================== */
-input[type="text"],
-input[type="number"],
-input[type="color"],
-select,
-textarea {
-  width: 100%;
-  max-width: 500px;
-  padding: 12px;
-  margin: 10px auto;
-  border-radius: 12px;
-  border: none;
-  outline: none;
-  font-size: 1rem;
-  background-color: #262626;
-  color: #fff;
-  transition: box-shadow 0.3s;
-  display: block;
-}
-
-input:focus, select:focus, textarea:focus {
-  box-shadow: 0 0 8px #00bcd4;
-}
-
-button {
-  cursor: pointer;
-  border: none;
-  border-radius: 12px;
-  background-color: #00bcd4;
-  color: #121212;
-  padding: 12px 25px;
-  font-weight: bold;
-  margin: 15px auto;
-  transition: transform 0.2s, background-color 0.3s;
-  display: block;
-}
-
-button:hover {
-  transform: scale(1.05);
-  background-color: #00e5ff;
-}
-
-/* ==========================
-   EMOJI TOOL
-========================== */
-#emojiSearch {
-  width: 100%;
+/* Input Box (for yt-download.html) */
+.input-box {
+  width: 70%;
   max-width: 500px;
   padding: 12px 15px;
-  margin: 25px auto 20px;
-  display: block;
-  border-radius: 12px;
-  border: 1px solid #333;
+  margin: 10px auto;
+  border: 2px solid #00bcd4;
+  border-radius: 8px;
+  background: #1e1e1e;
+  color: #fff;
   font-size: 1rem;
   outline: none;
-  background-color: #262626;
-  color: #fff;
-  transition: 0.3s all;
+  transition: border 0.3s ease, box-shadow 0.3s ease;
 }
 
-#emojiSearch:focus {
-  border-color: #00bcd4;
-  box-shadow: 0 0 10px #00bcd4;
+.input-box:focus {
+  border-color: #00e5ff;
+  box-shadow: 0 0 8px rgba(0,229,255,0.6);
 }
 
-.emoji-container {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(70px, 1fr));
-  gap: 12px;
-  margin-top: 20px;
-  max-width: 1200px;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-.emoji-card {
-  background-color: #1f1f1f;
-  border-radius: 12px;
-  padding: 10px 0;
-  cursor: pointer;
-  transition: transform 0.2s, background-color 0.3s;
-  text-align: center;
-  border: 1px solid #333;
-}
-
-.emoji-card:hover {
-  transform: scale(1.1);
-  background-color: #00bcd433;
-}
-
-.emoji {
-  font-size: 28px;
-  display: block;
-  margin-bottom: 5px;
-}
-
-.emoji-card span:last-child {
-  font-size: 12px;
-  color: #ccc;
-  word-break: break-word;
-}
-
-/* ==========================
-   FOOTER
-========================== */
+/* Footer */
 footer {
   margin-top: auto;
-  padding: 25px 20px;
-  background: #1a1a1a;
+  padding: 20px;
   text-align: center;
-  color: #ccc;
-  font-size: 0.95rem;
+  color: #aaa;
+  font-size: 0.9rem;
 }
 
-footer a {
-  color: #00bcd4;
-  text-decoration: none;
-  font-weight: bold;
-  transition: color 0.3s;
-}
-
-footer a:hover {
-  color: #00e5ff;
-}
-
-/* ==========================
-   CUSTOM ALERT
-========================== */
-#customAlert {
-  font-family: 'Poppins', sans-serif;
-  position: fixed;
-  top: 20px;
-  right: 20px;
-  background-color: #ff5722;
-  color: #fff;
-  padding: 12px 20px;
-  border-radius: 12px;
-  box-shadow: 0 5px 15px rgba(0,0,0,0.5);
-  z-index: 9999;
-  animation: fadeOut 4s forwards;
-  max-width: 90%;
-  word-wrap: break-word;
-}
-
-@keyframes fadeOut {
-  0% {opacity: 1;}
-  80% {opacity: 1;}
-  100% {opacity: 0;}
-}
-
-/* ==========================
-   RESPONSIVE DESIGN
-========================== */
-@media (max-width: 1024px){
-  .tool-cards {
-    gap: 20px;
-  }
-  .card {
-    width: 45%;
-    max-width: 100%;
-  }
-}
-
-@media (max-width: 768px){
-  .tool-cards {
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .hero {
-    padding: 40px 15px 25px;
-  }
-
+/* Responsive Design */
+@media (max-width: 768px) {
   .hero h1 {
-    font-size: 2.2rem;
+    font-size: 1.8rem;
   }
-
   .hero p {
     font-size: 1rem;
   }
-
   .card {
     width: 90%;
-    max-width: 100%;
-    padding: 25px 15px;
   }
-
-  input, select, textarea, button {
-    width: 95%;
-  }
-
-  #customAlert {
-    right: 10px;
-    left: 10px;
-    text-align: center;
-  }
-
-  .emoji-container {
-    grid-template-columns: repeat(auto-fill, minmax(60px, 1fr));
-  }
-
-  .emoji {
-    font-size: 24px;
-  }
-
-  #emojiSearch {
-    width: 95%;
+  .input-box {
+    width: 90%;
   }
 }
