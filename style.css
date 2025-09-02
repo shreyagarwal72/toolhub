@@ -96,9 +96,9 @@ body {
 }
 
 .tool-cards {
-  display: flex;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr); /* Desktop 4x4 */
   gap: 25px;
-  flex-wrap: wrap;
   justify-content: center;
   max-width: 1300px;
   width: 100%;
@@ -112,12 +112,9 @@ body {
   background-color: #1f1f1f;
   padding: 28px 20px;
   border-radius: 20px;
-  width: 280px;
   text-align: center;
   transition: transform 0.35s ease, box-shadow 0.35s ease, border 0.35s ease;
   box-shadow: 0 6px 20px rgba(0,0,0,0.45);
-  flex: 1 1 260px;
-  max-width: 300px;
   border: 1px solid transparent;
   position: relative;
   overflow: hidden;
@@ -232,67 +229,6 @@ button:hover {
 }
 
 /* ==========================
-   EMOJI TOOL
-========================== */
-#emojiSearch {
-  width: 100%;
-  max-width: 500px;
-  padding: 12px 15px;
-  margin: 25px auto 20px;
-  display: block;
-  border-radius: 12px;
-  border: 1px solid #333;
-  font-size: 1rem;
-  outline: none;
-  background-color: #262626;
-  color: #fff;
-  transition: 0.3s all, transform 0.2s ease;
-}
-
-#emojiSearch:focus {
-  border-color: #00e5ff;
-  box-shadow: 0 0 10px #00e5ff66;
-  transform: scale(1.02);
-}
-
-.emoji-container {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(70px, 1fr));
-  gap: 12px;
-  margin: 20px auto;
-  max-width: 1200px;
-}
-
-.emoji-card {
-  background-color: #1f1f1f;
-  border-radius: 12px;
-  padding: 10px 0;
-  cursor: pointer;
-  transition: transform 0.25s ease, background-color 0.35s ease, border 0.35s ease;
-  text-align: center;
-  border: 1px solid #333;
-}
-
-.emoji-card:hover {
-  transform: scale(1.15) rotate(3deg);
-  background-color: #00e5ff22;
-  border-color: #00e5ff55;
-}
-
-.emoji {
-  font-size: 28px;
-  display: block;
-  margin-bottom: 5px;
-  animation: bounce 1.8s infinite;
-}
-
-.emoji-card span:last-child {
-  font-size: 12px;
-  color: #ccc;
-  word-break: break-word;
-}
-
-/* ==========================
    FOOTER
 ========================== */
 footer {
@@ -357,34 +293,18 @@ footer a:hover {
   to {text-shadow: 0 0 20px #14ffec, 0 0 40px #00e5ff;}
 }
 
-@keyframes bounce {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-6px); }
-}
-
 /* ==========================
    RESPONSIVE DESIGN
 ========================== */
 @media (max-width: 1024px){
-  .tool-cards { gap: 20px; }
-  .card { width: 45%; max-width: 100%; }
+  .tool-cards { gap: 20px; grid-template-columns: repeat(2, 1fr); }
+  .card { width: 100%; }
 }
 
 @media (max-width: 768px){
   .tool-cards {
-    flex-direction: column;
-    align-items: center;
-    overflow-y: auto;
-    max-height: 80vh;
-    padding-right: 10px;
-  }
-
-  .tool-cards::-webkit-scrollbar {
-    width: 8px;
-  }
-  .tool-cards::-webkit-scrollbar-thumb {
-    background: #00e5ff;
-    border-radius: 10px;
+    grid-template-columns: 1fr; /* Mobile 1x16 */
+    gap: 20px;
   }
 
   .hero { padding: 40px 15px 25px; }
@@ -392,12 +312,8 @@ footer a:hover {
   .hero p { font-size: 1rem; }
   .card {
     width: 90%;
-    max-width: 100%;
     padding: 25px 15px;
   }
   input, select, textarea, button { width: 95%; }
   #customAlert { right: 10px; left: 10px; text-align: center; }
-  .emoji-container { grid-template-columns: repeat(auto-fill, minmax(60px, 1fr)); }
-  .emoji { font-size: 24px; }
-  #emojiSearch { width: 95%; }
 }
