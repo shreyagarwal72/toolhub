@@ -5,12 +5,115 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Nextup Tools</title>
   <link rel="stylesheet" href="style.css">
+  <style>
+    /* Scrollbar remove */
+    html, body {
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+      font-family: 'Segoe UI', sans-serif;
+      background: #121212;
+      color: #fff;
+    }
+
+    /* Header */
+    .site-header {
+      background: #1e1e1e;
+      padding: 15px;
+      text-align: center;
+      border-bottom: 2px solid #00bcd4;
+      animation: fadeDown 1s ease-out;
+    }
+    .site-header h1 {
+      margin: 0;
+      font-size: 1.8rem;
+      color: #00bcd4;
+    }
+    .site-header p {
+      margin: 5px 0 0;
+      font-size: 0.9rem;
+      color: #aaa;
+    }
+
+    /* Tools grid */
+    .tools-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+      padding: 20px;
+      animation: fadeUp 1s ease-out;
+    }
+
+    /* Tool cards */
+    .tool-card {
+      background: #1e1e1e;
+      padding: 20px;
+      border-radius: 12px;
+      text-align: center;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .tool-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 8px 20px rgba(0,188,212,0.4);
+    }
+    .tool-card h2 {
+      font-size: 1.2rem;
+      margin-bottom: 10px;
+      color: #00bcd4;
+    }
+    .tool-card p {
+      font-size: 0.9rem;
+      color: #ccc;
+      margin-bottom: 15px;
+    }
+    .btn {
+      display: inline-block;
+      padding: 8px 14px;
+      border-radius: 6px;
+      background: #00bcd4;
+      color: #000;
+      text-decoration: none;
+      font-weight: bold;
+      transition: background 0.3s ease;
+    }
+    .btn:hover {
+      background: #0097a7;
+    }
+
+    /* Alphabet Scrollbar (only on mobile) */
+    .alphabet-scroll {
+      display: flex;
+      overflow-x: auto;
+      white-space: nowrap;
+      padding: 10px;
+      background: #1e1e1e;
+      border-top: 2px solid #00bcd4;
+    }
+    .alphabet-scroll a {
+      flex: 0 0 auto;
+      margin: 0 5px;
+      color: #00bcd4;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    /* Animations */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes fadeDown {
+      from { opacity: 0; transform: translateY(-30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
 </head>
 <body>
   <!-- Header -->
   <header class="site-header">
     <h1>Nextup Tools</h1>
-    <p class="tagline">All Webtools in one place</p>
+    <p>All Webtools in One Place</p>
   </header>
 
   <!-- Tools Container -->
