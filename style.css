@@ -109,7 +109,8 @@ body {
    TOOL CARD
 ========================== */
 .card {
-  background-color: #1f1f1f;
+  background: rgba(31,31,31,0.95);
+  backdrop-filter: blur(10px);
   padding: 28px 20px;
   border-radius: 20px;
   text-align: center;
@@ -142,8 +143,8 @@ body {
 }
 
 .card:hover {
-  transform: translateY(-10px) scale(1.03);
-  box-shadow: 0 14px 28px rgba(0,229,255,0.45);
+  transform: translateY(-10px) scale(1.05);
+  box-shadow: 0 14px 28px rgba(0,229,255,0.55);
   border: 1px solid #00e5ff66;
 }
 
@@ -170,7 +171,7 @@ body {
   font-weight: bold;
   border-radius: 12px;
   text-decoration: none;
-  transition: transform 0.25s, background-color 0.35s, box-shadow 0.35s;
+  transition: transform 0.25s, box-shadow 0.35s;
   cursor: pointer;
   border: none;
 }
@@ -218,7 +219,7 @@ button {
   padding: 12px 25px;
   font-weight: bold;
   margin: 15px auto;
-  transition: transform 0.25s, background-color 0.35s, box-shadow 0.35s;
+  transition: transform 0.25s, background 0.35s, box-shadow 0.35s;
   display: block;
 }
 
@@ -267,6 +268,45 @@ footer a:hover {
   animation: fadeOut 4s forwards;
   max-width: 90%;
   word-wrap: break-word;
+}
+
+/* ==========================
+   ALPHABET SCROLLBAR (Mobile)
+========================== */
+.alphabet-scroll {
+  display: none; /* Hide on desktop */
+}
+
+@media (max-width: 768px) {
+  .alphabet-scroll {
+    display: flex;
+    overflow-x: auto;
+    justify-content: space-around;
+    padding: 8px;
+    background: #1f1f1f;
+    border-top: 1px solid #333;
+    position: sticky;
+    bottom: 0;
+    z-index: 999;
+  }
+
+  .alphabet-scroll a {
+    flex: none;
+    margin: 0 3px;
+    padding: 6px 10px;
+    border-radius: 50%;
+    background: #2c2c2c;
+    color: #aaa;
+    font-size: 0.9rem;
+    text-decoration: none;
+    transition: all 0.3s ease;
+  }
+
+  .alphabet-scroll a:hover {
+    background: #00e5ff;
+    color: #fff;
+    transform: scale(1.15);
+  }
 }
 
 /* ==========================
