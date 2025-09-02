@@ -20,95 +20,51 @@ body {
 }
 
 /* ==========================
-   HERO SECTION
+   HEADER
 ========================== */
-.hero {
+.site-header {
   text-align: center;
-  padding: 60px 20px 40px;
+  padding: 40px 20px 25px;
   background: linear-gradient(135deg, #00e5ff, #00bcd4);
-  border-radius: 20px;
-  margin: 25px auto;
-  box-shadow: 0 8px 25px rgba(0,229,255,0.35);
-  max-width: 1150px;
-  width: 95%;
+  border-radius: 0 0 20px 20px;
+  box-shadow: 0 6px 20px rgba(0,229,255,0.35);
   animation: fadeSlideDown 1.2s ease both;
 }
 
-.hero h1 {
-  font-size: 3rem;
+.site-header h1 {
+  font-size: 2.8rem;
   font-weight: 700;
+  margin-bottom: 10px;
   color: #fff;
-  margin-bottom: 15px;
-  word-wrap: break-word;
   animation: textGlow 2s ease-in-out infinite alternate;
 }
 
-.hero p {
+.site-header p {
   font-size: 1.2rem;
   color: #e0f7fa;
-  max-width: 700px;
-  margin: 0 auto;
   opacity: 0;
   animation: fadeInUp 1.5s ease forwards 0.5s;
 }
 
 /* ==========================
-   INTRO LOGO ANIMATION
-========================== */
-.intro-logo {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: #121212;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 9999;
-  animation: hideLogo 1.7s ease forwards 1.7s;
-}
-
-.intro-logo img {
-  width: 180px;
-  height: auto;
-  animation: logoPop 1.7s ease forwards;
-}
-
-@keyframes logoPop {
-  0% { opacity: 0; transform: scale(0.5) rotate(-15deg); }
-  50% { opacity: 1; transform: scale(1.2) rotate(5deg); }
-  100% { opacity: 1; transform: scale(1) rotate(0); }
-}
-
-@keyframes hideLogo {
-  to { opacity: 0; visibility: hidden; }
-}
-
-/* ==========================
    TOOLS SECTION
 ========================== */
-.tools {
-  display: flex;
-  justify-content: center;
-  padding: 40px 20px;
-  flex: 1;
-}
-
-.tool-cards {
+.tools-container {
   display: grid;
   grid-template-columns: repeat(4, 1fr); /* Desktop 4x4 */
   gap: 25px;
   justify-content: center;
+  padding: 40px 20px;
   max-width: 1300px;
   width: 100%;
+  margin: 0 auto;
   scroll-behavior: smooth;
 }
 
 /* ==========================
    TOOL CARD
 ========================== */
-.card {
+.tool-card {
   background: rgba(31,31,31,0.95);
   backdrop-filter: blur(10px);
   padding: 28px 20px;
@@ -127,7 +83,7 @@ body {
   100% { opacity: 1; transform: translateY(0) scale(1); }
 }
 
-.card::before {
+.tool-card::before {
   content: "";
   position: absolute;
   top: -100%;
@@ -138,17 +94,17 @@ body {
   transition: 0.6s;
 }
 
-.card:hover::before {
+.tool-card:hover::before {
   top: 100%;
 }
 
-.card:hover {
+.tool-card:hover {
   transform: translateY(-10px) scale(1.05);
   box-shadow: 0 14px 28px rgba(0,229,255,0.55);
   border: 1px solid #00e5ff66;
 }
 
-.card h3 {
+.tool-card h2 {
   font-size: 1.5rem;
   color: #00e5ff;
   margin-bottom: 12px;
@@ -156,14 +112,14 @@ body {
   transition: color 0.3s ease;
 }
 
-.card p {
+.tool-card p {
   font-size: 1rem;
   color: #ccc;
   margin-bottom: 18px;
   transition: color 0.3s ease;
 }
 
-.card-btn {
+.tool-card .btn {
   display: inline-block;
   padding: 12px 25px;
   background: linear-gradient(135deg, #00e5ff, #00bcd4);
@@ -172,11 +128,9 @@ body {
   border-radius: 12px;
   text-decoration: none;
   transition: transform 0.25s, box-shadow 0.35s;
-  cursor: pointer;
-  border: none;
 }
 
-.card-btn:hover {
+.tool-card .btn:hover {
   background: linear-gradient(135deg, #14ffec, #00e5ff);
   transform: scale(1.1) rotate(1deg);
   box-shadow: 0 8px 20px rgba(0,229,255,0.4);
@@ -253,28 +207,10 @@ footer a:hover {
 }
 
 /* ==========================
-   CUSTOM ALERT
-========================== */
-#customAlert {
-  position: fixed;
-  top: 20px;
-  right: 20px;
-  background-color: #ff5722;
-  color: #fff;
-  padding: 12px 20px;
-  border-radius: 12px;
-  box-shadow: 0 5px 15px rgba(0,0,0,0.5);
-  z-index: 9999;
-  animation: fadeOut 4s forwards;
-  max-width: 90%;
-  word-wrap: break-word;
-}
-
-/* ==========================
-   ALPHABET SCROLLBAR (Mobile)
+   ALPHABET SCROLLBAR (Mobile only)
 ========================== */
 .alphabet-scroll {
-  display: none; /* Hide on desktop */
+  display: none;
 }
 
 @media (max-width: 768px) {
@@ -312,12 +248,6 @@ footer a:hover {
 /* ==========================
    ANIMATIONS
 ========================== */
-@keyframes fadeOut {
-  0% {opacity: 1;}
-  80% {opacity: 1;}
-  100% {opacity: 0;}
-}
-
 @keyframes fadeSlideDown {
   0% {opacity: 0; transform: translateY(-30px);}
   100% {opacity: 1; transform: translateY(0);}
@@ -337,23 +267,23 @@ footer a:hover {
    RESPONSIVE DESIGN
 ========================== */
 @media (max-width: 1024px){
-  .tool-cards { gap: 20px; grid-template-columns: repeat(2, 1fr); }
-  .card { width: 100%; }
+  .tools-container {
+    gap: 20px;
+    grid-template-columns: repeat(2, 1fr);
+  }
 }
 
 @media (max-width: 768px){
-  .tool-cards {
+  .tools-container {
     grid-template-columns: 1fr; /* Mobile 1x16 */
     gap: 20px;
   }
 
-  .hero { padding: 40px 15px 25px; }
-  .hero h1 { font-size: 2.2rem; }
-  .hero p { font-size: 1rem; }
-  .card {
-    width: 90%;
-    padding: 25px 15px;
+  .site-header {
+    padding: 30px 15px 20px;
   }
+  .site-header h1 { font-size: 2.2rem; }
+  .site-header p { font-size: 1rem; }
+  .tool-card { width: 90%; margin: 0 auto; }
   input, select, textarea, button { width: 95%; }
-  #customAlert { right: 10px; left: 10px; text-align: center; }
 }
