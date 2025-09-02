@@ -3,249 +3,127 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Nextup Tools - All Tools in One Place</title>
-  <meta name="description" content="Nextup Tools provides all essential online tools in one place. Use Age Calculator, Case Converter, Color Picker, QR Generator, Password Generator, YouTube Downloader, and more.">
+  <title>Nextup Tools</title>
   <link rel="stylesheet" href="style.css">
-  <style>
-    body {
-      margin: 0;
-      background: #121212;
-      color: #fff;
-      font-family: Arial, sans-serif;
-    }
-
-    /* ==========================
-       CINEMATIC PRELOADER
-    ========================== */
-    #preloader {
-      position: fixed;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-      background: #121212;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      z-index: 9999;
-    }
-    #preloader img {
-      width: 320px; /* ✅ Bada size */
-      animation: logoIntro 1.7s ease forwards;
-      opacity: 0;
-    }
-    @keyframes logoIntro {
-      0% {transform: scale(0.3) rotate(-15deg); opacity: 0;}
-      50% {transform: scale(1.2) rotate(10deg); opacity: 1;}
-      100% {transform: scale(1) rotate(0); opacity: 1;}
-    }
-
-    /* ==========================
-       TOOLS GRID
-    ========================== */
-    .tools-container {
-      padding: 30px;
-      display: grid;
-      gap: 25px;
-      max-width: 1200px;
-      margin: auto;
-    }
-    /* Mobile = 1 column */
-    @media(max-width: 1024px) {
-      .tools-container {
-        grid-template-columns: 1fr;
-      }
-    }
-    /* Desktop = 4 columns */
-    @media(min-width: 1025px) {
-      .tools-container {
-        grid-template-columns: repeat(4, 1fr);
-      }
-    }
-
-    .card {
-      background: #1e1e1e;
-      padding: 20px;
-      border-radius: 14px;
-      transition: transform 0.3s, background 0.3s;
-    }
-    .card h3 { margin: 0 0 8px; color: #00e5ff; }
-    .card p { font-size: 0.9rem; color: #ccc; }
-    .card-btn {
-      display: inline-block;
-      margin-top: 12px;
-      padding: 10px 16px;
-      background: #00e5ff;
-      color: #121212;
-      font-weight: bold;
-      border-radius: 8px;
-      text-decoration: none;
-    }
-    .card:hover {
-      transform: translateY(-6px);
-      background: #00bcd4;
-      color: #121212;
-    }
-
-    /* ==========================
-       ALPHABET INDEX (mobile only)
-    ========================== */
-    .alphabet-index {
-      position: fixed;
-      right: 0;
-      top: 0;
-      display: flex;
-      flex-direction: column;
-      background: rgba(26,26,26,0.95);
-      padding: 10px 4px;
-      border-radius: 12px 0 0 12px;
-      height: 100vh;
-      overflow-y: auto;
-      z-index: 100;
-    }
-    .alphabet-index a {
-      font-size: 14px;
-      margin: 6px 0;
-      text-decoration: none;
-      color: #888;
-      text-align: center;
-      transition: color 0.3s;
-    }
-    .alphabet-index a.active { color: #00e5ff; font-weight: bold; }
-    .alphabet-index a:hover { color: #00ffff; }
-
-    /* ✅ Desktop par hide alphabet index */
-    @media(min-width: 1025px) {
-      .alphabet-index { display: none; }
-    }
-  </style>
 </head>
 <body>
+  <!-- Header -->
+  <header class="site-header">
+    <h1>Nextup Tools</h1>
+  </header>
 
-  <!-- Preloader -->
-  <div id="preloader">
-    <img src="logo.png" alt="Nextup Tools Logo">
-  </div>
-
-  <!-- Tools Grid -->
+  <!-- Tools Container -->
   <main class="tools-container">
-    <section class="card" id="A">
-      <h3>Age & Unit Calculator</h3>
+    <div class="tool-card">
+      <h2>Age & Unit Calculator</h2>
       <p>Calculate your age or convert units easily.</p>
-      <a href="age-unit.html" class="card-btn">Go to Tool</a>
-    </section>
-    <section class="card" id="C1">
-      <h3>Case Converter</h3>
+      <a href="age-unit.html" class="btn">Go to Tool</a>
+    </div>
+    <div class="tool-card">
+      <h2>Case Converter</h2>
       <p>Convert text to UPPERCASE, lowercase, or Title Case.</p>
-      <a href="case.html" class="card-btn">Go to Tool</a>
-    </section>
-    <section class="card" id="C2">
-      <h3>Color Picker & Converter</h3>
+      <a href="case-converter.html" class="btn">Go to Tool</a>
+    </div>
+    <div class="tool-card">
+      <h2>Color Picker & Converter</h2>
       <p>Pick a color and convert between Hex, RGB, HSL.</p>
-      <a href="color.html" class="card-btn">Go to Tool</a>
-    </section>
-    <section class="card" id="E">
-      <h3>Emoji Picker</h3>
+      <a href="color-picker.html" class="btn">Go to Tool</a>
+    </div>
+    <div class="tool-card">
+      <h2>Emoji Picker</h2>
       <p>Find and copy emojis easily.</p>
-      <a href="emoji.html" class="card-btn">Go to Tool</a>
-    </section>
-    <section class="card" id="F">
-      <h3>Find & Replace</h3>
+      <a href="emoji-picker.html" class="btn">Go to Tool</a>
+    </div>
+    <div class="tool-card">
+      <h2>Find & Replace</h2>
       <p>Find words in text and replace them instantly.</p>
-      <a href="replace.html" class="card-btn">Go to Tool</a>
-    </section>
-    <section class="card" id="I">
-      <h3>Instagram Downloader</h3>
+      <a href="find-replace.html" class="btn">Go to Tool</a>
+    </div>
+    <div class="tool-card">
+      <h2>Instagram Downloader</h2>
       <p>Download Instagram videos easily.</p>
-      <a href="insta.html" class="card-btn">Go to Tool</a>
-    </section>
-    <section class="card" id="L">
-      <h3>Lorem Ipsum Generator</h3>
+      <a href="instagram-downloader.html" class="btn">Go to Tool</a>
+    </div>
+    <div class="tool-card">
+      <h2>Lorem Ipsum Generator</h2>
       <p>Generate dummy text instantly.</p>
-      <a href="lorem.html" class="card-btn">Go to Tool</a>
-    </section>
-    <section class="card" id="N">
-      <h3>Number to Words</h3>
+      <a href="lorem-ipsum.html" class="btn">Go to Tool</a>
+    </div>
+    <div class="tool-card">
+      <h2>Number to Words</h2>
       <p>Convert any number into English words.</p>
-      <a href="number-words.html" class="card-btn">Go to Tool</a>
-    </section>
-    <section class="card" id="P">
-      <h3>Password Generator</h3>
+      <a href="number-to-words.html" class="btn">Go to Tool</a>
+    </div>
+    <div class="tool-card">
+      <h2>Password Generator</h2>
       <p>Generate strong passwords easily.</p>
-      <a href="password.html" class="card-btn">Go to Tool</a>
-    </section>
-    <section class="card" id="Q">
-      <h3>QR Generator</h3>
+      <a href="password-generator.html" class="btn">Go to Tool</a>
+    </div>
+    <div class="tool-card">
+      <h2>QR Generator</h2>
       <p>Create QR codes from any text or URL.</p>
-      <a href="qr.html" class="card-btn">Go to Tool</a>
-    </section>
-    <section class="card" id="R1">
-      <h3>Random Username Generator</h3>
+      <a href="qr-generator.html" class="btn">Go to Tool</a>
+    </div>
+    <div class="tool-card">
+      <h2>Random Username Generator</h2>
       <p>Generate unique usernames quickly.</p>
-      <a href="username.html" class="card-btn">Go to Tool</a>
-    </section>
-    <section class="card" id="R2">
-      <h3>Text Reverser</h3>
+      <a href="username-generator.html" class="btn">Go to Tool</a>
+    </div>
+    <div class="tool-card">
+      <h2>Text Reverser</h2>
       <p>Reverse any text instantly.</p>
-      <a href="reverser.html" class="card-btn">Go to Tool</a>
-    </section>
-    <section class="card" id="S">
-      <h3>Text Summariser</h3>
+      <a href="text-reverser.html" class="btn">Go to Tool</a>
+    </div>
+    <div class="tool-card">
+      <h2>Text Summariser</h2>
       <p>Summarise long text into short key points.</p>
-      <a href="summarizer.html" class="card-btn">Go to Tool</a>
-    </section>
-    <section class="card" id="U">
-      <h3>URL Encoder/Decoder</h3>
+      <a href="text-summariser.html" class="btn">Go to Tool</a>
+    </div>
+    <div class="tool-card">
+      <h2>URL Encoder/Decoder</h2>
       <p>Encode or decode any URL instantly.</p>
-      <a href="url.html" class="card-btn">Go to Tool</a>
-    </section>
-    <section class="card" id="W">
-      <h3>Word Counter</h3>
+      <a href="url-encoder.html" class="btn">Go to Tool</a>
+    </div>
+    <div class="tool-card">
+      <h2>Word Counter</h2>
       <p>Count words and characters in your text.</p>
-      <a href="word.html" class="card-btn">Go to Tool</a>
-    </section>
-    <section class="card" id="Y">
-      <h3>YouTube Downloader</h3>
+      <a href="word-counter.html" class="btn">Go to Tool</a>
+    </div>
+    <div class="tool-card">
+      <h2>YouTube Downloader</h2>
       <p>Download YouTube videos in MP4 or MP3.</p>
-      <a href="yt-download.html" class="card-btn">Go to Tool</a>
-    </section>
+      <a href="youtube-downloader.html" class="btn">Go to Tool</a>
+    </div>
   </main>
 
-  <!-- Alphabet Index (mobile only) -->
-  <nav class="alphabet-index">
-    <a href="#A">A</a>
-    <a href="#C1">C</a>
-    <a href="#C2">C</a>
-    <a href="#E">E</a>
-    <a href="#F">F</a>
-    <a href="#I">I</a>
-    <a href="#L">L</a>
-    <a href="#N">N</a>
-    <a href="#P">P</a>
-    <a href="#Q">Q</a>
-    <a href="#R1">R</a>
-    <a href="#R2">R</a>
-    <a href="#S">S</a>
-    <a href="#U">U</a>
-    <a href="#W">W</a>
-    <a href="#Y">Y</a>
-  </nav>
-
-  <script>
-    // Preloader fade out
-    setTimeout(() => {
-      const preloader = document.getElementById("preloader");
-      preloader.style.opacity = '0';
-      setTimeout(() => preloader.remove(), 300);
-    }, 1700);
-
-    // Smooth scroll for alphabet index
-    document.querySelectorAll('.alphabet-index a').forEach(link => {
-      link.addEventListener('click', e => {
-        e.preventDefault();
-        const target = document.querySelector(link.getAttribute('href'));
-        if(target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      });
-    });
-  </script>
-
+  <!-- Alphabet Scrollbar (only on mobile) -->
+  <div class="alphabet-scroll">
+    <a href="#">A</a>
+    <a href="#">B</a>
+    <a href="#">C</a>
+    <a href="#">D</a>
+    <a href="#">E</a>
+    <a href="#">F</a>
+    <a href="#">G</a>
+    <a href="#">H</a>
+    <a href="#">I</a>
+    <a href="#">J</a>
+    <a href="#">K</a>
+    <a href="#">L</a>
+    <a href="#">M</a>
+    <a href="#">N</a>
+    <a href="#">O</a>
+    <a href="#">P</a>
+    <a href="#">Q</a>
+    <a href="#">R</a>
+    <a href="#">S</a>
+    <a href="#">T</a>
+    <a href="#">U</a>
+    <a href="#">V</a>
+    <a href="#">W</a>
+    <a href="#">X</a>
+    <a href="#">Y</a>
+    <a href="#">Z</a>
+  </div>
 </body>
 </html>
