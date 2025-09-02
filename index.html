@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Nextup Tools - All Tools in One Place</title>
   <meta name="description" content="Nextup Tools offers all essential web tools in one place: Password Generator, Lorem Ipsum, Color Picker, Random Username Generator, QR Generator, Case Converter, Text Reverser, Age & Unit Calculator, Word Counter, Text Summariser, YouTube Downloader, Instagram Downloader and more.">
-  <meta name="keywords" content="Nextup Tools, online tools, password generator, lorem ipsum, color picker, username generator, qr code generator, case converter, text reverser, age calculator, unit converter, word counter, text summariser, emoji picker, number to words, url decoder, youtube downloader, instagram downloader">
+  <meta name="keywords" content="Nextup Tools, online tools, password generator, lorem ipsum, color picker, username generator, qr code generator, case converter, text reverser, age calculator, unit converter, word counter, text summariser, emoji picker, number to words, url decoder, youtube downloader, instagram downloader, find replace">
   <meta name="author" content="Nextup Studio">
   <link rel="icon" type="image/png" href="favicon.png">
   <link rel="stylesheet" href="style.css">
@@ -54,6 +54,13 @@
       50% { transform: translateY(-20px); opacity: 0.7; }
       100% { transform: translateY(-50px); opacity: 0; }
     }
+
+    /* Scrollable container */
+    .tool-cards {
+      max-height: 70vh;
+      overflow-y: auto;
+      padding-right: 10px;
+    }
   </style>
 </head>
 <body>
@@ -73,39 +80,12 @@
   <!-- Tools Section -->
   <section class="tools">
     <div class="tool-cards" style="justify-content:center; flex-wrap:wrap; gap:20px;">
-      <!-- Password Generator -->
+      
+      <!-- Age & Unit Calculator -->
       <div class="card">
-        <h3>Password Generator</h3>
-        <p>Generate strong passwords easily.</p>
-        <a href="password.html" class="card-btn">Go to Tool</a>
-      </div>
-
-      <!-- Lorem Ipsum Generator -->
-      <div class="card">
-        <h3>Lorem Ipsum Generator</h3>
-        <p>Generate dummy text instantly.</p>
-        <a href="lorem.html" class="card-btn">Go to Tool</a>
-      </div>
-
-      <!-- Color Picker -->
-      <div class="card">
-        <h3>Color Picker & Converter</h3>
-        <p>Pick a color and convert between Hex, RGB, HSL.</p>
-        <a href="color.html" class="card-btn">Go to Tool</a>
-      </div>
-
-      <!-- Username Generator -->
-      <div class="card">
-        <h3>Random Username Generator</h3>
-        <p>Generate unique usernames quickly.</p>
-        <a href="username.html" class="card-btn">Go to Tool</a>
-      </div>
-
-      <!-- QR Generator -->
-      <div class="card">
-        <h3>QR Generator</h3>
-        <p>Create QR codes from any text or URL.</p>
-        <a href="qr.html" class="card-btn">Go to Tool</a>
+        <h3>Age & Unit Calculator</h3>
+        <p>Calculate your age or convert units easily.</p>
+        <a href="age-unit.html" class="card-btn">Go to Tool</a>
       </div>
 
       <!-- Case Converter -->
@@ -115,39 +95,11 @@
         <a href="case.html" class="card-btn">Go to Tool</a>
       </div>
 
-      <!-- Text Reverser -->
+      <!-- Color Picker -->
       <div class="card">
-        <h3>Text Reverser</h3>
-        <p>Reverse any text instantly.</p>
-        <a href="reverser.html" class="card-btn">Go to Tool</a>
-      </div>
-
-      <!-- Summariser -->
-      <div class="card">
-        <h3>Text Summariser</h3>
-        <p>Summarise long text into short key points.</p>
-        <a href="summarizer.html" class="card-btn">Go to Tool</a>
-      </div>
-
-      <!-- Age & Unit Calculator -->
-      <div class="card">
-        <h3>Age & Unit Calculator</h3>
-        <p>Calculate your age or convert units easily.</p>
-        <a href="age-unit.html" class="card-btn">Go to Tool</a>
-      </div>
-
-      <!-- Word Counter -->
-      <div class="card">
-        <h3>Word Counter</h3>
-        <p>Count words and characters in your text.</p>
-        <a href="word.html" class="card-btn">Go to Tool</a>
-      </div>
-
-      <!-- Number to Words -->
-      <div class="card">
-        <h3>Number to Words</h3>
-        <p>Convert any number into English words.</p>
-        <a href="number-words.html" class="card-btn">Go to Tool</a>
+        <h3>Color Picker & Converter</h3>
+        <p>Pick a color and convert between Hex, RGB, HSL.</p>
+        <a href="color.html" class="card-btn">Go to Tool</a>
       </div>
 
       <!-- Emoji Picker -->
@@ -157,18 +109,11 @@
         <a href="emoji.html" class="card-btn">Go to Tool</a>
       </div>
 
-      <!-- URL Encoder/Decoder -->
+      <!-- Find & Replace -->
       <div class="card">
-        <h3>URL Encoder/Decoder</h3>
-        <p>Encode or decode any URL instantly.</p>
-        <a href="url.html" class="card-btn">Go to Tool</a>
-      </div>
-
-      <!-- YouTube Downloader -->
-      <div class="card">
-        <h3>YouTube Downloader</h3>
-        <p>Download YouTube videos in MP4 or MP3.</p>
-        <a href="yt-download.html" class="card-btn">Go to Tool</a>
+        <h3>Find & Replace</h3>
+        <p>Find words in text and replace them instantly.</p>
+        <a href="find-replace.html" class="card-btn">Go to Tool</a>
       </div>
 
       <!-- Instagram Downloader -->
@@ -176,6 +121,76 @@
         <h3>Instagram Downloader</h3>
         <p>Download Instagram videos easily.</p>
         <a href="insta.html" class="card-btn">Go to Tool</a>
+      </div>
+
+      <!-- Lorem Ipsum Generator -->
+      <div class="card">
+        <h3>Lorem Ipsum Generator</h3>
+        <p>Generate dummy text instantly.</p>
+        <a href="lorem.html" class="card-btn">Go to Tool</a>
+      </div>
+
+      <!-- Number to Words -->
+      <div class="card">
+        <h3>Number to Words</h3>
+        <p>Convert any number into English words.</p>
+        <a href="number-words.html" class="card-btn">Go to Tool</a>
+      </div>
+
+      <!-- Password Generator -->
+      <div class="card">
+        <h3>Password Generator</h3>
+        <p>Generate strong passwords easily.</p>
+        <a href="password.html" class="card-btn">Go to Tool</a>
+      </div>
+
+      <!-- QR Generator -->
+      <div class="card">
+        <h3>QR Generator</h3>
+        <p>Create QR codes from any text or URL.</p>
+        <a href="qr.html" class="card-btn">Go to Tool</a>
+      </div>
+
+      <!-- Random Username Generator -->
+      <div class="card">
+        <h3>Random Username Generator</h3>
+        <p>Generate unique usernames quickly.</p>
+        <a href="username.html" class="card-btn">Go to Tool</a>
+      </div>
+
+      <!-- Text Reverser -->
+      <div class="card">
+        <h3>Text Reverser</h3>
+        <p>Reverse any text instantly.</p>
+        <a href="reverser.html" class="card-btn">Go to Tool</a>
+      </div>
+
+      <!-- Text Summariser -->
+      <div class="card">
+        <h3>Text Summariser</h3>
+        <p>Summarise long text into short key points.</p>
+        <a href="summarizer.html" class="card-btn">Go to Tool</a>
+      </div>
+
+      <!-- URL Encoder/Decoder -->
+      <div class="card">
+        <h3>URL Encoder/Decoder</h3>
+        <p>Encode or decode any URL instantly.</p>
+        <a href="url.html" class="card-btn">Go to Tool</a>
+      </div>
+
+      <!-- Word Counter -->
+      <div class="card">
+        <h3>Word Counter</h3>
+        <p>Count words and characters in your text.</p>
+        <a href="word.html" class="card-btn">Go to Tool</a>
+      </div>
+
+      <!-- YouTube Downloader -->
+      <div class="card">
+        <h3>YouTube Downloader</h3>
+        <p>Download YouTube videos in MP4 or MP3.</p>
+        <a href="yt-download.html" class="card-btn">Go to Tool</a>
       </div>
 
     </div>
