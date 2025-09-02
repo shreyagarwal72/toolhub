@@ -23,23 +23,24 @@ body {
 .hero {
   text-align: center;
   padding: 60px 20px 40px;
-  background: linear-gradient(135deg, #00bcd4, #00838f);
-  border-radius: 16px;
-  margin: 20px auto;
-  box-shadow: 0 8px 25px rgba(0,188,212,0.4);
+  background: linear-gradient(135deg, #00e5ff, #00bcd4);
+  border-radius: 18px;
+  margin: 25px auto;
+  box-shadow: 0 8px 25px rgba(0,229,255,0.35);
   max-width: 1100px;
   width: 95%;
 }
 
 .hero h1 {
   font-size: 3rem;
+  font-weight: 700;
   color: #fff;
   margin-bottom: 15px;
   word-wrap: break-word;
 }
 
 .hero p {
-  font-size: 1.2rem;
+  font-size: 1.15rem;
   color: #e0f7fa;
   max-width: 700px;
   margin: 0 auto;
@@ -69,29 +70,32 @@ body {
 ========================== */
 .card {
   background-color: #1f1f1f;
-  padding: 30px 20px;
+  padding: 28px 20px;
   border-radius: 20px;
   width: 280px;
   text-align: center;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  box-shadow: 0 6px 20px rgba(0,0,0,0.4);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.45);
   flex: 1 1 260px;
   max-width: 300px;
+  border: 1px solid transparent;
 }
 
 .card:hover {
-  transform: translateY(-10px);
-  box-shadow: 0 15px 30px rgba(0,188,212,0.6);
+  transform: translateY(-8px);
+  box-shadow: 0 14px 28px rgba(0,229,255,0.45);
+  border: 1px solid #00e5ff66;
 }
 
 .card h3 {
-  font-size: 1.5rem;
-  color: #00bcd4;
+  font-size: 1.45rem;
+  color: #00e5ff;
   margin-bottom: 12px;
+  font-weight: 600;
 }
 
 .card p {
-  font-size: 1rem;
+  font-size: 0.95rem;
   color: #ccc;
   margin-bottom: 18px;
 }
@@ -99,19 +103,20 @@ body {
 .card-btn {
   display: inline-block;
   padding: 12px 25px;
-  background-color: #00bcd4;
+  background: linear-gradient(135deg, #00e5ff, #00bcd4);
   color: #121212;
   font-weight: bold;
   border-radius: 12px;
   text-decoration: none;
-  transition: transform 0.2s, background-color 0.3s;
+  transition: transform 0.2s, background-color 0.3s, box-shadow 0.3s;
   cursor: pointer;
   border: none;
 }
 
 .card-btn:hover {
-  background-color: #00e5ff;
-  transform: scale(1.08);
+  background: linear-gradient(135deg, #14ffec, #00e5ff);
+  transform: scale(1.07);
+  box-shadow: 0 6px 18px rgba(0,229,255,0.4);
 }
 
 /* ==========================
@@ -132,30 +137,32 @@ textarea {
   font-size: 1rem;
   background-color: #262626;
   color: #fff;
-  transition: box-shadow 0.3s;
+  transition: box-shadow 0.3s, border 0.3s;
   display: block;
 }
 
 input:focus, select:focus, textarea:focus {
-  box-shadow: 0 0 8px #00bcd4;
+  border: 1px solid #00e5ff;
+  box-shadow: 0 0 10px #00e5ff66;
 }
 
 button {
   cursor: pointer;
   border: none;
   border-radius: 12px;
-  background-color: #00bcd4;
+  background: linear-gradient(135deg, #00e5ff, #00bcd4);
   color: #121212;
   padding: 12px 25px;
   font-weight: bold;
   margin: 15px auto;
-  transition: transform 0.2s, background-color 0.3s;
+  transition: transform 0.2s, background-color 0.3s, box-shadow 0.3s;
   display: block;
 }
 
 button:hover {
   transform: scale(1.05);
-  background-color: #00e5ff;
+  background: linear-gradient(135deg, #14ffec, #00e5ff);
+  box-shadow: 0 6px 16px rgba(0,229,255,0.35);
 }
 
 /* ==========================
@@ -177,8 +184,8 @@ button:hover {
 }
 
 #emojiSearch:focus {
-  border-color: #00bcd4;
-  box-shadow: 0 0 10px #00bcd4;
+  border-color: #00e5ff;
+  box-shadow: 0 0 10px #00e5ff66;
 }
 
 .emoji-container {
@@ -196,14 +203,15 @@ button:hover {
   border-radius: 12px;
   padding: 10px 0;
   cursor: pointer;
-  transition: transform 0.2s, background-color 0.3s;
+  transition: transform 0.2s, background-color 0.3s, border 0.3s;
   text-align: center;
   border: 1px solid #333;
 }
 
 .emoji-card:hover {
   transform: scale(1.1);
-  background-color: #00bcd433;
+  background-color: #00e5ff22;
+  border-color: #00e5ff55;
 }
 
 .emoji {
@@ -231,14 +239,14 @@ footer {
 }
 
 footer a {
-  color: #00bcd4;
+  color: #00e5ff;
   text-decoration: none;
   font-weight: bold;
   transition: color 0.3s;
 }
 
 footer a:hover {
-  color: #00e5ff;
+  color: #14ffec;
 }
 
 /* ==========================
