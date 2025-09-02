@@ -28,7 +28,7 @@
       z-index: 9999;
     }
     #preloader img {
-      width: 220px;
+      width: 320px; /* ✅ Bada size */
       animation: logoIntro 1.7s ease forwards;
       opacity: 0;
     }
@@ -44,11 +44,23 @@
     .tools-container {
       padding: 30px;
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
       gap: 25px;
       max-width: 1200px;
       margin: auto;
     }
+    /* Mobile = 1 column */
+    @media(max-width: 1024px) {
+      .tools-container {
+        grid-template-columns: 1fr;
+      }
+    }
+    /* Desktop = 4 columns */
+    @media(min-width: 1025px) {
+      .tools-container {
+        grid-template-columns: repeat(4, 1fr);
+      }
+    }
+
     .card {
       background: #1e1e1e;
       padding: 20px;
@@ -74,7 +86,7 @@
     }
 
     /* ==========================
-       ALPHABET INDEX (mobile)
+       ALPHABET INDEX (mobile only)
     ========================== */
     .alphabet-index {
       position: fixed;
@@ -100,7 +112,7 @@
     .alphabet-index a.active { color: #00e5ff; font-weight: bold; }
     .alphabet-index a:hover { color: #00ffff; }
 
-    /* Desktop पर hide index */
+    /* ✅ Desktop par hide alphabet index */
     @media(min-width: 1025px) {
       .alphabet-index { display: none; }
     }
@@ -110,7 +122,7 @@
 
   <!-- Preloader -->
   <div id="preloader">
-    <img src="logo2.png" alt="Nextup Tools Logo">
+    <img src="logo.png" alt="Nextup Tools Logo">
   </div>
 
   <!-- Tools Grid -->
@@ -199,22 +211,22 @@
 
   <!-- Alphabet Index (mobile only) -->
   <nav class="alphabet-index">
-    <a href="#A" class="active">A</a>
-    <a href="#C1" class="active">C</a>
-    <a href="#C2" class="active">C</a>
-    <a href="#E" class="active">E</a>
-    <a href="#F" class="active">F</a>
-    <a href="#I" class="active">I</a>
-    <a href="#L" class="active">L</a>
-    <a href="#N" class="active">N</a>
-    <a href="#P" class="active">P</a>
-    <a href="#Q" class="active">Q</a>
-    <a href="#R1" class="active">R</a>
-    <a href="#R2" class="active">R</a>
-    <a href="#S" class="active">S</a>
-    <a href="#U" class="active">U</a>
-    <a href="#W" class="active">W</a>
-    <a href="#Y" class="active">Y</a>
+    <a href="#A">A</a>
+    <a href="#C1">C</a>
+    <a href="#C2">C</a>
+    <a href="#E">E</a>
+    <a href="#F">F</a>
+    <a href="#I">I</a>
+    <a href="#L">L</a>
+    <a href="#N">N</a>
+    <a href="#P">P</a>
+    <a href="#Q">Q</a>
+    <a href="#R1">R</a>
+    <a href="#R2">R</a>
+    <a href="#S">S</a>
+    <a href="#U">U</a>
+    <a href="#W">W</a>
+    <a href="#Y">Y</a>
   </nav>
 
   <script>
