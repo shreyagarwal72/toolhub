@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Find & Replace - Nextup Tools</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    /* extra styles specific to this tool (keeps your global theme intact) */
+    .tool-wrapper {
+      max-width: 1100px;
+      margin: 24px auto;
+      padding: 20px;
+      border-radius: 12px;
+      background: #1f1f1f;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.45);
+    }
+
+    .tool-header {
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+      flex-wrap:wrap;
+    }
+
+    .tool-title {
+      color: #00bcd4;
+      font-size: 1.35rem;
+      font-weight:700;
+    }
+
+    .controls {
+      display:flex;
+      gap:10px;
+      align-items:center;
+      flex-wrap:wrap;
+    }
+
+    .main-grid {
+      display:grid;
+      grid-template-columns: 1fr 380px;
+      gap: 18px;
+      margin-top:18px;
+    }
+
+    /* Left: editor */
+    .editor-box {
+      position:relative;
+      display:flex;
+      flex-direction:column;
+    }
+
+    /* textarea - keep your style system consistent */
+    textarea#sourceText {
+      width:100%;
+      min-height: 420px;
+      resize: vertical;
+      padding:16px;
+      border-radius:10px;
+      border: none;
+      background:#262626;
+      color:#fff;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, "Roboto Mono", monospace;
+      font-size:0.95rem;
+      line-height:1.45;
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.02);
+    }
+
+    /* Right: find/replace panel */
+    .panel {
+      background: linear-gradient(180deg,#151515,#1c1c1c);
+      padding:16px;
+      border-radius:10px;
+      min-height: 420px;
+      display:flex;
+      flex-direction:column;
+      gap:12px;
+    }
+
+    .panel label { font-size:0.9rem; color:#ddd; display:block; margin-bottom:6px; }
+    .panel input[type="text"], .panel input[type="search"] {
+      width:100%;
+      padding:10px;
+      border-radius:8px;
+      border:none;
+      background:#262626;
+      color:#fff;
+      outline:none;
+    }
+
+    .options {
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      margin-top:6px;
+    }
+
+    .small-btn {
+      padding:8px 10px;
+      border-radius:8px;
+      border:none;
+      background:#00bcd4;
+      color:#121212;
+      cursor:pointer;
+      font-weight:700;
+    }
+    .small-btn.secondary {
+      background:#333;
+      color:#fff;
+    }
+
+    .status {
+      padding:8px 10px;
+      background:#0e0e0e;
+      color:#cfcfcf;
+      border-radius:8px;
+      font-size:0.95rem;
+      display:flex;
+      justify-content:space-between;
+      gap:10px;
+      align-items:center;
+    }
+
+    .preview {
+      margin-top:12px;
+      padding:12px;
+      border-radius:8px;
+      background:#0f0f0f;
+      color:#eee;
+      max-height:320px;
+      overflow:auto;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, "Roboto Mono", monospace;
+      white-space:pre-wrap;
+    }
+
+    /* highlighted match styling in preview */
+    .hl {
+      background: linear-gradient(90deg, rgba(0,188,212,0.18), rgba(0,188,212,0.12));
+      box-shadow: 0 0 10px rgba(0,188,212,0.06) inset;
+      color: #fff;
+      padding:0 2px;
+      border-radius:4px;
+    }
+
+    /* responsive */
+    @media (max-width: 980px){
+      .main-grid {
+        grid-template-columns: 1fr;
+      }
+      .panel { min-height: auto; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="tool-wrapper">
+
+    <div class="tool-header">
+      <div>
+        <div class="tool-title">Find & Replace</div>
+        <div style="color:#bbb;font-size:0.95rem;margin-top:6px;">
+          Search, highlight and replace text instantly — runs entirely in your browser.
+        </div>
+      </div>
+
+      <div class="controls">
+        <button id="copyBtn" class="small-btn secondary" title="Copy result to clipboard">Copy Result</button>
+        <button id="downloadBtn" class="small-btn" title="Download result as .txt">Download .txt</button>
+        <a href="index.html" class="small-btn secondary" style="text-decoration:none; display:inline-block; padding:8px 12px;">Back</a>
+      </div>
+    </div>
+
+    <div class="main-grid">
+      <!-- LEFT: Editor -->
+      <div class="editor-box">
+        <label style="color:#ccc; font-size:0.95rem; margin-bottom:8px;">Input Text</label>
+        <textarea id="sourceText" placeholder="Paste or type your text here..."></textarea>
+
+        <div style="margin-top:12px; display:flex; gap:10px; flex-wrap:wrap;">
+          <button id="undoBtn" class="small-btn secondary" title="Undo last replace">Undo</button>
+          <button id="clearBtn" class="small-btn secondary">Clear</button>
+        </div>
+
+        <div style="margin-top:14px;">
+          <label style="color:#ccc; font-size:0.95rem; margin-bottom:6px;">Live Preview (matches highlighted)</label>
+          <div id="preview" class="preview" aria-live="polite"></div>
+        </div>
+      </div>
+
+      <!-- RIGHT: Find & Replace Panel -->
+      <div class="panel">
+        <div>
+          <label for="findInput">Find</label>
+          <input id="findInput" type="search" placeholder="Text or regex to find">
+        </div>
+
+        <div>
+          <label for="replaceInput">Replace with</label>
+          <input id="replaceInput" type="text" placeholder="Replacement text">
+        </div>
+
+        <div class="options">
+          <label style="display:flex;align-items:center;gap:6px;font-size:0.95rem;">
+            <input id="caseChk" type="checkbox"> Case sensitive
+          </label>
+          <label style="display:flex;align-items:center;gap:6px;font-size:0.95rem;">
+            <input id="wordChk" type="checkbox"> Whole word
+          </label>
+          <label style="display:flex;align-items:center;gap:6px;font-size:0.95rem;">
+            <input id="regexChk" type="checkbox"> Use RegExp
+          </label>
+        </div>
+
+        <div style="display:flex; gap:8px; margin-top:10px; flex-wrap:wrap;">
+          <button id="prevBtn" class="small-btn secondary">Prev</button>
+          <button id="nextBtn" class="small-btn">Next</button>
+          <button id="replaceNextBtn" class="small-btn">Replace Next</button>
+          <button id="replaceAllBtn" class="small-btn">Replace All</button>
+        </div>
+
+        <div class="status" style="margin-top:12px;">
+          <div>Matches: <strong id="matchCount">0</strong></div>
+          <div>Current: <strong id="currentIdx">-</strong></div>
+        </div>
+
+        <div style="margin-top:10px; display:flex; gap:8px; flex-wrap:wrap;">
+          <button id="applyPreviewBtn" class="small-btn secondary">Apply Preview → Text</button>
+          <button id="selectAllBtn" class="small-btn secondary">Select All Matches</button>
+        </div>
+
+        <div style="margin-top:12px; color:#bbb; font-size:0.9rem;">
+          Tip: Toggle <strong>Use RegExp</strong> for advanced searches (careful — invalid regex will be ignored).
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Find & Replace logic (pure JS)
+    (function(){
+      const sourceText = document.getElementById('sourceText');
+      const preview = document.getElementById('preview');
+      const findInput = document.getElementById('findInput');
+      const replaceInput = document.getElementById('replaceInput');
+      const caseChk = document.getElementById('caseChk');
+      const wordChk = document.getElementById('wordChk');
+      const regexChk = document.getElementById('regexChk');
+
+      const matchCountEl = document.getElementById('matchCount');
+      const currentIdxEl = document.getElementById('currentIdx');
+
+      const nextBtn = document.getElementById('nextBtn');
+      const prevBtn = document.getElementById('prevBtn');
+      const replaceNextBtn = document.getElementById('replaceNextBtn');
+      const replaceAllBtn = document.getElementById('replaceAllBtn');
+      const applyPreviewBtn = document.getElementById('applyPreviewBtn');
+      const selectAllBtn = document.getElementById('selectAllBtn');
+      const copyBtn = document.getElementById('copyBtn');
+      const downloadBtn = document.getElementById('downloadBtn');
+      const undoBtn = document.getElementById('undoBtn');
+      const clearBtn = document.getElementById('clearBtn');
+
+      let matches = []; // array of {start,end}
+      let currentIndex = -1;
+      let lastTextSnapshot = null; // for undo
+
+      // build regex based on inputs
+      function buildRegex() {
+        const patternRaw = findInput.value;
+        if (!patternRaw) return null;
+        try {
+          if (regexChk.checked) {
+            const flags = caseChk.checked ? 'g' : 'gi';
+            return new RegExp(patternRaw, flags);
+          } else {
+            // escape pattern for literal search
+            let pat = patternRaw.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+            if (wordChk.checked) pat = '\\b' + pat + '\\b';
+            const flags = caseChk.checked ? 'g' : 'gi';
+            return new RegExp(pat, flags);
+          }
+        } catch (e) {
+          // invalid regex
+          return null;
+        }
+      }
+
+      // compute matches positions
+      function computeMatches() {
+        matches = [];
+        const text = sourceText.value || '';
+        const re = buildRegex();
+        if (!re) {
+          updatePreview(text, []);
+          updateStatus();
+          return;
+        }
+        let m;
+        while ((m = re.exec(text)) !== null) {
+          matches.push({start: m.index, end: m.index + (m[0] || '').length});
+          // prevent infinite loop for zero-width matches
+          if (m.index === re.lastIndex) re.lastIndex++;
+        }
+        updatePreview(text, matches);
+        updateStatus();
+      }
+
+      // create highlighted html for preview area
+      function updatePreview(text, matchesArr) {
+        if (!matchesArr || matchesArr.length === 0) {
+          preview.textContent = text;
+          return;
+        }
+        let out = '';
+        let last = 0;
+        for (let i = 0; i < matchesArr.length; i++) {
+          const s = matchesArr[i].start;
+          const e = matchesArr[i].end;
+          // escape html for slice
+          out += escapeHTML(text.slice(last, s));
+          out += '<span class="hl" data-idx="'+i+'">' + escapeHTML(text.slice(s, e)) + '</span>';
+          last = e;
+        }
+        out += escapeHTML(text.slice(last));
+        preview.innerHTML = out;
+        // scroll to current highlighted if any
+        highlightCurrent();
+      }
+
+      function escapeHTML(str) {
+        return str.replace(/[&<>"']/g, function(m) {
+          return ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[m]);
+        });
+      }
+
+      function updateStatus() {
+        matchCountEl.textContent = matches.length;
+        if (matches.length === 0) {
+          currentIdxEl.textContent = '-';
+          currentIndex = -1;
+        } else {
+          if (currentIndex < 0 || currentIndex >= matches.length) currentIndex = 0;
+          currentIdxEl.textContent = (currentIndex + 1) + ' / ' + matches.length;
+        }
+      }
+
+      function highlightCurrent() {
+        // remove active class
+        preview.querySelectorAll('.hl').forEach(node => node.style.outline = 'none');
+        if (matches.length === 0) return;
+        const nodes = preview.querySelectorAll('.hl');
+        if (!nodes || nodes.length === 0) return;
+        const idx = Math.max(0, Math.min(currentIndex, nodes.length - 1));
+        const cur = nodes[idx];
+        if (cur) {
+          cur.style.outline = '3px solid rgba(0,188,212,0.25)';
+          // ensure visible
+          cur.scrollIntoView({behavior:'smooth', block:'center', inline:'nearest'});
+        }
+      }
+
+      // navigation
+      nextBtn.addEventListener('click', () => {
+        if (matches.length === 0) return;
+        currentIndex = (currentIndex + 1) % matches.length;
+        updateStatus();
+        highlightCurrent();
+      });
+
+      prevBtn.addEventListener('click', () => {
+        if (matches.length === 0) return;
+        currentIndex = (currentIndex - 1 + matches.length) % matches.length;
+        updateStatus();
+        highlightCurrent();
+      });
+
+      // Replace next occurrence (based on currentIndex)
+      replaceNextBtn.addEventListener('click', () => {
+        if (matches.length === 0) return;
+        // save for undo
+        lastTextSnapshot = sourceText.value;
+        // choose index to replace: currentIndex or 0
+        const idx = (currentIndex >=0) ? currentIndex : 0;
+        const text = sourceText.value;
+        const before = text.slice(0, matches[idx].start);
+        const after = text.slice(matches[idx].end);
+        // build replacement string (handle $& style if regex used)
+        const matchedText = text.slice(matches[idx].start, matches[idx].end);
+        let replacement = replaceInput.value;
+        // if using regex, support $& placeholder
+        if (regexChk.checked) {
+          replacement = replacement.replace(/\$&/g, matchedText);
+        }
+        const newText = before + replacement + after;
+        sourceText.value = newText;
+        // recompute matches and stay near replaced index
+        computeMatches();
+        // set currentIndex to idx (if still valid)
+        currentIndex = Math.min(idx, Math.max(0, matches.length - 1));
+        updateStatus();
+      });
+
+      // Replace All
+      replaceAllBtn.addEventListener('click', () => {
+        const re = buildRegex();
+        if (!re) return;
+        // snapshot for undo
+        lastTextSnapshot = sourceText.value;
+        try {
+          const replacementRaw = replaceInput.value;
+          // If not using regex mode, we used an escaped regex; but replace should work with string
+          // Use string replace with function for $& support
+          const newText = sourceText.value.replace(re, function(match){
+            if (regexChk.checked) {
+              // allow $& placeholder in replacement
+              return replacementRaw.replace(/\$&/g, match);
+            } else {
+              return replacementRaw;
+            }
+          });
+          sourceText.value = newText;
+        } catch(e) {
+          // ignore
+        }
+        computeMatches();
+      });
+
+      // Apply preview -> copy preview text back to textarea (keeps highlights removed)
+      applyPreviewBtn.addEventListener('click', () => {
+        // just keep textarea as is (preview is read-only). But sometimes user wants to sync:
+        // we'll set textarea value to preview's textContent (which is original text)
+        const t = preview.textContent;
+        sourceText.value = t;
+        computeMatches();
+      });
+
+      // Select all matches: puts a selection in the textarea covering first match (best effort)
+      selectAllBtn.addEventListener('click', () => {
+        if (matches.length === 0) return;
+        const first = matches[0];
+        sourceText.focus();
+        sourceText.setSelectionRange(first.start, matches[matches.length - 1].end);
+      });
+
+      // Undo
+      undoBtn.addEventListener('click', () => {
+        if (lastTextSnapshot !== null) {
+          sourceText.value = lastTextSnapshot;
+          lastTextSnapshot = null;
+          computeMatches();
+        }
+      });
+
+      // Clear
+      clearBtn.addEventListener('click', () => {
+        sourceText.value = '';
+        computeMatches();
+      });
+
+      // Copy result
+      copyBtn.addEventListener('click', () => {
+        navigator.clipboard.writeText(sourceText.value).then(() => {
+          showTempNotice('Copied to clipboard');
+        }).catch(()=> showTempNotice('Copy failed'));
+      });
+
+      // Download .txt
+      downloadBtn.addEventListener('click', () => {
+        const blob = new Blob([sourceText.value], {type:'text/plain;charset=utf-8'});
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = 'text.txt';
+        document.body.appendChild(a);
+        a.click();
+        a.remove();
+        URL.revokeObjectURL(url);
+      });
+
+      // recompute on input changes
+      sourceText.addEventListener('input', computeMatches);
+      findInput.addEventListener('input', computeMatches);
+      caseChk.addEventListener('change', computeMatches);
+      wordChk.addEventListener('change', computeMatches);
+      regexChk.addEventListener('change', computeMatches);
+
+      // replace-on-enter in replaceInput (Ctrl+Enter or Shift+Enter would not conflict)
+      replaceInput.addEventListener('keydown', function(e){
+        if (e.key === 'Enter' && !e.shiftKey) {
+          e.preventDefault();
+          replaceAllBtn.click();
+        }
+      });
+
+      // preview click to jump to match
+      preview.addEventListener('click', (e) => {
+        const target = e.target;
+        if (target.classList.contains('hl')) {
+          const idx = parseInt(target.getAttribute('data-idx') || '0', 10);
+          currentIndex = idx;
+          updateStatus();
+          // set cursor in textarea to that match
+          const m = matches[idx];
+          sourceText.focus();
+          sourceText.setSelectionRange(m.start, m.end);
+          highlightCurrent();
+        }
+      });
+
+      // small helper notice
+      function showTempNotice(msg) {
+        const el = document.createElement('div');
+        el.textContent = msg;
+        el.style.position = 'fixed';
+        el.style.right = '12px';
+        el.style.bottom = '12px';
+        el.style.background = '#00bcd4';
+        el.style.color = '#051017';
+        el.style.padding = '10px 14px';
+        el.style.borderRadius = '8px';
+        el.style.zIndex = 99999;
+        document.body.appendChild(el);
+        setTimeout(()=> el.remove(), 1600);
+      }
+
+      // initialize
+      computeMatches();
+
+    })();
+  </script>
+
+</body>
+</html>
