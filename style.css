@@ -16,6 +16,7 @@ body {
   display: flex;
   flex-direction: column;
   transition: background-color 0.4s ease, color 0.4s ease;
+  overflow-x: hidden;
 }
 
 /* ==========================
@@ -25,10 +26,10 @@ body {
   text-align: center;
   padding: 60px 20px 40px;
   background: linear-gradient(135deg, #00e5ff, #00bcd4);
-  border-radius: 18px;
+  border-radius: 20px;
   margin: 25px auto;
   box-shadow: 0 8px 25px rgba(0,229,255,0.35);
-  max-width: 1100px;
+  max-width: 1150px;
   width: 95%;
   animation: fadeSlideDown 1.2s ease both;
 }
@@ -43,7 +44,7 @@ body {
 }
 
 .hero p {
-  font-size: 1.15rem;
+  font-size: 1.2rem;
   color: #e0f7fa;
   max-width: 700px;
   margin: 0 auto;
@@ -68,7 +69,6 @@ body {
   justify-content: center;
   max-width: 1300px;
   width: 100%;
-  overflow-y: auto;
   scroll-behavior: smooth;
 }
 
@@ -112,7 +112,7 @@ body {
 }
 
 .card h3 {
-  font-size: 1.45rem;
+  font-size: 1.5rem;
   color: #00e5ff;
   margin-bottom: 12px;
   font-weight: 600;
@@ -120,7 +120,7 @@ body {
 }
 
 .card p {
-  font-size: 0.95rem;
+  font-size: 1rem;
   color: #ccc;
   margin-bottom: 18px;
   transition: color 0.3s ease;
@@ -148,9 +148,7 @@ body {
 /* ==========================
    INPUTS & BUTTONS
 ========================== */
-input[type="text"],
-input[type="number"],
-input[type="color"],
+input,
 select,
 textarea {
   width: 100%;
@@ -167,7 +165,9 @@ textarea {
   display: block;
 }
 
-input:focus, select:focus, textarea:focus {
+input:focus,
+select:focus,
+textarea:focus {
   border: 1px solid #00e5ff;
   box-shadow: 0 0 10px #00e5ff66;
   transform: scale(1.02);
@@ -220,10 +220,8 @@ button:hover {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(70px, 1fr));
   gap: 12px;
-  margin-top: 20px;
+  margin: 20px auto;
   max-width: 1200px;
-  margin-left: auto;
-  margin-right: auto;
 }
 
 .emoji-card {
@@ -282,7 +280,6 @@ footer a:hover {
    CUSTOM ALERT
 ========================== */
 #customAlert {
-  font-family: 'Poppins', sans-serif;
   position: fixed;
   top: 20px;
   right: 20px;
@@ -330,13 +327,8 @@ footer a:hover {
    RESPONSIVE DESIGN
 ========================== */
 @media (max-width: 1024px){
-  .tool-cards {
-    gap: 20px;
-  }
-  .card {
-    width: 45%;
-    max-width: 100%;
-  }
+  .tool-cards { gap: 20px; }
+  .card { width: 45%; max-width: 100%; }
 }
 
 @media (max-width: 768px){
@@ -344,44 +336,17 @@ footer a:hover {
     flex-direction: column;
     align-items: center;
   }
-
-  .hero {
-    padding: 40px 15px 25px;
-  }
-
-  .hero h1 {
-    font-size: 2.2rem;
-  }
-
-  .hero p {
-    font-size: 1rem;
-  }
-
+  .hero { padding: 40px 15px 25px; }
+  .hero h1 { font-size: 2.2rem; }
+  .hero p { font-size: 1rem; }
   .card {
     width: 90%;
     max-width: 100%;
     padding: 25px 15px;
   }
-
-  input, select, textarea, button {
-    width: 95%;
-  }
-
-  #customAlert {
-    right: 10px;
-    left: 10px;
-    text-align: center;
-  }
-
-  .emoji-container {
-    grid-template-columns: repeat(auto-fill, minmax(60px, 1fr));
-  }
-
-  .emoji {
-    font-size: 24px;
-  }
-
-  #emojiSearch {
-    width: 95%;
-  }
+  input, select, textarea, button { width: 95%; }
+  #customAlert { right: 10px; left: 10px; text-align: center; }
+  .emoji-container { grid-template-columns: repeat(auto-fill, minmax(60px, 1fr)); }
+  .emoji { font-size: 24px; }
+  #emojiSearch { width: 95%; }
 }
