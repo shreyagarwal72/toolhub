@@ -64,8 +64,8 @@ body {
 
 .tool-cards {
   display: flex;
-  flex-wrap: wrap;
   gap: 25px;
+  flex-wrap: wrap;
   justify-content: center;
   max-width: 1300px;
   width: 100%;
@@ -146,47 +146,207 @@ body {
 }
 
 /* ==========================
+   INPUTS & BUTTONS
+========================== */
+input,
+select,
+textarea {
+  width: 100%;
+  max-width: 500px;
+  padding: 12px;
+  margin: 10px auto;
+  border-radius: 12px;
+  border: none;
+  outline: none;
+  font-size: 1rem;
+  background-color: #262626;
+  color: #fff;
+  transition: box-shadow 0.3s, border 0.3s, transform 0.2s ease;
+  display: block;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+  border: 1px solid #00e5ff;
+  box-shadow: 0 0 10px #00e5ff66;
+  transform: scale(1.02);
+}
+
+button {
+  cursor: pointer;
+  border: none;
+  border-radius: 12px;
+  background: linear-gradient(135deg, #00e5ff, #00bcd4);
+  color: #121212;
+  padding: 12px 25px;
+  font-weight: bold;
+  margin: 15px auto;
+  transition: transform 0.25s, background-color 0.35s, box-shadow 0.35s;
+  display: block;
+}
+
+button:hover {
+  transform: scale(1.08) rotate(-1deg);
+  background: linear-gradient(135deg, #14ffec, #00e5ff);
+  box-shadow: 0 6px 16px rgba(0,229,255,0.35);
+}
+
+/* ==========================
+   EMOJI TOOL
+========================== */
+#emojiSearch {
+  width: 100%;
+  max-width: 500px;
+  padding: 12px 15px;
+  margin: 25px auto 20px;
+  display: block;
+  border-radius: 12px;
+  border: 1px solid #333;
+  font-size: 1rem;
+  outline: none;
+  background-color: #262626;
+  color: #fff;
+  transition: 0.3s all, transform 0.2s ease;
+}
+
+#emojiSearch:focus {
+  border-color: #00e5ff;
+  box-shadow: 0 0 10px #00e5ff66;
+  transform: scale(1.02);
+}
+
+.emoji-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(70px, 1fr));
+  gap: 12px;
+  margin: 20px auto;
+  max-width: 1200px;
+}
+
+.emoji-card {
+  background-color: #1f1f1f;
+  border-radius: 12px;
+  padding: 10px 0;
+  cursor: pointer;
+  transition: transform 0.25s ease, background-color 0.35s ease, border 0.35s ease;
+  text-align: center;
+  border: 1px solid #333;
+}
+
+.emoji-card:hover {
+  transform: scale(1.15) rotate(3deg);
+  background-color: #00e5ff22;
+  border-color: #00e5ff55;
+}
+
+.emoji {
+  font-size: 28px;
+  display: block;
+  margin-bottom: 5px;
+  animation: bounce 1.8s infinite;
+}
+
+.emoji-card span:last-child {
+  font-size: 12px;
+  color: #ccc;
+  word-break: break-word;
+}
+
+/* ==========================
+   FOOTER
+========================== */
+footer {
+  margin-top: auto;
+  padding: 25px 20px;
+  background: #1a1a1a;
+  text-align: center;
+  color: #ccc;
+  font-size: 0.95rem;
+}
+
+footer a {
+  color: #00e5ff;
+  text-decoration: none;
+  font-weight: bold;
+  transition: color 0.35s;
+}
+
+footer a:hover {
+  color: #14ffec;
+}
+
+/* ==========================
+   CUSTOM ALERT
+========================== */
+#customAlert {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  background-color: #ff5722;
+  color: #fff;
+  padding: 12px 20px;
+  border-radius: 12px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+  z-index: 9999;
+  animation: fadeOut 4s forwards;
+  max-width: 90%;
+  word-wrap: break-word;
+}
+
+/* ==========================
+   ANIMATIONS
+========================== */
+@keyframes fadeOut {
+  0% {opacity: 1;}
+  80% {opacity: 1;}
+  100% {opacity: 0;}
+}
+
+@keyframes fadeSlideDown {
+  0% {opacity: 0; transform: translateY(-30px);}
+  100% {opacity: 1; transform: translateY(0);}
+}
+
+@keyframes fadeInUp {
+  0% {opacity: 0; transform: translateY(30px);}
+  100% {opacity: 1; transform: translateY(0);}
+}
+
+@keyframes textGlow {
+  from {text-shadow: 0 0 5px #00e5ff, 0 0 10px #00e5ff;}
+  to {text-shadow: 0 0 20px #14ffec, 0 0 40px #00e5ff;}
+}
+
+@keyframes bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-6px); }
+}
+
+/* ==========================
    RESPONSIVE DESIGN
 ========================== */
-
-/* Desktop 4x4 grid */
-@media (min-width: 1025px) {
-  .tool-cards { gap: 25px; justify-content: center; }
-  .card { width: 23%; }
+@media (max-width: 1024px){
+  .tool-cards { gap: 20px; }
+  .card { width: 45%; max-width: 100%; }
 }
 
-/* Tablets 2 columns */
-@media (max-width: 1024px) {
-  .card { width: 48%; }
-}
-
-/* Mobile 1-column vertical with numbered list */
-@media (max-width: 768px) {
+@media (max-width: 768px){
   .tool-cards {
     flex-direction: column;
     align-items: center;
   }
-  .card {
-    width: 95%;
-    max-width: 100%;
-    padding: 25px 15px;
-    counter-increment: tool-counter;
-  }
-
-  /* Numbering cards like 1,2,3... */
-  .card h3::before {
-    content: counter(tool-counter) ". ";
-    color: #00e5ff;
-    font-weight: 700;
-    margin-right: 5px;
-  }
-
   .hero { padding: 40px 15px 25px; }
   .hero h1 { font-size: 2.2rem; }
   .hero p { font-size: 1rem; }
-}
-
-/* Reset counter */
-.tool-cards {
-  counter-reset: tool-counter;
+  .card {
+    width: 90%;
+    max-width: 100%;
+    padding: 25px 15px;
+  }
+  input, select, textarea, button { width: 95%; }
+  #customAlert { right: 10px; left: 10px; text-align: center; }
+  .emoji-container { grid-template-columns: repeat(auto-fill, minmax(60px, 1fr)); }
+  .emoji { font-size: 24px; }
+  #emojiSearch { width: 95%; }
 }
