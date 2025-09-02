@@ -112,7 +112,7 @@
 
     /* Alphabet Index */
     .alphabet-index {
-      width: 30px;
+      width: 32px;
       background: #1a1a1a;
       display: flex;
       flex-direction: column;
@@ -125,20 +125,33 @@
     }
 
     .alphabet-index a {
-      color: #aaa;
       font-size: 14px;
       margin: 4px 0;
       text-decoration: none;
       transition: color 0.3s;
     }
 
-    .alphabet-index a:hover {
+    .alphabet-index a.active {
       color: #00e5ff;
+      cursor: pointer;
+    }
+
+    .alphabet-index a.disabled {
+      color: #555;
+      pointer-events: none;
+      cursor: default;
+    }
+
+    .alphabet-index a.active:hover {
+      color: #00ffff;
     }
 
     @media (max-width: 768px) {
       .alphabet-index {
-        width: 25px;
+        width: 26px;
+      }
+      .alphabet-index a {
+        font-size: 12px;
       }
     }
   </style>
@@ -154,6 +167,7 @@
   <!-- Tools Section -->
   <div class="tools-container">
 
+    <!-- All tools from old index.html -->
     <div class="letter-section" id="A">
       <h2>A</h2>
       <div class="card">
@@ -294,32 +308,32 @@
 
   <!-- Alphabet Index -->
   <div class="alphabet-index">
-    <a href="#A">A</a>
-    <a href="#B">B</a>
-    <a href="#C">C</a>
-    <a href="#D">D</a>
-    <a href="#E">E</a>
-    <a href="#F">F</a>
-    <a href="#G">G</a>
-    <a href="#H">H</a>
-    <a href="#I">I</a>
-    <a href="#J">J</a>
-    <a href="#K">K</a>
-    <a href="#L">L</a>
-    <a href="#M">M</a>
-    <a href="#N">N</a>
-    <a href="#O">O</a>
-    <a href="#P">P</a>
-    <a href="#Q">Q</a>
-    <a href="#R">R</a>
-    <a href="#S">S</a>
-    <a href="#T">T</a>
-    <a href="#U">U</a>
-    <a href="#V">V</a>
-    <a href="#W">W</a>
-    <a href="#X">X</a>
-    <a href="#Y">Y</a>
-    <a href="#Z">Z</a>
+    <a href="#A" class="active">A</a>
+    <a class="disabled">B</a>
+    <a href="#C" class="active">C</a>
+    <a class="disabled">D</a>
+    <a href="#E" class="active">E</a>
+    <a href="#F" class="active">F</a>
+    <a class="disabled">G</a>
+    <a class="disabled">H</a>
+    <a href="#I" class="active">I</a>
+    <a class="disabled">J</a>
+    <a class="disabled">K</a>
+    <a href="#L" class="active">L</a>
+    <a class="disabled">M</a>
+    <a href="#N" class="active">N</a>
+    <a class="disabled">O</a>
+    <a href="#P" class="active">P</a>
+    <a href="#Q" class="active">Q</a>
+    <a href="#R" class="active">R</a>
+    <a href="#S" class="active">S</a>
+    <a class="disabled">T</a>
+    <a href="#U" class="active">U</a>
+    <a class="disabled">V</a>
+    <a href="#W" class="active">W</a>
+    <a class="disabled">X</a>
+    <a href="#Y" class="active">Y</a>
+    <a class="disabled">Z</a>
   </div>
 
   <script>
