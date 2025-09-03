@@ -3,10 +3,14 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Nextup Tools</title>
+  <title>Nextup Tools | All Webtools in One Place</title>
+  <meta name="description" content="All webtools in one place! Calculators, converters, text tools, emoji picker, password generator, and more—by Nextup Studio. Install as app.">
+  <meta name="keywords" content="webtools, calculator, converter, text tools, password generator, installable app, Nextup Tools, Nextup Studio">
+  <meta name="theme-color" content="#2196f3">
+  <link rel="manifest" href="manifest.json">
+  <link rel="icon" href="logo/3.png" type="image/png">
   <link rel="stylesheet" href="style.css">
   <style>
-    /* Scrollbar remove */
     html, body {
       margin: 0;
       padding: 0;
@@ -15,73 +19,76 @@
       background: #121212;
       color: #fff;
     }
-
-    /* Header */
     .site-header {
       background: #1e1e1e;
-      padding: 15px;
+      padding: 15px 0 10px 0;
       text-align: center;
       border-bottom: 2px solid #00bcd4;
       animation: fadeDown 1s ease-out;
     }
     .site-header h1 {
       margin: 0;
-      font-size: 1.8rem;
+      font-size: 2rem;
       color: #00bcd4;
+      font-weight: 900;
+      text-decoration: none;
     }
     .site-header p {
       margin: 5px 0 0;
-      font-size: 0.9rem;
-      color: #aaa;
+      font-size: 1rem;
+      color: #46e0e0;
+      font-weight: 600;
+      letter-spacing: 1px;
     }
-
-    /* Tools grid */
     .tools-container {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
       gap: 20px;
-      padding: 20px;
+      padding: 24px 16px 56px 16px;
       animation: fadeUp 1s ease-out;
     }
-
-    /* Tool cards */
     .tool-card {
       background: #1e1e1e;
       padding: 20px;
       border-radius: 12px;
       text-align: center;
       box-shadow: 0 4px 15px rgba(0,0,0,0.5);
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      transition: transform 0.3s, box-shadow 0.3s;
     }
     .tool-card:hover {
       transform: translateY(-8px);
-      box-shadow: 0 8px 20px rgba(0,188,212,0.4);
+      box-shadow: 0 8px 24px #00bcd466;
     }
     .tool-card h2 {
-      font-size: 1.2rem;
+      font-size: 1.18rem;
       margin-bottom: 10px;
       color: #00bcd4;
+      font-weight: 800;
     }
     .tool-card p {
-      font-size: 0.9rem;
-      color: #ccc;
-      margin-bottom: 15px;
+      font-size: 0.95rem;
+      color: #cccccc;
+      margin-bottom: 14px;
     }
     .btn {
       display: inline-block;
       padding: 8px 14px;
       border-radius: 6px;
       background: #00bcd4;
-      color: #000;
+      color: #212121;
       text-decoration: none;
       font-weight: bold;
-      transition: background 0.3s ease;
+      font-size: 1.06em;
+      transition: background 0.3s;
+      box-shadow: 0 2px 10px #00bcd422;
+      border: none;
+      outline: none;
+      cursor: pointer;
     }
     .btn:hover {
       background: #0097a7;
+      color: #fff;
     }
-
-    /* Alphabet Scrollbar (only on mobile) */
     .alphabet-scroll {
       display: flex;
       overflow-x: auto;
@@ -97,8 +104,6 @@
       text-decoration: none;
       font-weight: bold;
     }
-
-    /* Animations */
     @keyframes fadeUp {
       from { opacity: 0; transform: translateY(30px); }
       to { opacity: 1; transform: translateY(0); }
@@ -106,6 +111,18 @@
     @keyframes fadeDown {
       from { opacity: 0; transform: translateY(-30px); }
       to { opacity: 1; transform: translateY(0); }
+    }
+    #installAppBtn {
+      display: none;
+      position: fixed;
+      bottom: 2em;
+      right: 2em;
+      z-index: 9999;
+      box-shadow: 0 4px 24px #00bcd422;
+    }
+    @media (max-width: 600px) {
+      .tools-container { grid-template-columns: 1fr; padding-bottom: 96px; }
+      #installAppBtn { right: 1em; bottom: 1em; font-size: 0.98em; padding: 10px 16px;}
     }
   </style>
 </head>
@@ -115,8 +132,10 @@
     <h1>Nextup Tools</h1>
     <p>All Webtools in One Place</p>
   </header>
+  <!-- Install App Button PWA -->
+  <button id="installAppBtn" class="btn">Install App</button>
 
-  <!-- Tools Container -->
+  <!-- Tools Grid -->
   <main class="tools-container">
     <div class="tool-card"><h2>Age & Unit Calculator</h2><p>Calculate your age or convert units easily.</p><a href="age-unit.html" class="btn">Go to Tool</a></div>
     <div class="tool-card"><h2>Case Converter</h2><p>Convert text to UPPERCASE, lowercase, or Title Case.</p><a href="case.html" class="btn">Go to Tool</a></div>
@@ -135,6 +154,32 @@
     <div class="tool-card"><h2>Word Counter</h2><p>Count words and characters in your text.</p><a href="word.html" class="btn">Go to Tool</a></div>
     <div class="tool-card"><h2>YouTube Downloader</h2><p>Download YouTube videos in MP4 or MP3.</p><a href="yt-download.html" class="btn">Go to Tool</a></div>
   </main>
-
+  <footer class="site-footer" style="background:#161616;padding:22px 0 8px 0;text-align:center;font-size:1rem;border-top:2px solid #00bcd4;color:#44d2e0;">
+    &copy; 2025 Nextup Studio | All rights reserved.
+  </footer>
+  <script>
+    // PWA Install logic
+    let deferredPrompt;
+    const installBtn = document.getElementById('installAppBtn');
+    if (window.matchMedia('(display-mode: standalone)').matches) {
+      installBtn.style.display = 'none';
+    }
+    window.addEventListener('beforeinstallprompt', (e) => {
+      e.preventDefault();
+      deferredPrompt = e;
+      installBtn.style.display = 'block';
+    });
+    installBtn.addEventListener('click', async () => {
+      if (deferredPrompt) {
+        deferredPrompt.prompt();
+        await deferredPrompt.userChoice;
+        deferredPrompt = null;
+        installBtn.style.display = 'none';
+      }
+    });
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('service-worker.js');
+    }
+  </script>
 </body>
 </html>
