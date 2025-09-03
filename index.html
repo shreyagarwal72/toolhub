@@ -6,133 +6,57 @@
   <title>Nextup Tools | All Webtools in One Place</title>
   <meta name="description" content="All webtools in one place! Calculators, converters, text tools, emoji picker, password generator, and more—by Nextup Studio. Install as app.">
   <meta name="keywords" content="webtools, calculator, converter, text tools, password generator, installable app, Nextup Tools, Nextup Studio">
-  <meta name="theme-color" content="#2196f3">
+  <meta name="author" content="Nextup Studio">
+  <meta name="theme-color" content="#00e5ff">
   <link rel="manifest" href="manifest.json">
   <link rel="icon" href="logo2.png" type="image/png">
   <link rel="stylesheet" href="style.css">
   <style>
-    html, body {
-      margin: 0;
-      padding: 0;
-      overflow-y: auto;
-      font-family: 'Segoe UI', sans-serif;
-      background: #121212;
-      color: #fff;
-    }
-    .site-header {
-      background: #1e1e1e;
-      padding: 15px 0 10px 0;
-      text-align: center;
-      border-bottom: 2px solid #00bcd4;
-      animation: fadeDown 1s ease-out;
-    }
-    .site-header h1 {
-      margin: 0;
-      font-size: 2rem;
-      color: #00bcd4;
-      font-weight: 900;
-      text-decoration: none;
-    }
-    .site-header p {
-      margin: 5px 0 0;
-      font-size: 1rem;
-      color: #46e0e0;
-      font-weight: 600;
-      letter-spacing: 1px;
-    }
-    .tools-container {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 20px;
-      padding: 24px 16px 56px 16px;
-      animation: fadeUp 1s ease-out;
-    }
-    .tool-card {
-      background: #1e1e1e;
-      padding: 20px;
-      border-radius: 12px;
-      text-align: center;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.5);
-      transition: transform 0.3s, box-shadow 0.3s;
-    }
-    .tool-card:hover {
-      transform: translateY(-8px);
-      box-shadow: 0 8px 24px #00bcd466;
-    }
-    .tool-card h2 {
-      font-size: 1.18rem;
-      margin-bottom: 10px;
-      color: #00bcd4;
-      font-weight: 800;
-    }
-    .tool-card p {
-      font-size: 0.95rem;
-      color: #cccccc;
-      margin-bottom: 14px;
-    }
-    .btn {
-      display: inline-block;
-      padding: 8px 14px;
-      border-radius: 6px;
-      background: #00bcd4;
-      color: #212121;
-      text-decoration: none;
-      font-weight: bold;
-      font-size: 1.06em;
-      transition: background 0.3s;
-      box-shadow: 0 2px 10px #00bcd422;
-      border: none;
-      outline: none;
-      cursor: pointer;
-    }
-    .btn:hover {
-      background: #0097a7;
-      color: #fff;
-    }
-    .alphabet-scroll {
-      display: flex;
-      overflow-x: auto;
-      white-space: nowrap;
-      padding: 10px;
-      background: #1e1e1e;
-      border-top: 2px solid #00bcd4;
-    }
-    .alphabet-scroll a {
-      flex: 0 0 auto;
-      margin: 0 5px;
-      color: #00bcd4;
-      text-decoration: none;
-      font-weight: bold;
-    }
-    @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(30px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-    @keyframes fadeDown {
-      from { opacity: 0; transform: translateY(-30px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-    #installAppBtn {
-      display: none;
+    /* Intro Screen */
+    #intro {
       position: fixed;
-      bottom: 2em;
-      right: 2em;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: #121212;
+      display: flex;
+      justify-content: center;
+      align-items: center;
       z-index: 9999;
-      box-shadow: 0 4px 24px #00bcd422;
+      animation: fadeOut 1.7s ease forwards;
+      animation-delay: 1.7s;
     }
-    @media (max-width: 600px) {
-      .tools-container { grid-template-columns: 1fr; padding-bottom: 96px; }
-      #installAppBtn { right: 1em; bottom: 1em; font-size: 0.98em; padding: 10px 16px;}
+    #intro img {
+      width: 150px;
+      height: auto;
+      animation: zoomIn 1.7s ease;
     }
+    @keyframes zoomIn {
+      from { transform: scale(0.5); opacity: 0; }
+      to { transform: scale(1); opacity: 1; }
+    }
+    @keyframes fadeOut {
+      to { opacity: 0; visibility: hidden; }
+    }
+    /* Hide scrollbar cross-browser */
+    ::-webkit-scrollbar { display: none; }
+    body { -ms-overflow-style: none; scrollbar-width: none; }
   </style>
 </head>
 <body>
+  <!-- Intro Animation -->
+  <div id="intro">
+    <img src="logo2.png" alt="Nextup Tools Logo">
+  </div>
+
   <!-- Header -->
   <header class="site-header">
     <h1>Nextup Tools</h1>
     <p>All Webtools in One Place</p>
   </header>
-  <!-- Install App Button PWA -->
+
+  <!-- Install App Button (PWA) -->
   <button id="installAppBtn" class="btn">Install App</button>
 
   <!-- Tools Grid -->
@@ -154,10 +78,30 @@
     <div class="tool-card"><h2>Word Counter</h2><p>Count words and characters in your text.</p><a href="word.html" class="btn">Go to Tool</a></div>
     <div class="tool-card"><h2>YouTube Downloader</h2><p>Download YouTube videos in MP4 or MP3.</p><a href="yt-download.html" class="btn">Go to Tool</a></div>
   </main>
-  <footer class="site-footer" style="background:#161616;padding:22px 0 8px 0;text-align:center;font-size:1rem;border-top:2px solid #00bcd4;color:#44d2e0;">
-    &copy; 2025 Nextup Studio | All rights reserved.
+
+  <!-- Footer -->
+  <footer>
+    <p>&copy; 2025 Nextup Studio | All rights reserved.</p>
   </footer>
+
+  <!-- Alphabet Scroll (Mobile only) -->
+  <div class="alphabet-scroll">
+    <a href="#A">A</a><a href="#B">B</a><a href="#C">C</a><a href="#D">D</a>
+    <a href="#E">E</a><a href="#F">F</a><a href="#G">G</a><a href="#H">H</a>
+    <a href="#I">I</a><a href="#J">J</a><a href="#K">K</a><a href="#L">L</a>
+    <a href="#M">M</a><a href="#N">N</a><a href="#O">O</a><a href="#P">P</a>
+    <a href="#Q">Q</a><a href="#R">R</a><a href="#S">S</a><a href="#T">T</a>
+    <a href="#U">U</a><a href="#V">V</a><a href="#W">W</a><a href="#X">X</a>
+    <a href="#Y">Y</a><a href="#Z">Z</a>
+  </div>
+
+  <!-- Scripts -->
   <script>
+    // Hide intro after animation (fallback if animation blocked)
+    setTimeout(() => {
+      document.getElementById("intro").style.display = "none";
+    }, 2500);
+
     // PWA Install logic
     let deferredPrompt;
     const installBtn = document.getElementById('installAppBtn');
