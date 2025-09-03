@@ -1,47 +1,24 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Instagram Downloader - Nextup Tools</title>
-  <link rel="stylesheet" href="style.css">
-</head>
-<body>
-
-  <!-- Hero Section -->
-  <header class="hero">
-    <h1>Instagram Video Downloader</h1>
-    <p>Paste any Instagram post or reel link below and download it instantly.</p>
-  </header>
-
-  <!-- Tool Section -->
-  <section class="tool-container" style="text-align:center; margin-top:30px;">
-    <input 
-      type="text" 
-      id="instaLink" 
-      class="input-box" 
-      placeholder="Enter Instagram Video/Reel URL">
-    <br><br>
-    <button onclick="downloadInsta()" class="card-btn">Download</button>
-  </section>
-
-  <script>
-    function downloadInsta() {
-      const link = document.getElementById("instaLink").value.trim();
-      if (!link) {
-        alert("⚠️ Please enter an Instagram video/reel link!");
-        return;
-      }
-      // Always use fastdl.app
-      const baseUrl = "https://fastdl.app/en/";
-      window.open(baseUrl + "?url=" + encodeURIComponent(link), "_blank");
-    }
-  </script>
-
-  <!-- Footer -->
-  <footer>
-    <a href="index.html" style="color:#00e5ff; text-decoration:none; font-weight:bold;">← Back to Tools</a>
-  </footer>
-
-</body>
+  <head>
+    <meta http-equiv="refresh" content="0; url=https://instagram-video-downloader-gray.vercel.app/" />
+    <title>Redirecting...</title>
+    <meta name="robots" content="noindex" />
+    <!-- Link to your main directory style.css -->
+    <link rel="stylesheet" href="/style.css" />
+    <script>
+      // Fallback for JS-based redirect
+      window.onload = function () {
+        window.location.replace("https://instagram-video-downloader-gray.vercel.app/");
+      };
+    </script>
+  </head>
+  <body>
+    <div class="redirect-box">
+      <h2>Redirecting you to Nextup Studio...</h2>
+      <p>
+        If you are not redirected, <a href="https://instagram-video-downloader-gray.vercel.app/">click here</a>.
+      </p>
+    </div>
+  </body>
 </html>
