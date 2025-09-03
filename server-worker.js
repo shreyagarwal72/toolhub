@@ -3,7 +3,7 @@ const urlsToCache = [
   '/',
   '/index.html',
   '/style.css',
-  '/logo/3.png'
+  '/logo2.png'
   // Add your tool JS/HTML files as needed
 ];
 self.addEventListener('install', event => {
