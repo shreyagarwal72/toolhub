@@ -6,6 +6,7 @@
   padding: 0;
   box-sizing: border-box;
   font-family: 'Poppins', sans-serif;
+  transition: all 0.3s ease;
 }
 
 body {
@@ -51,7 +52,7 @@ body {
 ========================== */
 .tools-container {
   display: grid;
-  grid-template-columns: repeat(4, 1fr); /* Desktop 4x4 */
+  grid-template-columns: repeat(4, 1fr);
   gap: 25px;
   justify-content: center;
   padding: 40px 20px;
@@ -275,7 +276,7 @@ footer a:hover {
 
 @media (max-width: 768px){
   .tools-container {
-    grid-template-columns: 1fr; /* Mobile 1x16 */
+    grid-template-columns: 1fr;
     gap: 20px;
   }
 
