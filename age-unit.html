@@ -8,51 +8,54 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <!-- Hero Section -->
-  <header class="hero">
+  <!-- Intro Animation -->
+  <div id="intro">
+    <img src="logo2.png" alt="ToolHub Logo">
+  </div>
+
+  <!-- Header -->
+  <header class="site-header">
     <h1>Age & Unit Converter</h1>
-    <p>Calculate your exact age and convert units instantly. All in one place!</p>
+    <p>Calculate your exact age and convert units instantly — all in one place!</p>
   </header>
 
-  <!-- Main Content -->
-  <section class="tools">
-    <div class="tool-cards" style="justify-content:center; gap:20px; flex-wrap:wrap;">
+  <!-- Main Section -->
+  <main class="tools-container">
 
-      <!-- Age Calculator Card -->
-      <div class="card" style="max-width: 400px;">
-        <h3>Age Calculator</h3>
-        <input type="date" id="birthDate">
-        <button onclick="calculateAge()" class="card-btn">Calculate Age</button>
-        <div id="ageResult" style="margin-top:15px; color:#00e5ff; font-weight:bold;"></div>
-      </div>
-
-      <!-- Unit Converter Card -->
-      <div class="card" style="max-width: 400px;">
-        <h3>Unit Converter</h3>
-        <input type="number" id="unitInput" placeholder="Enter value">
-        <select id="unitType" onchange="updateUnits()">
-          <option value="length">Length</option>
-          <option value="weight">Weight</option>
-          <option value="temperature">Temperature</option>
-        </select>
-        <select id="unitFrom"></select>
-        <select id="unitTo"></select>
-        <button onclick="convertUnit()" class="card-btn">Convert</button>
-        <div id="unitResult" style="margin-top:15px; color:#00e5ff; font-weight:bold;"></div>
-      </div>
-
+    <!-- Age Calculator -->
+    <div class="tool-card">
+      <h2>Age Calculator</h2>
+      <input type="date" id="birthDate">
+      <button onclick="calculateAge()">Calculate Age</button>
+      <div id="ageResult" class="result-box"></div>
     </div>
-  </section>
+
+    <!-- Unit Converter -->
+    <div class="tool-card">
+      <h2>Unit Converter</h2>
+      <input type="number" id="unitInput" placeholder="Enter value">
+      <select id="unitType" onchange="updateUnits()">
+        <option value="length">Length</option>
+        <option value="weight">Weight</option>
+        <option value="temperature">Temperature</option>
+      </select>
+      <select id="unitFrom"></select>
+      <select id="unitTo"></select>
+      <button onclick="convertUnit()">Convert</button>
+      <div id="unitResult" class="result-box"></div>
+    </div>
+
+  </main>
 
   <!-- Footer -->
-  <footer style="text-align:center; margin-top:50px; color:#ccc; font-size:0.9em;">
-    <a href="https://shreyagarwal72.github.io" target="_blank" style="color:#00e5ff; text-decoration:none; font-weight:bold;">
-      Powered by Nextup Studio
-    </a>
+  <footer>
+    <p>
+      Powered by 
+      <a href="https://shreyagarwal72.github.io" target="_blank">Nextup Studio</a>
+    </p>
   </footer>
 
-  <!-- External Script -->
-  <script src="script.js"></script>
+  <!-- Scripts -->
   <script>
     // =============================
     // AGE CALCULATOR
@@ -78,7 +81,8 @@
         months += 12;
       }
 
-      document.getElementById('ageResult').innerText = `You are ${years} years, ${months} months, and ${days} days old.`;
+      document.getElementById('ageResult').innerText = 
+        `You are ${years} years, ${months} months, and ${days} days old.`;
     }
 
     // =============================
@@ -149,7 +153,8 @@
         }
       }
 
-      document.getElementById('unitResult').innerText = `${value} ${from} = ${result.toFixed(4)} ${to}`;
+      document.getElementById('unitResult').innerText = 
+        `${value} ${from} = ${result.toFixed(4)} ${to}`;
     }
 
     // Initialize units dropdown on page load
