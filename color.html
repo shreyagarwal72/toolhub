@@ -17,7 +17,7 @@
 
   <!-- Tool Card -->
   <section class="tools">
-    <div class="tool-cards" style="justify-content:center;">
+    <div class="tool-cards">
       <div class="card">
         <h3>Color Converter</h3>
         <input type="color" id="colorInput" value="#00bcd4">
@@ -25,18 +25,19 @@
         <input type="text" id="rgbInput" placeholder="RGB (0,188,212)">
         <input type="text" id="hslInput" placeholder="HSL (187,100%,41%)">
         <button onclick="copyColor()" class="card-btn">Copy Color Value</button>
-        <div id="colorPreview" style="margin-top:15px; height:50px; border-radius:12px; border:2px solid #00e5ff;"></div>
+        <div id="colorPreview" class="color-box"></div>
       </div>
     </div>
   </section>
 
-  <footer style="text-align:center; margin-top:50px; color:#ccc; font-size:0.9em;">
-    <a href="https://shreyagarwal72.github.io" target="_blank" style="color:#00e5ff; text-decoration:none; font-weight:bold;">
+  <!-- Footer -->
+  <footer>
+    <a href="https://shreyagarwal72.github.io" target="_blank">
       Powered by Nextup Studio
     </a>
   </footer>
 
-  <script src="script.js"></script>
+  <!-- Script -->
   <script>
     const colorInput = document.getElementById('colorInput');
     const hexInput = document.getElementById('hexInput');
