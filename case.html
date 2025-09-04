@@ -16,27 +16,46 @@
 
   <!-- Main Content -->
   <section class="tools">
-    <div class="tool-cards" style="justify-content: center;">
-      <div class="card" style="max-width: 600px;">
+    <div class="tool-cards">
+      <div class="card">
         <textarea id="caseText" placeholder="Type your text here..." rows="6"></textarea>
-        <div style="display:flex; gap:10px; flex-wrap:wrap; margin-bottom:15px;">
+        
+        <div class="btn-group">
           <button onclick="convertCase('upper')" class="card-btn">UPPERCASE</button>
           <button onclick="convertCase('lower')" class="card-btn">lowercase</button>
           <button onclick="convertCase('title')" class="card-btn">Title Case</button>
         </div>
-        <div id="caseResult" style="margin-top:10px; color:#00e5ff; font-weight:bold;"></div>
+        
+        <div id="caseResult" class="result-box"></div>
       </div>
     </div>
   </section>
 
   <!-- Footer -->
-  <footer style="text-align:center; margin-top:50px; color:#ccc; font-size:0.9em;">
-    <a href="https://shreyagarwal72.github.io" target="_blank" style="color:#00e5ff; text-decoration:none; font-weight:bold;">
+  <footer>
+    <a href="https://shreyagarwal72.github.io" target="_blank">
       Powered by Nextup Studio
     </a>
   </footer>
 
-  <!-- External Script -->
-  <script src="script.js"></script>
+  <!-- Script -->
+  <script>
+    function convertCase(type) {
+      const text = document.getElementById("caseText").value;
+      let result = "";
+
+      if (type === "upper") {
+        result = text.toUpperCase();
+      } else if (type === "lower") {
+        result = text.toLowerCase();
+      } else if (type === "title") {
+        result = text.toLowerCase().split(" ")
+          .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+          .join(" ");
+      }
+
+      document.getElementById("caseResult").innerText = result;
+    }
+  </script>
 </body>
 </html>
