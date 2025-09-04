@@ -18,22 +18,49 @@
   <section class="tools">
     <div class="tool-cards" style="justify-content: center;">
       <div class="card" style="max-width: 500px;">
-        <input type="text" id="qrText" placeholder="Enter text or URL" style="width:100%; padding:12px; border-radius:8px; border:none; margin-bottom:15px;">
-        <button onclick="generateQR()" class="card-btn">Generate QR</button>
-        <div id="qrResult" style="margin-top:20px; text-align:center;"></div>
+        
+        <input type="text" id="qrText" placeholder="Enter text or URL">
+        
+        <div class="btn-group">
+          <button onclick="generateQR()" class="card-btn">Generate</button>
+          <button onclick="clearQR()" class="card-btn danger">Clear</button>
+        </div>
+
+        <p id="errorMsg" class="error-msg"></p>
+        <div id="qrResult" class="output-box" style="text-align:center;"></div>
       </div>
     </div>
   </section>
 
+  <!-- Footer -->
+  <footer style="text-align:center; margin-top:50px; color:#ccc; font-size:0.9em;">
+    <a href="https://shreyagarwal72.github.io" target="_blank" style="color:#00e5ff; text-decoration:none; font-weight:bold;">
+      Powered by Nextup Studio
+    </a>
+  </footer>
+
   <script>
     function generateQR() {
       const text = document.getElementById('qrText').value.trim();
+      const errorMsg = document.getElementById("errorMsg");
+      const qrResult = document.getElementById("qrResult");
+
+      errorMsg.textContent = "";
+      qrResult.innerHTML = "";
+
       if(!text) {
-        alert('Please enter text or URL to generate QR!');
+        errorMsg.textContent = "⚠ Please enter text or URL to generate QR!";
         return;
       }
+
       const qrUrl = `https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=${encodeURIComponent(text)}`;
-      document.getElementById('qrResult').innerHTML = `<img src="${qrUrl}" alt="QR Code" style="border-radius:12px;">`;
+      qrResult.innerHTML = `<img src="${qrUrl}" alt="QR Code" class="qr-image">`;
+    }
+
+    function clearQR() {
+      document.getElementById("qrText").value = "";
+      document.getElementById("qrResult").innerHTML = "";
+      document.getElementById("errorMsg").textContent = "";
     }
   </script>
 </body>
