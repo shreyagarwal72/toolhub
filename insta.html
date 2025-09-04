@@ -1,24 +1,88 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta http-equiv="refresh" content="0; url=https://instagram-video-downloader-gray.vercel.app/" />
-    <title>Redirecting...</title>
-    <meta name="robots" content="noindex" />
-    <!-- Link to your main directory style.css -->
-    <link rel="stylesheet" href="/style.css" />
-    <script>
-      // Fallback for JS-based redirect
-      window.onload = function () {
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Redirecting... | Nextup Tools</title>
+  <meta name="robots" content="noindex" />
+
+  <!-- Auto Redirect -->
+  <meta http-equiv="refresh" content="3; url=https://instagram-video-downloader-gray.vercel.app/" />
+
+  <!-- External CSS -->
+  <link rel="stylesheet" href="/style.css" />
+
+  <style>
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      text-align: center;
+      background: #121212;
+      color: #fff;
+    }
+    .redirect-box {
+      background: #1e1e1e;
+      padding: 30px;
+      border-radius: 16px;
+      border: 1px solid #333;
+      box-shadow: 0 0 20px rgba(0, 229, 255, 0.2);
+      animation: fadeIn 1.5s ease;
+      max-width: 400px;
+      width: 90%;
+    }
+    .redirect-box h2 {
+      color: #00e5ff;
+      margin-bottom: 12px;
+      animation: pulse 1.5s infinite;
+    }
+    .redirect-box p {
+      color: #ccc;
+      font-size: 0.95rem;
+    }
+    .redirect-box a {
+      color: #00e5ff;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    @keyframes fadeIn {
+      from {opacity: 0; transform: translateY(20px);}
+      to {opacity: 1; transform: translateY(0);}
+    }
+    @keyframes pulse {
+      0% { opacity: 1; }
+      50% { opacity: 0.5; }
+      100% { opacity: 1; }
+    }
+    .loader {
+      margin: 20px auto;
+      width: 40px;
+      height: 40px;
+      border: 4px solid #333;
+      border-top: 4px solid #00e5ff;
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+    }
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+  </style>
+
+  <script>
+    // Fallback for JS-based redirect
+    window.onload = function () {
+      setTimeout(() => {
         window.location.replace("https://instagram-video-downloader-gray.vercel.app/");
-      };
-    </script>
-  </head>
-  <body>
-    <div class="redirect-box">
-      <h2>Redirecting you to Nextup Studio...</h2>
-      <p>
-        If you are not redirected, <a href="https://instagram-video-downloader-gray.vercel.app/">click here</a>.
-      </p>
-    </div>
-  </body>
+      }, 3000);
+    };
+  </script>
+</head>
+<body>
+  <div class="redirect-box">
+    <h2>Redirecting you to Nextup Studio...</h2>
+    <div class="loader"></div>
+    <p>If you are not redirected, <a href="https://instagram-video-downloader-gray.vercel.app/">click here</a>.</p>
+  </div>
+</body>
 </html>
