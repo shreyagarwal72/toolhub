@@ -3,24 +3,32 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Number to Words Generator - Nextup Tools</title>
+  <title>Number to Words Generator - ToolHub</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
+  <!-- Hero Section -->
   <header class="hero">
     <h1>Number to Words Generator</h1>
     <p>Convert any number into English words instantly.</p>
   </header>
 
-  <section class="tool-container">
-    <input type="number" id="numberInput" placeholder="Enter a number" />
+  <!-- Tool Card -->
+  <section class="tools">
+    <div class="tool-cards" style="justify-content:center;">
+      <div class="card">
+        <h3>Convert Number</h3>
+        <input type="number" id="numberInput" placeholder="Enter a number" />
 
-    <div class="btn-group">
-      <button onclick="convertToWords()">Convert</button>
-      <button onclick="clearNumber()">Clear</button>
+        <div class="btn-group">
+          <button class="card-btn" onclick="convertToWords()">Convert</button>
+          <button class="card-btn danger" onclick="clearNumber()">Clear</button>
+        </div>
+
+        <textarea id="outputWords" placeholder="Result will appear here..." readonly></textarea>
+        <p id="errorMsg" class="error-msg"></p>
+      </div>
     </div>
-
-    <textarea id="outputWords" placeholder="Result will appear here..." readonly></textarea>
   </section>
 
   <footer style="text-align:center; margin-top:30px; color:#ccc;">
@@ -30,8 +38,11 @@
   <script>
     function convertToWords() {
       let num = document.getElementById("numberInput").value;
+      let errorMsg = document.getElementById("errorMsg");
+      errorMsg.textContent = "";
+
       if(num === "" || isNaN(num)) {
-        alert("Please enter a valid number!");
+        errorMsg.textContent = "⚠ Please enter a valid number!";
         return;
       }
       document.getElementById("outputWords").value = numberToWords(parseInt(num));
@@ -40,6 +51,7 @@
     function clearNumber() {
       document.getElementById("numberInput").value = "";
       document.getElementById("outputWords").value = "";
+      document.getElementById("errorMsg").textContent = "";
     }
 
     function numberToWords(num) {
