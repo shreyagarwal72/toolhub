@@ -8,55 +8,29 @@
   <meta name="keywords" content="emoji picker, copy emoji, emoji search, emoji list, unique emojis, rare emojis, Nextup Tools, emoji tool">
   <meta name="author" content="Nextup Studio">
   <link rel="stylesheet" href="style.css">
-  <style>
-    .emoji-container {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(70px, 1fr));
-      gap: 15px;
-      margin-top: 20px;
-    }
-    .emoji-card {
-      background: #1e1e1e;
-      border: 1px solid #333;
-      padding: 10px;
-      text-align: center;
-      border-radius: 10px;
-      cursor: pointer;
-      transition: transform 0.2s;
-    }
-    .emoji-card:hover {
-      transform: scale(1.1);
-      background: #2a2a2a;
-    }
-    .emoji {
-      font-size: 1.8rem;
-      display: block;
-    }
-    #search {
-      width: 100%;
-      padding: 12px;
-      margin: 15px 0;
-      border-radius: 8px;
-      border: 1px solid #333;
-      font-size: 1rem;
-    }
-  </style>
 </head>
 <body>
 
+  <!-- Hero Section -->
   <header class="hero">
     <h1>Emoji Picker & Copy Tool</h1>
     <p>Search, pick, and copy emojis instantly. Explore hundreds of rare and common emojis, alphabetically arranged.</p>
   </header>
 
+  <!-- Main Content -->
   <main class="main-content">
-    <input type="text" id="search" placeholder="Search emoji by name...">
-
-    <div class="emoji-container" id="emojiContainer">
-      <!-- Emojis inserted here -->
-    </div>
+    <input type="text" id="search" class="search-bar" placeholder="Search emoji by name...">
+    <div class="emoji-container" id="emojiContainer"></div>
   </main>
 
+  <!-- Footer -->
+  <footer class="footer">
+    <a href="https://shreyagarwal72.github.io" target="_blank" class="footer-link">
+      Powered by Nextup Studio
+    </a>
+  </footer>
+
+  <!-- Script -->
   <script>
     const emojis = [
       {emoji:"🧑‍🚀", name:"astronaut"},
@@ -98,7 +72,6 @@
       {emoji:"🧙‍♂️", name:"wizard"},
       {emoji:"🪀", name:"yo-yo"},
       {emoji:"🦓", name:"zebra"},
-      // --- more added ---
       {emoji:"🥑", name:"avocado"},
       {emoji:"🍩", name:"donut"},
       {emoji:"🧊", name:"ice cube"},
@@ -112,7 +85,6 @@
       {emoji:"🦜", name:"parrot"},
       {emoji:"🛸", name:"ufo"},
       {emoji:"🪄", name:"magic wand"},
-      {emoji:"🦕", name:"brontosaurus"},
       {emoji:"🧟‍♂️", name:"zombie"},
       {emoji:"🥋", name:"martial arts uniform"},
       {emoji:"🦖", name:"t-rex"},
@@ -121,7 +93,7 @@
       {emoji:"🧶", name:"yarn"},
     ];
 
-    // Sort alphabetically by name
+    // Sort emojis alphabetically
     emojis.sort((a, b) => a.name.localeCompare(b.name));
 
     const container = document.getElementById("emojiContainer");
@@ -132,10 +104,11 @@
       list.forEach(e => {
         const card = document.createElement("div");
         card.className = "emoji-card";
-        card.innerHTML = `<span class="emoji">${e.emoji}</span><span>${e.name}</span>`;
+        card.innerHTML = `<span class="emoji">${e.emoji}</span><span class="emoji-name">${e.name}</span>`;
         card.onclick = () => {
-          navigator.clipboard.writeText(e.emoji);
-          alert(`Copied: ${e.emoji}`);
+          navigator.clipboard.writeText(e.emoji).then(() => {
+            showAlert(`Copied: ${e.emoji}`);
+          });
         };
         container.appendChild(card);
       });
@@ -151,5 +124,8 @@
       displayEmojis(filtered);
     });
   </script>
+
+  <!-- Global Script -->
+  <script src="script.js"></script>
 </body>
 </html>
