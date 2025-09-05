@@ -192,44 +192,6 @@ footer a {
 footer a:hover { color: #99e6ff; }
 
 /* ==========================
-   ALPHABET SCROLLBAR (Mobile only)
-========================== */
-.alphabet-scroll { display: none; }
-
-@media (max-width: 768px) {
-  .alphabet-scroll {
-    display: flex;
-    overflow-x: auto;
-    justify-content: space-around;
-    padding: 8px;
-    background: rgba(20,20,20,0.95);
-    backdrop-filter: blur(10px);
-    border-top: 1px solid rgba(0,180,255,0.25);
-    position: sticky;
-    bottom: 0;
-    z-index: 999;
-  }
-
-  .alphabet-scroll a {
-    flex: none;
-    margin: 0 3px;
-    padding: 6px 10px;
-    border-radius: 50%;
-    background: rgba(35,35,35,0.9);
-    color: #80d4ff;
-    font-size: 0.9rem;
-    text-decoration: none;
-    transition: all 0.3s ease;
-  }
-
-  .alphabet-scroll a:hover {
-    background: #33bfff;
-    color: #0d0d0d;
-    transform: scale(1.12);
-  }
-}
-
-/* ==========================
    ANIMATIONS
 ========================== */
 @keyframes fadeSlideDown {
