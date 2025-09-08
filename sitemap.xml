@@ -1,44 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-
+  
   <!-- Homepage -->
   <url>
-    <loc>https://shreyagarwal72.github.io/</loc>
+    <loc>https://shreyagarwal72.github.io/toolhub/</loc>
     <priority>1.0</priority>
   </url>
 
   <!-- Tools Pages -->
-  <url>
-    <loc>https://shreyagarwal72.github.io/color.html</loc>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://shreyagarwal72.github.io/password.html</loc>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://shreyagarwal72.github.io/base64.html</loc>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://shreyagarwal72.github.io/calc.html</loc>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://shreyagarwal72.github.io/text.html</loc>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://shreyagarwal72.github.io/emoji.html</loc>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://shreyagarwal72.github.io/url.html</loc>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://shreyagarwal72.github.io/number-words.html</loc>
-    <priority>0.8</priority>
-  </url>
+  <url><loc>https://shreyagarwal72.github.io/toolhub/age-unit.html</loc><priority>0.9</priority></url>
+  <url><loc>https://shreyagarwal72.github.io/toolhub/case.html</loc><priority>0.9</priority></url>
+  <url><loc>https://shreyagarwal72.github.io/toolhub/color.html</loc><priority>0.9</priority></url>
+  <url><loc>https://shreyagarwal72.github.io/toolhub/emoji.html</loc><priority>0.9</priority></url>
+  <url><loc>https://shreyagarwal72.github.io/toolhub/replace.html</loc><priority>0.9</priority></url>
+  <url><loc>https://shreyagarwal72.github.io/toolhub/insta.html</loc><priority>0.9</priority></url>
+  <url><loc>https://shreyagarwal72.github.io/toolhub/lorem.html</loc><priority>0.9</priority></url>
+  <url><loc>https://shreyagarwal72.github.io/toolhub/number-words.html</loc><priority>0.9</priority></url>
+  <url><loc>https://shreyagarwal72.github.io/toolhub/password.html</loc><priority>0.9</priority></url>
+  <url><loc>https://shreyagarwal72.github.io/toolhub/qr.html</loc><priority>0.9</priority></url>
+  <url><loc>https://shreyagarwal72.github.io/toolhub/username.html</loc><priority>0.9</priority></url>
+  <url><loc>https://shreyagarwal72.github.io/toolhub/reverser.html</loc><priority>0.9</priority></url>
+  <url><loc>https://shreyagarwal72.github.io/toolhub/summarizer.html</loc><priority>0.9</priority></url>
+  <url><loc>https://shreyagarwal72.github.io/toolhub/url.html</loc><priority>0.9</priority></url>
+  <url><loc>https://shreyagarwal72.github.io/toolhub/word.html</loc><priority>0.9</priority></url>
+  <url><loc>https://shreyagarwal72.github.io/toolhub/yt-download.html</loc><priority>0.9</priority></url>
+
+  <!-- Manifest & Service Worker -->
+  <url><loc>https://shreyagarwal72.github.io/toolhub/manifest.json</loc><priority>0.5</priority></url>
+  <url><loc>https://shreyagarwal72.github.io/toolhub/service-worker.js</loc><priority>0.5</priority></url>
 
 </urlset>
