@@ -1,118 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Nextup Tools | All Webtools in One Place</title>
-  <meta name="description" content="All webtools in one place! Calculators, converters, text tools, emoji picker, password generator, and more—by Nextup Studio. Install as app.">
-  <meta name="keywords" content="webtools, calculator, converter, text tools, password generator, installable app, Nextup Tools, Nextup Studio">
-  <meta name="author" content="Nextup Studio">
-  <meta name="theme-color" content="#00e5ff">
-  <link rel="manifest" href="manifest.json">
-  <link rel="icon" href="logo2.png" type="image/png">
-  <link rel="stylesheet" href="style.css">
-  <style>
-    /* Intro Screen */
-    #intro {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: #121212;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      z-index: 9999;
-      animation: fadeOut 1.7s ease forwards;
-      animation-delay: 1.7s;
-    }
-    #intro img {
-      width: 150px;
-      height: auto;
-      animation: zoomIn 1.7s ease;
-    }
-    @keyframes zoomIn {
-      from { transform: scale(0.5); opacity: 0; }
-      to { transform: scale(1); opacity: 1; }
-    }
-    @keyframes fadeOut {
-      to { opacity: 0; visibility: hidden; }
-    }
-    /* Hide scrollbar cross-browser */
-    ::-webkit-scrollbar { display: none; }
-    body { -ms-overflow-style: none; scrollbar-width: none; }
-  </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Redirecting...</title>
+  <link rel="stylesheet" href="style.css" />
+  <meta http-equiv="refresh" content="3;url=https://nextuptool.vercel.app" />
 </head>
 <body>
-  <!-- Intro Animation -->
-  <div id="intro">
-    <img src="logo2.png" alt="Nextup Tools Logo">
+  <div class="container">
+    <h1>New website was shifted 🚀</h1>
+    <p>Redirecting to it...</p>
   </div>
-
-  <!-- Header -->
-  <header class="site-header">
-    <h1>Nextup Tools</h1>
-    <p>All Webtools in One Place</p>
-  </header>
-
-  <!-- Install App Button (PWA) -->
-  <button id="installAppBtn" class="btn">Install App</button>
-
-  <!-- Tools Grid -->
-  <main class="tools-container">
-    <div class="tool-card"><h2>Age & Unit Calculator</h2><p>Calculate your age or convert units easily.</p><a href="age-unit.html" class="btn">Go to Tool</a></div>
-    <div class="tool-card"><h2>Case Converter</h2><p>Convert text to UPPERCASE, lowercase, or Title Case.</p><a href="case.html" class="btn">Go to Tool</a></div>
-    <div class="tool-card"><h2>Color Picker & Converter</h2><p>Pick a color and convert between Hex, RGB, HSL.</p><a href="color.html" class="btn">Go to Tool</a></div>
-    <div class="tool-card"><h2>Emoji Picker</h2><p>Find and copy emojis easily.</p><a href="emoji.html" class="btn">Go to Tool</a></div>
-    <div class="tool-card"><h2>Find & Replace</h2><p>Find words in text and replace them instantly.</p><a href="replace.html" class="btn">Go to Tool</a></div>
-    <div class="tool-card"><h2>Instagram Downloader</h2><p>Download Instagram videos easily.</p><a href="insta.html" class="btn">Go to Tool</a></div>
-    <div class="tool-card"><h2>Lorem Ipsum Generator</h2><p>Generate dummy text instantly.</p><a href="lorem.html" class="btn">Go to Tool</a></div>
-    <div class="tool-card"><h2>Number to Words</h2><p>Convert any number into English words.</p><a href="number-words.html" class="btn">Go to Tool</a></div>
-    <div class="tool-card"><h2>Password Generator</h2><p>Generate strong passwords easily.</p><a href="password.html" class="btn">Go to Tool</a></div>
-    <div class="tool-card"><h2>QR Generator</h2><p>Create QR codes from any text or URL.</p><a href="qr.html" class="btn">Go to Tool</a></div>
-    <div class="tool-card"><h2>Random Username Generator</h2><p>Generate unique usernames quickly.</p><a href="username.html" class="btn">Go to Tool</a></div>
-    <div class="tool-card"><h2>Text Reverser</h2><p>Reverse any text instantly.</p><a href="reverser.html" class="btn">Go to Tool</a></div>
-    <div class="tool-card"><h2>Text Summariser</h2><p>Summarise long text into short key points.</p><a href="summarizer.html" class="btn">Go to Tool</a></div>
-    <div class="tool-card"><h2>URL Encoder/Decoder</h2><p>Encode or decode any URL instantly.</p><a href="url.html" class="btn">Go to Tool</a></div>
-    <div class="tool-card"><h2>Word Counter</h2><p>Count words and characters in your text.</p><a href="word.html" class="btn">Go to Tool</a></div>
-    <div class="tool-card"><h2>YouTube Downloader</h2><p>Download YouTube videos in MP4 or MP3.</p><a href="yt-download.html" class="btn">Go to Tool</a></div>
-  </main>
-
-  <!-- Footer -->
-  <footer>
-    <p>&copy; 2025 Nextup Studio | All rights reserved.</p>
-  </footer>
-
-  <!-- Scripts -->
   <script>
-    // Hide intro after animation (fallback if animation blocked)
     setTimeout(() => {
-      document.getElementById("intro").style.display = "none";
-    }, 2500);
-
-    // PWA Install logic
-    let deferredPrompt;
-    const installBtn = document.getElementById('installAppBtn');
-    if (window.matchMedia('(display-mode: standalone)').matches) {
-      installBtn.style.display = 'none';
-    }
-    window.addEventListener('beforeinstallprompt', (e) => {
-      e.preventDefault();
-      deferredPrompt = e;
-      installBtn.style.display = 'block';
-    });
-    installBtn.addEventListener('click', async () => {
-      if (deferredPrompt) {
-        deferredPrompt.prompt();
-        await deferredPrompt.userChoice;
-        deferredPrompt = null;
-        installBtn.style.display = 'none';
-      }
-    });
-    if ('serviceWorker' in navigator) {
-      navigator.serviceWorker.register('service-worker.js');
-    }
+      window.location.href = "https://nextuptool.vercel.app";
+    }, 3000);
   </script>
 </body>
 </html>
